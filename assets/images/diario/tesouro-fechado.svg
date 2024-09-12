@@ -1,0 +1,350 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="-1.69 0 94.59 75.39">
+    <path
+        d="M1.037 51.69c.174 2.574 4.327 4.524 9.276 4.354 4.952-.17 8.823-2.393 8.653-4.968l-.137-2.023-17.852.61c.004 0 .032 1.606.06 2.026Z"
+        fill="url(#a)" />
+    <mask id="b" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="51" width="18" height="6">
+        <path d="M1.038 51.69c.173 2.574 4.327 4.524 9.275 4.354 4.953-.17 8.824-2.393 8.654-4.968" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#b)">
+        <path d="m6.135 56.674 1.982-.073.13-3.669-1.987.073-.125 3.669Z" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </g>
+    <path
+        d="M10.003 53.41c4.954-.109 8.925-2.288 8.868-4.866-.057-2.58-4.12-4.581-9.074-4.472C4.843 44.18.872 46.36.93 48.938c.057 2.58 4.12 4.581 9.074 4.472Z"
+        fill="#FFD522" style="--darkreader-inline-fill:#ffd831" />
+    <path
+        d="M15.762 48.973c-.113-1.68-3.108-2.939-6.692-2.818-1.974.069-3.71.541-4.856 1.231.985-1.05 3.156-1.824 5.723-1.913 3.585-.121 6.58 1.138 6.693 2.818.052.754-.493 1.465-1.43 2.026.392-.412.594-.868.562-1.344Z"
+        fill="#EAA700" style="--darkreader-inline-fill:#ffc128" />
+    <path
+        d="M10.152 51.56c3.583-.09 6.454-1.525 6.412-3.205-.042-1.68-2.98-2.97-6.564-2.88-3.584.09-6.455 1.524-6.413 3.204.042 1.68 2.981 2.97 6.565 2.88Z"
+        stroke="#EAA700" stroke-width=".954" stroke-miterlimit="10" style="--darkreader-inline-stroke:#ffc128" />
+    <path
+        d="m2.83 42.289-.642 1.174c-.234.428-.586.78-1.013 1.013L0 45.118l1.175.642c.427.234.779.585 1.013 1.013l.641 1.174.642-1.174a2.549 2.549 0 0 1 1.013-1.013l1.175-.642-1.175-.642a2.549 2.549 0 0 1-1.013-1.013L2.83 42.29Z"
+        fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    <path d="m91.738 32.339-48.311-7.766-32.202 5.304 49.158 9.094 31.355-6.632Z" fill="#845217"
+        style="--darkreader-inline-fill:#6a4212" />
+    <path
+        d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-21.869 5.659a11.79 11.79 0 0 1-5.723.044l-39.452-9.57a3.513 3.513 0 0 1-2.619-2.765l-4.319-23.156 49.159 9.094Z"
+        fill="#8C4A1E" style="--darkreader-inline-fill:#703b18" />
+    <mask id="c" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#c)">
+        <path d="m63.177 52.658-50.72-10.656-.57.424 51.29 11.511v-1.28Z" fill="#7A350E"
+            style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <mask id="d" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#d)">
+        <path d="M61.614 59.762 27.233 52.23 12.31 48.678l.146-1.42 49.158 12.504Z" fill="#7A350E"
+            style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <mask id="e" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#e)">
+        <path d="m91.737 32.34-31.354 6.63.19 30.503 25.982-6.724a1.696 1.696 0 0 0 1.26-1.421l3.922-28.989Z"
+            fill="#7A350E" style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <mask id="f" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#f)">
+        <mask id="g" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="60" y="32" width="32" height="34">
+            <path
+                d="m91.737 32.34-31.354 6.63.081 23.516a2.78 2.78 0 0 0 3.475 2.68l19.625-5.077a6.298 6.298 0 0 0 4.642-5.122l3.531-22.628Z"
+                fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+        </mask>
+        <g mask="url(#g)">
+            <path
+                d="m12.55 38.115 47.834 9.094 30.405-6.253s1.893-2.272 2.083-3.6c.19-1.328-1.138-3.6-1.138-3.6L60.38 40.387l-49.163-9.093s-.948 1.327-.948 3.22c.008 1.897 2.28 3.6 2.28 3.6Z"
+                fill="#462208" style="--darkreader-inline-fill:#381b06" />
+        </g>
+        <mask id="h" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="60" y="32" width="32" height="34">
+            <path
+                d="m91.737 32.34-31.354 6.63.081 23.516a2.78 2.78 0 0 0 3.475 2.68l19.625-5.077a6.298 6.298 0 0 0 4.642-5.122l3.531-22.628Z"
+                fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+        </mask>
+        <g mask="url(#h)" fill="#66290A" style="--darkreader-inline-fill:#522108">
+            <path d="m91.326 46.03-33.635 6.91 33.296-5.55.34-1.36Zm.314 7.718-20.03 2.696-13.84 3.762 33.872-6.458Z" />
+        </g>
+    </g>
+    <mask id="i" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#i)">
+        <path
+            d="m57.425 43.253-.065 16.525a1.744 1.744 0 0 1-2.171 1.687l-33.893-8.472a3.612 3.612 0 0 1-2.688-2.926L16.29 35.79l-6.111-.428.71 26.995 50.725 5.966-.428-26.498-3.762 1.428Z"
+            fill="#A06B24" style="--darkreader-inline-fill:#80561d" />
+    </g>
+    <mask id="j" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#j)">
+        <path
+            d="m59.507 66.39-.125-23.088 3.823-.142v16.51a1.59 1.59 0 0 0 1.974 1.545l18.005-4.44a1.59 1.59 0 0 0 1.195-1.328l2.265-16.194 4.19-.14-1.825 21.593-29.502 5.684Z"
+            fill="#845217" style="--darkreader-inline-fill:#6a4212" />
+    </g>
+    <mask id="k" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#k)">
+        <path
+            d="m56.569 43.915-.065 16.525a1.744 1.744 0 0 1-2.171 1.687L20.44 53.655a3.611 3.611 0 0 1-2.688-2.927l-2.317-14.276-6.111-.428.71 26.995 50.725 5.966-.428-26.499-3.762 1.43Z"
+            fill="#BC833F" style="--darkreader-inline-fill:#966932" />
+    </g>
+    <mask id="l" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#l)">
+        <path
+            d="m60.549 66.862-.125-23.088 3.822-.141V60.14a1.59 1.59 0 0 0 1.974 1.546l18.006-4.44a1.59 1.59 0 0 0 1.195-1.328l2.264-16.194 4.19-.14-1.825 21.594-29.501 5.683Z"
+            fill="#A06B24" style="--darkreader-inline-fill:#80561d" />
+    </g>
+    <mask id="m" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#m)">
+        <mask id="n" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="9" y="36" width="52" height="33">
+            <path
+                d="m56.569 43.915-.065 16.525a1.744 1.744 0 0 1-2.171 1.687L20.44 53.655a3.611 3.611 0 0 1-2.688-2.927l-2.317-14.276-6.111-.428.71 26.995 50.725 5.966-.428-26.499-3.762 1.43Z"
+                fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+        </mask>
+        <g mask="url(#n)">
+            <path
+                d="m12.55 37.974 47.834 9.094 30.405-6.253s1.893-2.272 2.083-3.6c.19-1.328-1.138-3.6-1.138-3.6l-31.354 6.63-49.163-9.094s-.948 1.328-.948 3.221 2.28 3.6 2.28 3.6Z"
+                fill="#845217" style="--darkreader-inline-fill:#6a4212" />
+        </g>
+    </g>
+    <mask id="o" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="81" height="37">
+        <path
+            d="m60.383 38.97 31.355-6.631-3.79 24.299a3.724 3.724 0 0 1-2.741 3.027l-22.345 5.78a9.834 9.834 0 0 1-4.771.036l-39.855-9.667a3.614 3.614 0 0 1-2.704-2.853l-4.307-23.084 49.159 9.094Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#o)">
+        <mask id="p" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="60" y="39" width="32" height="28">
+            <path
+                d="m60.549 66.862-.125-23.088 3.822-.141V60.14a1.59 1.59 0 0 0 1.974 1.546l18.006-4.44a1.59 1.59 0 0 0 1.195-1.328l2.264-16.194 4.19-.14-1.825 21.594-29.501 5.683Z"
+                fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+        </mask>
+        <g mask="url(#p)">
+            <path
+                d="m12.55 37.974 47.834 9.094 30.405-6.253s1.893-2.272 2.083-3.6c.19-1.328-1.138-3.6-1.138-3.6l-31.354 6.63-49.163-9.094s-.948 1.328-.948 3.221 2.28 3.6 2.28 3.6Z"
+                fill="#845217" style="--darkreader-inline-fill:#6a4212" />
+        </g>
+    </g>
+    <mask id="q" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="11" y="29" width="50" height="38">
+        <path d="m60.383 38.97-49.162-9.093 4.15 22.248a4.928 4.928 0 0 0 3.684 3.887l41.421 10.046-.093-27.087Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#q)">
+        <path
+            d="m15.722 37.308.19 1.23L56.5 46.26l.214-1.138 8.525-.283.06 1.36 25.494-5.243s1.893-2.272 2.083-3.6c.19-1.328-1.138-3.6-1.138-3.6l-31.355 6.631-49.162-9.093s-.948 1.327-.948 3.22c.004 1.897 5.449 2.794 5.449 2.794Z"
+            fill="#7A350E" style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <path
+        d="m12.55 36.694 47.834 9.094 30.405-6.252s1.893-2.273 2.083-3.6c.19-1.329-1.138-3.601-1.138-3.601L60.38 38.967l-49.163-9.094s-.948 1.328-.948 3.22c0 1.894 2.28 3.601 2.28 3.601Z"
+        fill="#BC833F" style="--darkreader-inline-fill:#966932" />
+    <mask id="r" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="29" width="83" height="17">
+        <path
+            d="m12.55 36.694 47.834 9.094 30.405-6.252s1.893-2.273 2.083-3.6c.19-1.329-1.138-3.601-1.138-3.601L60.38 38.967l-49.163-9.094s-.948 1.328-.948 3.22c0 1.894 2.28 3.601 2.28 3.601Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#r)">
+        <path d="m60.48 46.167-.19-7.576 35.048-9.473.38 13.449-35.238 3.6Z" fill="#A06B24"
+            style="--darkreader-inline-fill:#80561d" />
+    </g>
+    <mask id="s" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="10" y="29" width="83" height="17">
+        <path
+            d="m12.55 36.694 47.834 9.094 30.405-6.252s1.893-2.273 2.083-3.6c.19-1.329-1.138-3.601-1.138-3.601L60.38 38.967l-49.163-9.094s-.948 1.328-.948 3.22c0 1.894 2.28 3.601 2.28 3.601Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#s)">
+        <path d="M92.876 35.94 60.62 42.566 8.76 32.907l.855-5.4 83.262 4.452v3.98Z" fill="url(#t)" />
+    </g>
+    <path d="M12.077 30.317c0-15.144 8.072-28.424 19.249-30.317l46.47 8.25-4.383 27.629-14.01 3.427-47.326-9.086"
+        fill="url(#u)" />
+    <path
+        d="m53.392 33.9-35.007-7.692a1.575 1.575 0 0 1-1.239-1.667c.9-10.628 7.092-19.718 13.925-20.73l31.932 6.453c.605.121.831.884.375 1.304-4.513 4.15-7.657 11.85-8.448 21.19a1.271 1.271 0 0 1-1.538 1.143Z"
+        fill="#8C4A1E" style="--darkreader-inline-fill:#703b18" />
+    <mask id="v" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="17" y="3" width="47" height="31">
+        <path
+            d="m53.687 33.966-35.79-7.863a1.017 1.017 0 0 1-.791-1.058C17.832 14.482 23.81 5.332 30.53 3.911c.327-.069.666-.069.993-.004l31.02 6.273c.799.161 1.077 1.15.492 1.719-4.38 4.266-7.403 11.931-8.133 21.17a1 1 0 0 1-1.215.897Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#v)">
+        <path d="M62.35 15.629 22.421 6.535l14.918 4.549 22.737 4.831 2.272-.286Z" fill="#7A350E"
+            style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <mask id="w" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="17" y="3" width="47" height="31">
+        <path
+            d="m53.687 33.966-35.79-7.863a1.017 1.017 0 0 1-.791-1.058C17.832 14.482 23.81 5.332 30.53 3.911c.327-.069.666-.069.993-.004l31.02 6.273c.799.161 1.077 1.15.492 1.719-4.38 4.266-7.403 11.931-8.133 21.17a1 1 0 0 1-1.215.897Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#w)">
+        <path d="m19.01 12.787 23.161 5.683 16.626 3.839-28.985-5.401-10.801-4.121Z" fill="#7A350E"
+            style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <mask id="x" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="17" y="3" width="47" height="31">
+        <path
+            d="m53.687 33.966-35.79-7.863a1.017 1.017 0 0 1-.791-1.058C17.832 14.482 23.81 5.332 30.53 3.911c.327-.069.666-.069.993-.004l31.02 6.273c.799.161 1.077 1.15.492 1.719-4.38 4.266-7.403 11.931-8.133 21.17a1 1 0 0 1-1.215.897Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#x)">
+        <path d="m56.097 29.695-14.067-2.7-26.002-4.686 39.928 8.666.14-1.28Z" fill="#7A350E"
+            style="--darkreader-inline-fill:#622a0b" />
+    </g>
+    <path d="M89.88 32.517c0-15.145-6.76-25.95-15.103-24.13-8.343 1.82-15.104 15.572-15.104 30.717l30.208-6.587Z"
+        fill="#A06B24" style="--darkreader-inline-fill:#80561d" />
+    <path
+        d="M84.533 30.14c.557-.122.953-.626.936-1.195-.282-10.212-4.96-17.365-10.692-16.113-5.63 1.226-10.248 10.13-10.672 20.25a1.185 1.185 0 0 0 1.441 1.199l18.987-4.142Z"
+        fill="#7A350E" style="--darkreader-inline-fill:#f0a67c" />
+    <mask id="y" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="64" y="12" width="22" height="23">
+        <path
+            d="M84.27 30.196a1.51 1.51 0 0 0 1.191-1.522c-.359-10.07-5.005-17.086-10.684-15.847-5.546 1.211-10.107 9.865-10.652 19.799a1.517 1.517 0 0 0 1.837 1.562l18.308-3.992Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#y)">
+        <path d="m85.651 23.16-21.457 5.256 22.591-4.263-1.134-.993Z" fill="#66290A"
+            style="--darkreader-inline-fill:#f3ad89" />
+    </g>
+    <mask id="z" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="64" y="12" width="22" height="23">
+        <path
+            d="M84.27 30.196a1.51 1.51 0 0 0 1.191-1.522c-.359-10.07-5.005-17.086-10.684-15.847-5.546 1.211-10.107 9.865-10.652 19.799a1.517 1.517 0 0 0 1.837 1.562l18.308-3.992Z"
+            fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#z)">
+        <path d="m65.19 20.601 19.323-3.41-19.18 4.972-.142-1.562Z" fill="#66290A"
+            style="--darkreader-inline-fill:#f3ad89" />
+    </g>
+    <path
+        d="m64.694 33.711 18.987-4.14c.557-.122.953-.627.937-1.196-.194-6.914-2.402-12.424-5.583-14.873 3.637 2.07 6.228 7.923 6.438 15.442.016.57-.38 1.074-.936 1.195L65.55 34.281a1.19 1.19 0 0 1-1.276-.553c.13.02.275.016.42-.017Z"
+        fill="#845217" style="--darkreader-inline-fill:#e7b477" />
+    <path d="m25.17 7.16-.339-.076c1.014-.945 2.091-1.72 3.205-2.285a15.451 15.451 0 0 0-2.865 2.361Z" fill="#BC833F"
+        style="--darkreader-inline-fill:#c69355" />
+    <path
+        d="m17.372 22.6.101.02-.093-.07c.5-3.37 1.538-6.4 2.947-9.263 2.188-4.44 3.128-4.972 4.747-6.514l.33.093c-3.503 4.213-5.352 6.724-7.152 16.339l-.032-.025c-.028.263-.06.53-.085.796a1.583 1.583 0 0 0 1.24 1.666l35.006 7.694c.154.032.303.036.448.016a1.004 1.004 0 0 1-1.15.617l-35.79-7.862a1.017 1.017 0 0 1-.791-1.058c.064-.831.157-1.647.274-2.45Z"
+        fill="#BC833F" style="--darkreader-inline-fill:#966932" />
+    <path
+        d="M43.439 42.002c0 5.703-4.92 9.457-10.987 8.387-6.067-1.07-10.987-6.559-10.987-12.262s4.92-9.457 10.987-8.387c6.066 1.07 10.987 6.563 10.987 12.262Z"
+        fill="url(#A)" />
+    <path
+        d="M39.415 46.821c2.94-3.742 1.647-9.664-2.888-13.226-4.536-3.563-10.595-3.416-13.535.326-2.94 3.743-1.647 9.665 2.889 13.227 4.535 3.563 10.594 3.416 13.534-.327Z"
+        fill="#BC833F" style="--darkreader-inline-fill:#c69355" />
+    <path
+        d="M27.94 38.115c0-1.72 1.218-3.116 2.724-3.116 1.505 0 2.724 1.396 2.724 3.116 0 1.3-.694 2.41-1.683 2.878v4.093c0 .573-.468 1.04-1.041 1.04a1.044 1.044 0 0 1-1.041-1.04v-4.093c-.99-.468-1.684-1.579-1.684-2.878Z"
+        fill="#5E3E19" style="--darkreader-inline-fill:#e3bf95" />
+    <path
+        d="M30.664 34.999c1.506 0 2.725 1.396 2.725 3.116 0 1.3-.695 2.41-1.684 2.878v4.093c0 .573-.468 1.041-1.04 1.041a1.044 1.044 0 0 1-1.042-1.041v-4.093c-.99-.468-1.684-1.578-1.684-2.878 0-1.72 1.22-3.116 2.725-3.116Zm0-.852c-1.974 0-3.576 1.78-3.576 3.968 0 1.384.646 2.652 1.683 3.366v3.605c0 1.045.852 1.893 1.893 1.893a1.898 1.898 0 0 0 1.893-1.893V41.48c1.037-.714 1.683-1.982 1.683-3.366 0-2.188-1.602-3.968-3.576-3.968Z"
+        fill="url(#B)" />
+    <path
+        d="M36.82 44.71a.949.949 0 1 0 0-1.897.949.949 0 0 0 0 1.897Zm-11.46-2.462a.949.949 0 1 0 0-1.897.949.949 0 0 0 0 1.897Z"
+        fill="#A06B24" style="--darkreader-inline-fill:#dcaa65" />
+    <path d="M36.44 44.141a.949.949 0 1 0 0-1.897.949.949 0 0 0 0 1.897Z" fill="url(#C)" />
+    <path d="M25.255 41.776c.424 0 .767-.392.767-.876s-.343-.876-.767-.876c-.423 0-.767.392-.767.876s.344.876.767.876Z"
+        fill="url(#D)" />
+    <path
+        d="m40.371 30.002.771 1.405a3.04 3.04 0 0 0 1.211 1.21l1.405.771-1.405.771a3.04 3.04 0 0 0-1.21 1.211l-.772 1.405-.77-1.405a3.04 3.04 0 0 0-1.212-1.21l-1.404-.772 1.404-.77a3.04 3.04 0 0 0 1.211-1.211l.771-1.405Z"
+        fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    <path
+        d="M41.502 67.733c.173 2.576 4.326 4.525 9.275 4.356 4.953-.17 8.823-2.394 8.654-4.97l-.137-2.021-17.853.61c.004 0 .032 1.602.06 2.025Z"
+        fill="url(#E)" />
+    <mask id="F" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="67" width="19" height="6">
+        <path d="M41.502 67.733c.173 2.576 4.326 4.525 9.275 4.356 4.953-.17 8.823-2.394 8.654-4.97" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#F)">
+        <path d="m46.6 72.718 1.981-.076.13-3.67-1.983.073-.129 3.673Z" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </g>
+    <path
+        d="M50.467 69.453c4.955-.11 8.925-2.288 8.869-4.867-.057-2.579-4.12-4.58-9.074-4.472-4.955.11-8.925 2.288-8.868 4.867.056 2.579 4.119 4.58 9.073 4.472Z"
+        fill="#FFD522" style="--darkreader-inline-fill:#ffd831" />
+    <path
+        d="M56.226 65.013c-.113-1.68-3.108-2.939-6.692-2.817-1.974.068-3.71.54-4.856 1.23.985-1.049 3.157-1.824 5.724-1.913 3.584-.12 6.579 1.139 6.692 2.818.052.755-.492 1.465-1.429 2.026.392-.412.593-.868.561-1.344Z"
+        fill="#EAA700" style="--darkreader-inline-fill:#ffc128" />
+    <path
+        d="M50.616 67.605c3.584-.09 6.455-1.524 6.413-3.204-.042-1.68-2.982-2.97-6.565-2.88-3.583.089-6.454 1.524-6.412 3.204.042 1.68 2.98 2.97 6.564 2.88Z"
+        stroke="#EAA700" stroke-width=".954" stroke-miterlimit="10" style="--darkreader-inline-stroke:#ffc128" />
+    <path
+        d="M67.862 72.488c-1.02 2.37-5.586 2.83-10.2 1.021-4.613-1.808-7.523-5.194-6.502-7.568l.803-1.86 16.63 6.518c-.004-.004-.565 1.502-.73 1.89Z"
+        fill="url(#G)" />
+    <mask id="H" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="50" y="65" width="18" height="10">
+        <path d="M67.862 72.488c-1.02 2.37-5.586 2.83-10.2 1.022-4.613-1.809-7.523-5.195-6.502-7.569" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </mask>
+    <g mask="url(#H)">
+        <path d="m61.396 75.491-1.844-.73 1.102-3.504 1.844.73-1.102 3.504Z" fill="#fff"
+            style="--darkreader-inline-fill:#e8e6e3" />
+    </g>
+    <path
+        d="M68.88 69.906c.913-2.413-2.105-5.79-6.74-7.542-4.636-1.752-9.133-1.216-10.045 1.196-.912 2.413 2.106 5.789 6.742 7.541 4.635 1.752 9.132 1.217 10.044-1.195Z"
+        fill="#FFD522" style="--darkreader-inline-fill:#ffd831" />
+    <path
+        d="M54.882 65.021c.666-1.546 3.911-1.735 7.245-.428 1.837.719 3.318 1.744 4.17 2.777-.578-1.316-2.37-2.773-4.76-3.71-3.337-1.307-6.583-1.117-7.245.429-.298.694-.024 1.546.67 2.39-.23-.521-.27-1.018-.08-1.458Z"
+        fill="#EAA700" style="--darkreader-inline-fill:#ffc128" />
+    <path
+        d="M66.45 68.793c.599-1.57-1.63-3.88-4.98-5.157-3.349-1.278-6.55-1.04-7.148.53-.6 1.57 1.63 3.88 4.979 5.157 3.349 1.278 6.55 1.04 7.148-.53Z"
+        stroke="#EAA700" stroke-width=".954" stroke-miterlimit="10" style="--darkreader-inline-stroke:#ffc128" />
+    <path
+        d="m69.033 62.119.69 1.26c.25.46.63.835 1.086 1.085l1.26.69-1.26.69c-.46.25-.835.63-1.085 1.086l-.69 1.26-.69-1.26a2.73 2.73 0 0 0-1.087-1.086l-1.259-.69 1.26-.686c.46-.25.835-.63 1.085-1.086l.69-1.263Z"
+        fill="#fff" style="--darkreader-inline-fill:#e8e6e3" />
+    <defs>
+        <linearGradient id="a" x1="17.886" y1="54.523" x2="1.559" y2="48.183" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F5BE00" style="--darkreader-inline-stopcolor:#c49800" />
+            <stop offset="1" stop-color="#EAA700" style="--darkreader-inline-stopcolor:#bb8600" />
+        </linearGradient>
+        <linearGradient id="t" x1="50.817" y1="21.088" x2="50.817" y2="44.24" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" stop-opacity="0" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="u" x1="44.937" y1="0" x2="44.937" y2="39.307" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="A" x1="43.437" y1="40.066" x2="21.461" y2="40.066" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="B" x1="34.241" y1="40.565" x2="27.087" y2="40.565" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="C" x1="37.389" y1="43.194" x2="35.494" y2="43.194" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="D" x1="26.022" y1="40.898" x2="24.49" y2="40.898" gradientUnits="userSpaceOnUse">
+            <stop offset=".314" stop-color="#EAAE73" style="--darkreader-inline-stopcolor:#804913" />
+            <stop offset="1" stop-color="#EA9951" style="--darkreader-inline-stopcolor:#965012" />
+        </linearGradient>
+        <linearGradient id="E" x1="58.346" y1="70.572" x2="42.02" y2="64.232" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F5BE00" style="--darkreader-inline-stopcolor:#c49800" />
+            <stop offset="1" stop-color="#EAA700" style="--darkreader-inline-stopcolor:#bb8600" />
+        </linearGradient>
+        <linearGradient id="G" x1="51.037" y1="69.545" x2="68.542" y2="69.002" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F5BE00" style="--darkreader-inline-stopcolor:#c49800" />
+            <stop offset="1" stop-color="#EAA700" style="--darkreader-inline-stopcolor:#bb8600" />
+        </linearGradient>
+    </defs>
+</svg>

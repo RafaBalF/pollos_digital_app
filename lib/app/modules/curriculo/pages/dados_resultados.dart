@@ -3,22 +3,20 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
-import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
-import 'package:pollos_digital/app/shared/enums/button_types.enum.dart';
-import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class CurriculoPage extends StatefulWidget {
-  const CurriculoPage({super.key});
+class DadosResultadosPage extends StatefulWidget {
+  const DadosResultadosPage({super.key});
 
   @override
-  State<CurriculoPage> createState() => _CurriculoPageState();
+  State<DadosResultadosPage> createState() => _DadosResultadosPageState();
 }
 
-class _CurriculoPageState extends State<CurriculoPage> {
+class _DadosResultadosPageState extends State<DadosResultadosPage> {
   final CurriculoStore _store = Modular.get<CurriculoStore>();
   late final Future<void> _future;
 
@@ -35,6 +33,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return SimpleScaffoldWidget(
+            title: 'Resultados',
             bodyPadding: EdgeInsets.all(2.w),
             body: Observer(
               builder: (_) {
@@ -61,41 +60,20 @@ class _CurriculoPageState extends State<CurriculoPage> {
       height: MediaQuery.of(context).size.height -
           (kToolbarHeight + kBottomNavigationBarHeight),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 10.h,
-            backgroundColor: Colors.black,
-            backgroundImage: const AssetImage(
-                'assets/images/curriculo/pollos-digital-agencia-cria-seu-site.png'),
-          ),
+          InputWidget(label: 'Nome'),
           DividerWidget(height: 2.h),
-          textWidget('Sou Pollito', fontWeight: FontWeight.bold, fontSize: 3.h),
-          textWidget(
-            'Mande um áudio que iremos criar sua vitrine online. Exemplo: Meu nome é Leonardo Polo sou programador de sistemas PHP e Java fiz faculdade na... etc.',
-            fontSize: 2.5.h,
-            autoSize: false,
-            maxLines: 10,
-            textAlign: TextAlign.center,
-            color: Colors.grey[700],
-          ),
-          DividerWidget(height: 10.h),
-          // Image.asset('assets/images/curriculo/soundbar.jpg'),
-          CircleAvatar(
-            backgroundColor: focus,
-            radius: 5.h,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.mic),
-              color: Colors.white,
-              iconSize: 5.h,
-            ),
-          ),
-          DividerWidget(height: 10.h),
+          InputWidget(label: 'Email'),
+          DividerWidget(height: 2.h),
+          InputWidget(label: 'Telefone'),
+          DividerWidget(height: 2.h),
+          InputWidget(label: 'Resumo', minLines: 4, maxLines: 4),
+          DividerWidget(height: 4.h),
           ButtonWidget.filled(
             onPressed: () {
-              Modular.to.pushNamed('/curriculo/dados-resultados');
+              Modular.to.pushNamed('/curriculo/curriculos-modelos');
             },
             title: 'AVANÇAR',
             textColor: white,

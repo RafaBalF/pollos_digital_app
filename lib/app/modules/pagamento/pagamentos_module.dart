@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
 import 'package:pollos_digital/app/modules/pagamento/pagamentos_page.dart';
 import 'package:pollos_digital/app/modules/pagamento/pagamentos_store.dart';
-import 'package:pollos_digital/app/modules/pagamento/pages/credit_card_form_page.dart';
+//import 'package:pollos_digital/app/modules/pagamento/pages/credit_card_form_page.dart';
 import 'package:pollos_digital/app/modules/pagamento/pages/credit_card_page.dart';
 import 'package:pollos_digital/app/modules/pagamento/pages/my_cards_page.dart';
 import 'package:pollos_digital/app/modules/pagamento/pages/pagamento_page.dart';

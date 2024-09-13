@@ -150,7 +150,7 @@ class HomePageState extends State<HomePage> {
           RedirectCardWidget(
             imgPath: 'assets/icons/svg/document_accent.svg',
             label: 'Criar currículo',
-            route: '/sessao/agendamento',
+            route: '/curriculo/',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
           ),

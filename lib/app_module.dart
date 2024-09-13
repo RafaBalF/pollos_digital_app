@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
 import 'package:pollos_digital/app/guards/auth.guard.dart';
 import 'package:pollos_digital/app/modules/auth/auth_module.dart';
+import 'package:pollos_digital/app/modules/curriculo/curriculo_module.dart';
 import 'package:pollos_digital/app/modules/diario/diario_module.dart';
 import 'package:pollos_digital/app/modules/faq/faq_module.dart';
 import 'package:pollos_digital/app/modules/home/home_module.dart';
@@ -25,6 +26,11 @@ class AppModule extends Module {
     r.module(
       '/',
       module: LaunchModule(),
+      transition: defaultTransitonType,
+    );
+    r.module(
+      '/curriculo',
+      module: CurriculoModule(),
       transition: defaultTransitonType,
     );
     r.module(

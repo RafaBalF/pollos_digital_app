@@ -3,22 +3,22 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
-import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
-import 'package:pollos_digital/app/shared/enums/button_types.enum.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-class CurriculoPage extends StatefulWidget {
-  const CurriculoPage({super.key});
+class CurriculosModelosPage extends StatefulWidget {
+  const CurriculosModelosPage({super.key});
 
   @override
-  State<CurriculoPage> createState() => _CurriculoPageState();
+  State<CurriculosModelosPage> createState() => _CurriculosModelosPageState();
 }
 
-class _CurriculoPageState extends State<CurriculoPage> {
+class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
   final CurriculoStore _store = Modular.get<CurriculoStore>();
   late final Future<void> _future;
 
@@ -35,6 +35,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return SimpleScaffoldWidget(
+            title: 'Resultados',
             bodyPadding: EdgeInsets.all(2.w),
             body: Observer(
               builder: (_) {
@@ -61,19 +62,13 @@ class _CurriculoPageState extends State<CurriculoPage> {
       height: MediaQuery.of(context).size.height -
           (kToolbarHeight + kBottomNavigationBarHeight),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 10.h,
-            backgroundColor: Colors.black,
-            backgroundImage: const AssetImage(
-                'assets/images/curriculo/pollos-digital-agencia-cria-seu-site.png'),
-          ),
-          DividerWidget(height: 2.h),
-          textWidget('Sou Pollito', fontWeight: FontWeight.bold, fontSize: 3.h),
+          textWidget('Escolha o tema',
+              fontWeight: FontWeight.bold, fontSize: 3.h),
           textWidget(
-            'Mande um áudio que iremos criar sua vitrine online. Exemplo: Meu nome é Leonardo Polo sou programador de sistemas PHP e Java fiz faculdade na... etc.',
+            'Escolha o tema e automaticamente iremos criar para você',
             fontSize: 2.5.h,
             autoSize: false,
             maxLines: 10,
@@ -81,27 +76,46 @@ class _CurriculoPageState extends State<CurriculoPage> {
             color: Colors.grey[700],
           ),
           DividerWidget(height: 10.h),
-          // Image.asset('assets/images/curriculo/soundbar.jpg'),
-          CircleAvatar(
-            backgroundColor: focus,
-            radius: 5.h,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.mic),
-              color: Colors.white,
-              iconSize: 5.h,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _verticalBanner('assets/images/banners/duckbill.png', ''),
+                SizedBox(width: 2.w),
+                _verticalBanner(
+                  'assets/images/banners/fastmassagem.png',
+                  'https://www.instagram.com/fastmassagem_/',
+                ),
+                SizedBox(width: 2.w),
+                _verticalBanner(
+                  'assets/images/banners/fastmassagem.png',
+                  'https://www.instagram.com/fastmassagem_/',
+                ),
+              ],
             ),
           ),
           DividerWidget(height: 10.h),
           ButtonWidget.filled(
             onPressed: () {
-              Modular.to.pushNamed('/curriculo/dados-resultados');
+              // Modular.to.pushNamed('/curriculo/curriculos-modelos');
             },
-            title: 'AVANÇAR',
+            title: 'Criar',
             textColor: white,
             backgroundColor: focus,
           )
         ],
+      ),
+    );
+  }
+
+  Widget _verticalBanner(String imgPath, String route) {
+    return SizedBox(
+      child: GestureDetector(
+        onTap: () {
+          launchUrlString(route);
+        },
+        child: Image.asset(imgPath),
       ),
     );
   }

@@ -54,15 +54,15 @@ class ProfileModule extends Module {
       child: (context) => const ContratosPage(),
       transition: defaultTransitonType,
     );
-    r.child(
-      '/contrato',
-      child: (context) => ContratoPage(contrato: r.args.data),
-      transition: defaultTransitonType,
-    );
-    r.child(
-      '/termos-contrato',
-      child: (context) => TermosContratoPage(contrato: r.args.data),
-      transition: defaultTransitonType,
-    );
+    // r.child(
+    //   '/contrato',
+    //   child: (context) => ContratoPage(contrato: r.args.data),
+    //   transition: defaultTransitonType,
+    // );
+    // r.child(
+    //   '/termos-contrato',
+    //   child: (context) => TermosContratoPage(contrato: r.args.data),
+    //   transition: defaultTransitonType,
+    // );
   }
 }

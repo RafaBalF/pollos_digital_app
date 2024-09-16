@@ -1,15 +1,19 @@
+import 'dart:io';
+
+import 'package:just_audio/just_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
-import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
-import 'package:pollos_digital/app/shared/enums/button_types.enum.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
+import 'package:record/record.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:path/path.dart' as p;
 
 class CurriculoPage extends StatefulWidget {
   const CurriculoPage({super.key});
@@ -22,11 +26,22 @@ class _CurriculoPageState extends State<CurriculoPage> {
   final CurriculoStore _store = Modular.get<CurriculoStore>();
   late final Future<void> _future;
 
+  final AudioRecorder audioRecorder = AudioRecorder();
+  final AudioPlayer audioPlayer = AudioPlayer();
+  String? recordingPath;
+  bool isRecording = false;
+  bool isPlaying = false;
+
   @override
   void initState() {
     _future = Future.wait([_store.init()]);
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -80,14 +95,55 @@ class _CurriculoPageState extends State<CurriculoPage> {
             textAlign: TextAlign.center,
             color: Colors.grey[700],
           ),
-          DividerWidget(height: 10.h),
-          // Image.asset('assets/images/curriculo/soundbar.jpg'),
+          if (isRecording) Image.asset('assets/images/curriculo/soundbar.jpg'),
+          if (recordingPath != null)
+            ButtonWidget.filled(
+              onPressed: () async {
+                if (audioPlayer.playing) {
+                  audioPlayer.stop();
+                  setState(() {
+                    isPlaying = false;
+                  });
+                } else {
+                  await audioPlayer.setFilePath(recordingPath!);
+                  audioPlayer.play();
+                  setState(() {
+                    isPlaying = true;
+                  });
+                }
+              },
+              title: isPlaying ? 'Parar audio' : 'Escutar audio',
+            ),
           CircleAvatar(
             backgroundColor: focus,
             radius: 5.h,
             child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.mic),
+              onPressed: () async {
+                if (isRecording) {
+                  String? filePath = await audioRecorder.stop();
+                  if (filePath != null) {
+                    setState(() {
+                      isRecording = false;
+                      recordingPath = filePath;
+                    });
+                  }
+                } else {
+                  if (await audioRecorder.hasPermission()) {
+                    final Directory appDocumentsDir =
+                        await getApplicationDocumentsDirectory();
+                    final String filePath =
+                        p.join(appDocumentsDir.path, "recording.wav");
+                    await audioRecorder.start(const RecordConfig(),
+                        path: filePath);
+                    setState(() {
+                      isRecording = true;
+                      recordingPath = null;
+                    });
+                  }
+                }
+              },
+              icon:
+                  isRecording ? const Icon(Icons.stop) : const Icon(Icons.mic),
               color: Colors.white,
               iconSize: 5.h,
             ),

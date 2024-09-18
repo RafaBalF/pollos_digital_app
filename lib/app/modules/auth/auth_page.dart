@@ -61,7 +61,7 @@ class AuthPageState extends State<AuthPage> {
         Container(
           height: 100.h,
           width: 100.w,
-          color: primary,
+          color: black,
           child: Image.asset(
             'assets/icons/logo-pollos-digital-agencia-cria-seu-site-branco.png',
             fit: BoxFit.fitWidth,

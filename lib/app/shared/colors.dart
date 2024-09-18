@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color primary = Color(0xFF1e1f24);
+const Color primary = Color(0xFFE03127);
 const Color focus = Color(0xFFfa0065);
 const Color red = Color(0xFFFF2F2F);
 

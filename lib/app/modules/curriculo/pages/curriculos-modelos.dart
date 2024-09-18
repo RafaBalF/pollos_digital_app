@@ -23,7 +23,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
 
   @override
   void initState() {
-    _future = Future.wait([_store.init()]);
+    _future = Future.wait([]);
 
     super.initState();
   }
@@ -80,16 +80,34 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _verticalBanner('assets/images/banners/duckbill.png', ''),
-                SizedBox(width: 2.w),
                 _verticalBanner(
-                  'assets/images/banners/fastmassagem.png',
-                  'https://www.instagram.com/fastmassagem_/',
+                  'assets/images/curriculo/modelo-curriculo-1.png',
+                  '',
+                  _store.selectedWidth1,
+                  _store.selectedColor1,
+                  () {
+                    _store.setSelectedModelo1();
+                  },
                 ),
                 SizedBox(width: 2.w),
                 _verticalBanner(
-                  'assets/images/banners/fastmassagem.png',
-                  'https://www.instagram.com/fastmassagem_/',
+                  'assets/images/curriculo/modelo-curriculo-2.png',
+                  '',
+                  _store.selectedWidth2,
+                  _store.selectedColor2,
+                  () {
+                    _store.setSelectedModelo2();
+                  },
+                ),
+                SizedBox(width: 2.w),
+                _verticalBanner(
+                  'assets/images/curriculo/modelo-curriculo-3.png',
+                  '',
+                  _store.selectedWidth3,
+                  _store.selectedColor3,
+                  () {
+                    _store.setSelectedModelo3();
+                  },
                 ),
               ],
             ),
@@ -97,6 +115,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
           DividerWidget(height: 10.h),
           ButtonWidget.filled(
             onPressed: () {
+              _store.criarCurriculo(_store.selectedModelo);
               // Modular.to.pushNamed('/curriculo/curriculos-modelos');
             },
             title: 'Criar',
@@ -108,13 +127,20 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
     );
   }
 
-  Widget _verticalBanner(String imgPath, String route) {
-    return SizedBox(
-      child: GestureDetector(
-        onTap: () {
-          launchUrlString(route);
-        },
-        child: Image.asset(imgPath),
+  Widget _verticalBanner(
+      String imgPath, String route, selectedWidth, selectedColor, func) {
+    return GestureDetector(
+      onTap: func,
+      child: Container(
+        height: 30.h,
+        width: 40.w,
+        decoration: BoxDecoration(
+            border: Border.all(width: selectedWidth, color: selectedColor)),
+        child: Image.asset(
+          imgPath,
+          alignment: Alignment.topCenter,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

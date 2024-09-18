@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pollos_digital/app/models/curriculo.model.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
+import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
@@ -11,6 +13,7 @@ import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DadosResultadosPage extends StatefulWidget {
+  // final CurriculoModel? curriculo;
   const DadosResultadosPage({super.key});
 
   @override
@@ -23,7 +26,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
 
   @override
   void initState() {
-    _future = Future.wait([_store.init()]);
+    _future = Future.wait([]);
 
     super.initState();
   }
@@ -61,13 +64,33 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        InputWidget(label: 'Nome'),
+        InputWidget(
+          label: 'Nome',
+          // controller: TextEditingController(text: widget.curriculo?.nome),
+          controller: TextEditingController(text: _store.curriculoModel?.nome),
+        ),
         DividerWidget(height: 2.h),
-        InputWidget(label: 'Email'),
+        InputWidget(
+          label: 'Email',
+          // controller: TextEditingController(text: widget.curriculo?.email),
+          controller: TextEditingController(text: _store.curriculoModel?.email),
+        ),
         DividerWidget(height: 2.h),
-        InputWidget(label: 'Telefone'),
+        InputWidget(
+          label: 'Telefone',
+          // controller: TextEditingController(text: widget.curriculo?.telefone),
+          controller:
+              TextEditingController(text: _store.curriculoModel?.telefone),
+        ),
         DividerWidget(height: 2.h),
-        InputWidget(label: 'Resumo', minLines: 4, maxLines: 4),
+        InputWidget(
+          label: 'Resumo',
+          minLines: 4,
+          maxLines: 4,
+          // controller: TextEditingController(text: widget.curriculo?.resumo),
+          controller:
+              TextEditingController(text: _store.curriculoModel?.resumo),
+        ),
         DividerWidget(height: 2.h),
         Container(
           width: 90.w,
@@ -96,7 +119,10 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                             height: 1.5),
                       ),
                       ButtonWidget.outlined(
-                        onPressed: () {},
+                        onPressed: () {
+                          showCustomBottomSheet(context, 'ADICIONAR HABILIDADE',
+                              _addHabilidade());
+                        },
                         title: 'Adicionar',
                         buttonSize: ButtonSize.small,
                         width: 150,
@@ -117,40 +143,29 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 5,
+                      // itemCount: widget.curriculo?.habilidades?.length,
+                      itemCount: _store.curriculoModel?.habilidades?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
                             ListTile(
-                              title: const Text('Boa comunicacao'),
+                              title:
+                                  (_store.curriculoModel?.habilidades != null)
+                                      ? Text(_store
+                                          .curriculoModel?.habilidades?[index])
+                                      : const Text(''),
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
-                                onPressed: () {},
+                                onPressed: () {
+                                  _store.deleteHabilidade(_store
+                                      .curriculoModel?.habilidades?[index]);
+                                },
                               ),
                             ),
                             const Divider(height: 0),
                           ],
                         );
                       }),
-                  // child: Column(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //       children: [
-                  //         Text('Boa comunicação'),
-                  //         IconButton(onPressed: () {}, icon: Icon(Icons.delete))
-                  //       ],
-                  //     ),
-                  //     Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //       children: [
-                  //         Text('Responsável'),
-                  //         IconButton(onPressed: () {}, icon: Icon(Icons.delete))
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
                 ),
               )
             ],
@@ -163,6 +178,27 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           },
           title: 'AVANÇAR',
           textColor: white,
+          backgroundColor: focus,
+        )
+      ],
+    );
+  }
+
+  _addHabilidade() {
+    return Column(
+      children: [
+        InputWidget(
+          label: 'Habilidade',
+          onChanged: _store.setHabilidade,
+        ),
+        const DividerWidget(height: 30),
+        ButtonWidget.filled(
+          width: 60.w,
+          onPressed: () {
+            _store.addHabilidade(_store.habilidade);
+            Modular.to.pop();
+          },
+          title: 'ADICIONAR',
           backgroundColor: focus,
         )
       ],

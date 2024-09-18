@@ -24,33 +24,37 @@ Future showCustomBottomSheet(
       ),
       isScrollControlled: true,
       builder: (context) {
-        return Wrap(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(header, style: modalHeader(color: black)),
-                  IconButton(
-                    onPressed: onClose ??
-                        () {
-                          Modular.to.pop();
-                        },
-                    icon: const Icon(
-                      Icons.close,
-                      color: primary,
-                      size: 32,
-                    ),
-                  )
-                ],
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Wrap(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(header, style: modalHeader(color: black)),
+                    IconButton(
+                      onPressed: onClose ??
+                          () {
+                            Modular.to.pop();
+                          },
+                      icon: const Icon(
+                        Icons.close,
+                        color: focus,
+                        size: 32,
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            Center(
-              child: widget,
-            ),
-            DividerWidget(height: 5.h),
-          ],
+              Center(
+                child: widget,
+              ),
+              DividerWidget(height: 5.h),
+            ],
+          ),
         );
       });
 }

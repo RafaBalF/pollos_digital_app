@@ -25,7 +25,7 @@ class _MainScaffoldWidgetState extends State<MainScaffoldWidget> {
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.only(left: 5.w),
-          child: Image.asset('assets/icons/ic_launcher.png'),
+          child: Image.asset('assets/icons/icon-pollos-digital.png'),
         ),
         centerTitle: true,
         backgroundColor: white,
@@ -77,10 +77,12 @@ class _MainScaffoldWidgetState extends State<MainScaffoldWidget> {
     //   );
     // });
 
-    return Image.asset(
-      'assets/icons/laserfast-logo-primary-shortened.png',
-      height: 3.h,
-    );
+    // return Image.asset(
+    //   'assets/icons/laserfast-logo-primary-shortened.png',
+    //   height: 3.h,
+    // );
+
+    return Text('PollosDigital');
   }
 
   Widget _padding(Widget child) {

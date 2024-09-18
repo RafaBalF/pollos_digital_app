@@ -21,7 +21,9 @@ class CurriculoModule extends Module {
     );
     r.child(
       '/dados-resultados',
-      child: (context) => const DadosResultadosPage(),
+      child: (context) => const DadosResultadosPage(
+          // curriculo: r.args.data,
+          ),
       transition: defaultTransitonType,
     );
     r.child(

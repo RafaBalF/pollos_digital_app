@@ -217,12 +217,68 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
     });
   }
 
+  late final _$selectedModeloAtom =
+      Atom(name: 'CurriculoStoreBase.selectedModelo', context: context);
+
+  @override
+  int? get selectedModelo {
+    _$selectedModeloAtom.reportRead();
+    return super.selectedModelo;
+  }
+
+  @override
+  set selectedModelo(int? value) {
+    _$selectedModeloAtom.reportWrite(value, super.selectedModelo, () {
+      super.selectedModelo = value;
+    });
+  }
+
+  late final _$skillsCodeModelo1Atom =
+      Atom(name: 'CurriculoStoreBase.skillsCodeModelo1', context: context);
+
+  @override
+  String? get skillsCodeModelo1 {
+    _$skillsCodeModelo1Atom.reportRead();
+    return super.skillsCodeModelo1;
+  }
+
+  @override
+  set skillsCodeModelo1(String? value) {
+    _$skillsCodeModelo1Atom.reportWrite(value, super.skillsCodeModelo1, () {
+      super.skillsCodeModelo1 = value;
+    });
+  }
+
+  late final _$listaModelosAtom =
+      Atom(name: 'CurriculoStoreBase.listaModelos', context: context);
+
+  @override
+  ObservableList<dynamic> get listaModelos {
+    _$listaModelosAtom.reportRead();
+    return super.listaModelos;
+  }
+
+  @override
+  set listaModelos(ObservableList<dynamic> value) {
+    _$listaModelosAtom.reportWrite(value, super.listaModelos, () {
+      super.listaModelos = value;
+    });
+  }
+
   late final _$handleAudioAsyncAction =
       AsyncAction('CurriculoStoreBase.handleAudio', context: context);
 
   @override
   Future handleAudio(File? audio) {
     return _$handleAudioAsyncAction.run(() => super.handleAudio(audio));
+  }
+
+  late final _$criarCurriculoAsyncAction =
+      AsyncAction('CurriculoStoreBase.criarCurriculo', context: context);
+
+  @override
+  Future criarCurriculo() {
+    return _$criarCurriculoAsyncAction.run(() => super.criarCurriculo());
   }
 
   late final _$CurriculoStoreBaseActionController =
@@ -295,6 +351,17 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
+  dynamic setSelectedModelo(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setSelectedModelo');
+    try {
+      return super.setSelectedModelo(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic deleteHabilidade(dynamic value) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
         name: 'CurriculoStoreBase.deleteHabilidade');
@@ -317,33 +384,11 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
-  dynamic setSelectedModelo1() {
+  dynamic setModeloSelecionado(dynamic index) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setSelectedModelo1');
+        name: 'CurriculoStoreBase.setModeloSelecionado');
     try {
-      return super.setSelectedModelo1();
-    } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setSelectedModelo2() {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setSelectedModelo2');
-    try {
-      return super.setSelectedModelo2();
-    } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setSelectedModelo3() {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setSelectedModelo3');
-    try {
-      return super.setSelectedModelo3();
+      return super.setModeloSelecionado(index);
     } finally {
       _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -364,7 +409,10 @@ selectedWidth1: ${selectedWidth1},
 selectedColor2: ${selectedColor2},
 selectedWidth2: ${selectedWidth2},
 selectedColor3: ${selectedColor3},
-selectedWidth3: ${selectedWidth3}
+selectedWidth3: ${selectedWidth3},
+selectedModelo: ${selectedModelo},
+skillsCodeModelo1: ${skillsCodeModelo1},
+listaModelos: ${listaModelos}
     ''';
   }
 }

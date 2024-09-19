@@ -8,7 +8,6 @@ import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class CurriculosModelosPage extends StatefulWidget {
   const CurriculosModelosPage({super.key});
@@ -63,6 +62,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           textWidget('Escolha o tema',
               fontWeight: FontWeight.bold, fontSize: 3.h),
@@ -75,41 +75,22 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
             color: Colors.grey[700],
           ),
           DividerWidget(height: 10.h),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _verticalBanner(
-                  'assets/images/curriculo/modelo-curriculo-1.png',
-                  '',
-                  _store.selectedWidth1,
-                  _store.selectedColor1,
+          SizedBox(
+            height: 35.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: const ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: _store.listaModelos.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _verticalBanner(
+                  _store.listaModelos[index].asset,
+                  _store.listaModelos[index].selected,
                   () {
-                    _store.setSelectedModelo1();
+                    _store.setModeloSelecionado(index);
                   },
-                ),
-                SizedBox(width: 2.w),
-                _verticalBanner(
-                  'assets/images/curriculo/modelo-curriculo-2.png',
-                  '',
-                  _store.selectedWidth2,
-                  _store.selectedColor2,
-                  () {
-                    _store.setSelectedModelo2();
-                  },
-                ),
-                SizedBox(width: 2.w),
-                _verticalBanner(
-                  'assets/images/curriculo/modelo-curriculo-3.png',
-                  '',
-                  _store.selectedWidth3,
-                  _store.selectedColor3,
-                  () {
-                    _store.setSelectedModelo3();
-                  },
-                ),
-              ],
+                );
+              },
             ),
           ),
           DividerWidget(height: 10.h),
@@ -126,15 +107,16 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
     );
   }
 
-  Widget _verticalBanner(
-      String imgPath, String route, selectedWidth, selectedColor, func) {
+  Widget _verticalBanner(String imgPath, active, func) {
     return GestureDetector(
       onTap: func,
       child: Container(
         height: 30.h,
         width: 40.w,
+        margin: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-            border: Border.all(width: selectedWidth, color: selectedColor)),
+            border: Border.all(
+                width: active ? 3 : 1, color: active ? focus : Colors.grey)),
         child: Image.asset(
           imgPath,
           alignment: Alignment.topCenter,

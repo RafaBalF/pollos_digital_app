@@ -135,8 +135,8 @@ class HomePageState extends State<HomePage> {
         _horizontalBanners(),
         DividerWidget(height: spacing),
         _verticalBanners(),
-        DividerWidget(height: spacing),
-        _mostWished(),
+        // DividerWidget(height: spacing),
+        // _mostWished(),
       ],
     );
   }
@@ -272,12 +272,12 @@ class HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _horizontalBanner(
-          'assets/images/banners/partners.png',
+          'assets/images/banners/ban-ofertas.png',
           () => Modular.to.pushNamed('/parceiros/'),
         ),
         DividerWidget(height: 1.h),
         _horizontalBanner(
-          'assets/images/banners/your-sessions.png',
+          'assets/images/banners/ban-contato.png',
           () => Modular.to.pushNamed("/sessao/historico"),
         ),
       ],
@@ -298,19 +298,27 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _verticalBanners() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _verticalBanner('assets/images/banners/duckbill.png', ''),
-          SizedBox(width: 2.w),
-          _verticalBanner(
-            'assets/images/banners/fastmassagem.png',
-            'https://www.instagram.com/fastmassagem_/',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        textWidget('Conheça os Modelos', fontSize: 20.sp),
+        DividerWidget(height: 1.h),
+        SizedBox(
+          height: 35.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: const ClampingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: _store.curriculoStore.listaModelos.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _verticalBanner(
+                _store.curriculoStore.listaModelos[index].asset,
+                _store.curriculoStore.listaModelos[index].link,
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -320,7 +328,10 @@ class HomePageState extends State<HomePage> {
         onTap: () {
           launchUrlString(route);
         },
-        child: Image.asset(imgPath),
+        child: Padding(
+          padding: const EdgeInsets.all(3),
+          child: Image.asset(imgPath),
+        ),
       ),
     );
   }

@@ -173,16 +173,16 @@ class _CurriculoPageState extends State<CurriculoPage> {
           DividerWidget(height: 10.h),
           ButtonWidget.filled(
             onPressed: () async {
-              // await _store.handleAudio(_store.audio);
-              _store.curriculoModel = CurriculoModel(
-                nome: 'Rafael Baleeiro',
-                email: 'rafae@mail.com',
-                telefone: '(12) 98989-9898',
-                resumo:
-                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-                habilidades: ObservableList<String>.of(
-                    ['Boa comunicação', 'Responsável']),
-              );
+              await _store.handleAudio(_store.audio);
+              // _store.curriculoModel = CurriculoModel(
+              //   nome: 'Rafael Baleeiro',
+              //   email: 'rafae@mail.com',
+              //   telefone: '(12) 98989-9898',
+              //   resumo:
+              //       'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+              //   habilidades: ObservableList<String>.of(
+              //       ['Boa comunicação', 'Responsável']),
+              // );
               Modular.to.pushNamed('/curriculo/dados-resultados');
             },
             loading: _store.loadingStore.isLoading,

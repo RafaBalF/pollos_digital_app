@@ -115,8 +115,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
           DividerWidget(height: 10.h),
           ButtonWidget.filled(
             onPressed: () {
-              _store.criarCurriculo(_store.selectedModelo);
-              // Modular.to.pushNamed('/curriculo/curriculos-modelos');
+              _store.criarCurriculo();
             },
             title: 'Criar',
             textColor: white,

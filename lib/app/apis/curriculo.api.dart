@@ -89,4 +89,34 @@ class CurriculoApi extends BaseApi {
     }
     return b;
   }
+
+  Future createPost(title, content) async {
+    var b = CurriculoModel();
+    try {
+      var auth = 'Basic ${base64Encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
+
+      var headers = {'Content-Type': 'application/json', 'Authorization': auth};
+
+      var data = json.encode({
+        "title": title,
+        "status": "publish",
+        "categories": [38],
+        "content": content
+      });
+
+      var dio = Dio();
+      var response = await dio.request(
+        'https://pollosdigital.com.br/wp-json/wp/v2/posts',
+        options: Options(
+          headers: headers,
+          method: 'POST',
+        ),
+        data: data,
+      );
+    } on DioException catch (e) {
+      b.message = handleDioException(e);
+    } catch (e) {
+      return BaseModel();
+    }
+  }
 }

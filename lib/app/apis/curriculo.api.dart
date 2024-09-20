@@ -90,30 +90,16 @@ class CurriculoApi extends BaseApi {
     return b;
   }
 
-  Future createPost(title, content) async {
+  Future createPage(dados, modelo) async {
     var b = CurriculoModel();
     String result;
     try {
-      var auth = 'Basic ${base64Encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
-
-      var headers = {'Content-Type': 'application/json', 'Authorization': auth};
-
-      var data = json.encode({
-        "title": title,
-        "status": "publish",
-        "categories": [38],
-        "content": content
-      });
-
-      var option = BaseOptions(
-          baseUrl: 'https://pollosdigital.com.br', headers: headers);
-      var response = (await Dio(option).post(
-        '/wp-json/wp/v2/posts',
-        data: data,
-      ))
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option).get(
+              '/modelo$modelo.php?nome=${dados.nome}&resumo=${dados.resumo}'))
           .data;
 
-      result = response['link'];
+      result = response;
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
@@ -122,4 +108,37 @@ class CurriculoApi extends BaseApi {
     }
     return result;
   }
+
+  // Future createPost(title, content) async {
+  //   var b = CurriculoModel();
+  //   String result;
+  //   try {
+  //     var auth = 'Basic ${base64Encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
+
+  //     var headers = {'Content-Type': 'application/json', 'Authorization': auth};
+
+  //     var data = json.encode({
+  //       "title": title,
+  //       "status": "publish",
+  //       "categories": [38],
+  //       "content": content
+  //     });
+
+  //     var option = BaseOptions(
+  //         baseUrl: 'https://pollosdigital.com.br', headers: headers);
+  //     var response = (await Dio(option).post(
+  //       '/wp-json/wp/v2/posts',
+  //       data: data,
+  //     ))
+  //         .data;
+
+  //     result = response['link'];
+  //   } on DioException catch (e) {
+  //     result = "Algo deu errado, tente novamente mais tarde.";
+  //     b.message = handleDioException(e);
+  //   } catch (e) {
+  //     return BaseModel();
+  //   }
+  //   return result;
+  // }
 }

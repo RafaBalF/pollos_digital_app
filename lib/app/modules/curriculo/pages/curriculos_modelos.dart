@@ -8,6 +8,7 @@ import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CurriculosModelosPage extends StatefulWidget {
   const CurriculosModelosPage({super.key});
@@ -94,13 +95,33 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
             ),
           ),
           DividerWidget(height: 10.h),
-          ButtonWidget.filled(
-            onPressed: () {
-              _store.criarCurriculo();
-            },
-            title: 'Criar',
-            textColor: white,
-            backgroundColor: focus,
+          Visibility(
+            visible: _store.buttonDisplayed,
+            child: ButtonWidget.filled(
+              onPressed: () {
+                _store.criarCurriculo();
+              },
+              title: 'Criar',
+              textColor: white,
+              backgroundColor: focus,
+            ),
+          ),
+          Visibility(
+            visible: !_store.buttonDisplayed,
+            child: Column(
+              children: [
+                textWidget('Link para sua pagina: ${_store.createdPageUrl}'),
+                DividerWidget(height: 2.h),
+                ButtonWidget.filled(
+                  onPressed: () {
+                    launchUrlString(_store.createdPageUrl.toString());
+                  },
+                  title: 'Acessar',
+                  textColor: white,
+                  backgroundColor: focus,
+                ),
+              ],
+            ),
           )
         ],
       ),

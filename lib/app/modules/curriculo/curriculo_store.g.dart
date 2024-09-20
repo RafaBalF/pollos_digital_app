@@ -121,102 +121,6 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
     });
   }
 
-  late final _$selectedColor1Atom =
-      Atom(name: 'CurriculoStoreBase.selectedColor1', context: context);
-
-  @override
-  Color get selectedColor1 {
-    _$selectedColor1Atom.reportRead();
-    return super.selectedColor1;
-  }
-
-  @override
-  set selectedColor1(Color value) {
-    _$selectedColor1Atom.reportWrite(value, super.selectedColor1, () {
-      super.selectedColor1 = value;
-    });
-  }
-
-  late final _$selectedWidth1Atom =
-      Atom(name: 'CurriculoStoreBase.selectedWidth1', context: context);
-
-  @override
-  double get selectedWidth1 {
-    _$selectedWidth1Atom.reportRead();
-    return super.selectedWidth1;
-  }
-
-  @override
-  set selectedWidth1(double value) {
-    _$selectedWidth1Atom.reportWrite(value, super.selectedWidth1, () {
-      super.selectedWidth1 = value;
-    });
-  }
-
-  late final _$selectedColor2Atom =
-      Atom(name: 'CurriculoStoreBase.selectedColor2', context: context);
-
-  @override
-  Color get selectedColor2 {
-    _$selectedColor2Atom.reportRead();
-    return super.selectedColor2;
-  }
-
-  @override
-  set selectedColor2(Color value) {
-    _$selectedColor2Atom.reportWrite(value, super.selectedColor2, () {
-      super.selectedColor2 = value;
-    });
-  }
-
-  late final _$selectedWidth2Atom =
-      Atom(name: 'CurriculoStoreBase.selectedWidth2', context: context);
-
-  @override
-  double get selectedWidth2 {
-    _$selectedWidth2Atom.reportRead();
-    return super.selectedWidth2;
-  }
-
-  @override
-  set selectedWidth2(double value) {
-    _$selectedWidth2Atom.reportWrite(value, super.selectedWidth2, () {
-      super.selectedWidth2 = value;
-    });
-  }
-
-  late final _$selectedColor3Atom =
-      Atom(name: 'CurriculoStoreBase.selectedColor3', context: context);
-
-  @override
-  Color get selectedColor3 {
-    _$selectedColor3Atom.reportRead();
-    return super.selectedColor3;
-  }
-
-  @override
-  set selectedColor3(Color value) {
-    _$selectedColor3Atom.reportWrite(value, super.selectedColor3, () {
-      super.selectedColor3 = value;
-    });
-  }
-
-  late final _$selectedWidth3Atom =
-      Atom(name: 'CurriculoStoreBase.selectedWidth3', context: context);
-
-  @override
-  double get selectedWidth3 {
-    _$selectedWidth3Atom.reportRead();
-    return super.selectedWidth3;
-  }
-
-  @override
-  set selectedWidth3(double value) {
-    _$selectedWidth3Atom.reportWrite(value, super.selectedWidth3, () {
-      super.selectedWidth3 = value;
-    });
-  }
-
   late final _$selectedModeloAtom =
       Atom(name: 'CurriculoStoreBase.selectedModelo', context: context);
 
@@ -246,6 +150,38 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   set skillsCodeModelo1(String? value) {
     _$skillsCodeModelo1Atom.reportWrite(value, super.skillsCodeModelo1, () {
       super.skillsCodeModelo1 = value;
+    });
+  }
+
+  late final _$buttonDisplayedAtom =
+      Atom(name: 'CurriculoStoreBase.buttonDisplayed', context: context);
+
+  @override
+  bool get buttonDisplayed {
+    _$buttonDisplayedAtom.reportRead();
+    return super.buttonDisplayed;
+  }
+
+  @override
+  set buttonDisplayed(bool value) {
+    _$buttonDisplayedAtom.reportWrite(value, super.buttonDisplayed, () {
+      super.buttonDisplayed = value;
+    });
+  }
+
+  late final _$createdPageUrlAtom =
+      Atom(name: 'CurriculoStoreBase.createdPageUrl', context: context);
+
+  @override
+  String? get createdPageUrl {
+    _$createdPageUrlAtom.reportRead();
+    return super.createdPageUrl;
+  }
+
+  @override
+  set createdPageUrl(String? value) {
+    _$createdPageUrlAtom.reportWrite(value, super.createdPageUrl, () {
+      super.createdPageUrl = value;
     });
   }
 
@@ -404,14 +340,10 @@ email: ${email},
 telefone: ${telefone},
 resumo: ${resumo},
 habilidade: ${habilidade},
-selectedColor1: ${selectedColor1},
-selectedWidth1: ${selectedWidth1},
-selectedColor2: ${selectedColor2},
-selectedWidth2: ${selectedWidth2},
-selectedColor3: ${selectedColor3},
-selectedWidth3: ${selectedWidth3},
 selectedModelo: ${selectedModelo},
 skillsCodeModelo1: ${skillsCodeModelo1},
+buttonDisplayed: ${buttonDisplayed},
+createdPageUrl: ${createdPageUrl},
 listaModelos: ${listaModelos}
     ''';
   }

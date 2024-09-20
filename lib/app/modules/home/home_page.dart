@@ -156,8 +156,8 @@ class HomePageState extends State<HomePage> {
           ),
           RedirectCardWidget(
             imgPath: 'assets/icons/svg/document_accent.svg',
-            label: 'Sessões realizadas',
-            route: '/sessao/historico',
+            label: 'Acessar modelos',
+            route: '/curriculo/modelos-criados',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
           ),

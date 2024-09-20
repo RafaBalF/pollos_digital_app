@@ -44,7 +44,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
   }
 
   void _clearFields() {
-    _store.setCpf(null);
+    _store.setUsuario(null);
     _store.setSenha(null);
   }
 
@@ -80,11 +80,11 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
         children: [
           Observer(builder: (_) {
             return InputWidget(
-              label: 'Cpf',
+              label: 'Login',
               labelColor: white,
-              keyboardType: TextInputType.number,
-              inputFormatters: [cpfFormatter],
-              onChanged: _store.setCpf,
+              keyboardType: TextInputType.emailAddress,
+              // inputFormatters: [cpfFormatter],
+              onChanged: _store.setUsuario,
               validator: notEmpty,
             );
           }),
@@ -120,11 +120,11 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
 
                 var r = await _store.login();
 
-                if (r.success) {
+                if (r.sucesso) {
                   Modular.to.navigate('/home/');
                 } else {
                   if (mounted) {
-                    showErrorBottomSheet(context, message: r.message);
+                    showErrorBottomSheet(context, message: r.mensagem);
                   }
                 }
               },

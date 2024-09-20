@@ -2,8 +2,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_page.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
-import 'package:pollos_digital/app/modules/curriculo/pages/curriculos_modelos.dart';
-import 'package:pollos_digital/app/modules/curriculo/pages/dados_resultados.dart';
+import 'package:pollos_digital/app/modules/curriculo/pages/curriculos_modelos.dart_page.dart';
+import 'package:pollos_digital/app/modules/curriculo/pages/dados_resultados_page.dart';
+import 'package:pollos_digital/app/modules/curriculo/pages/modelos_criados_page.dart';
 
 class CurriculoModule extends Module {
   @override
@@ -21,14 +22,17 @@ class CurriculoModule extends Module {
     );
     r.child(
       '/dados-resultados',
-      child: (context) => const DadosResultadosPage(
-          // curriculo: r.args.data,
-          ),
+      child: (context) => const DadosResultadosPage(),
       transition: defaultTransitonType,
     );
     r.child(
       '/curriculos-modelos',
       child: (context) => const CurriculosModelosPage(),
+      transition: defaultTransitonType,
+    );
+    r.child(
+      '/modelos-criados',
+      child: (context) => const ModelosCriadosPage(),
       transition: defaultTransitonType,
     );
   }

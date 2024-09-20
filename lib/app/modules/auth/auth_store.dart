@@ -54,13 +54,13 @@ abstract class AuthStoreBase with Store {
       return;
     }
 
-    var r = BaseModel<AuthModel>();
+    // var r = BaseModel<AuthModel>();
 
-    r = await authApi.validarLogin(authModel!.cpf!, authModel!.senha!);
+    var r = await authApi.validarLogin(authModel!.email!, authModel!.senha!);
 
     attemptedAutoLogin = true;
 
-    if (!r.success) return;
+    if (!r.sucesso) return;
 
     autoLogged = true;
   }

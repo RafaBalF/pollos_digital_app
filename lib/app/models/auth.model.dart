@@ -7,45 +7,51 @@ part 'auth.model.g.dart';
 @HiveType(typeId: 0)
 class AuthModel extends FromJsonModel {
   @HiveField(0)
-  String? token;
+  String? id;
   @HiveField(1)
   String? nome;
   @HiveField(2)
-  String? cpf;
-  @HiveField(3)
-  String? celular;
-  @HiveField(4)
   String? email;
+  @HiveField(3)
+  String? criadoEm;
+  String? cpf;
+  bool sucesso = false;
+  // @HiveField(4)
+  // String? email;
   @HiveField(5)
   String? senha;
-  @HiveField(6)
-  String? tokenPush;
+  // @HiveField(6)
+  // String? tokenPush;
+  String? mensagem;
 
   AuthModel.cpf({this.cpf});
 
   AuthModel({
-    this.token,
+    this.id,
     this.nome,
-    this.cpf,
-    this.celular,
     this.email,
+    this.criadoEm,
     this.senha,
-    this.tokenPush,
   });
 
   AuthModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
-    nome = json['cliente']['nome'];
-    cpf = json['cliente']['cpf'];
-    celular = json['cliente']['telefoneCelular'];
-    email = json['cliente']['email'];
-    senha = json['cliente']['senha'];
-    tokenPush = json['cliente']['tokenPush'];
+    sucesso = json['sucesso'];
+    if (json["usuarios"] != null) {
+      id = json["usuarios"][0]['id'];
+      nome = json["usuarios"][0]['nome'];
+      email = json["usuarios"][0]['email'];
+      criadoEm = json["usuarios"][0]['criado_em'];
+    } else {
+      mensagem = json['mensagem'];
+    }
+    // email = json['cliente']['email'];
+    // senha = json['cliente']['senha'];
+    // tokenPush = json['cliente']['tokenPush'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['token'] = token;
+    data['id'] = id;
     return data;
   }
 

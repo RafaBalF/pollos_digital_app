@@ -95,9 +95,8 @@ class CurriculoApi extends BaseApi {
     String result;
     try {
       var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option).get(
-              '/modelo$modelo.php?nome=${dados.nome}&resumo=${dados.resumo}'))
-          .data;
+      var response =
+          (await Dio(option).get('/modelo$modelo.php?nome=${dados.nome}')).data;
 
       result = response;
     } on DioException catch (e) {

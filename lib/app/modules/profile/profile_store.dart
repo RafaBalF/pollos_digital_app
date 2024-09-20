@@ -45,7 +45,6 @@ abstract class ProfileStoreBase with Store {
     dadosPessoaisModel = DadosPessoaisModel(
       nome: auth.nome,
       email: auth.email,
-      celular: auth.celular,
       cpf: auth.cpf,
     );
   }

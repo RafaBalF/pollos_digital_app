@@ -17,34 +17,28 @@ class AuthModelAdapter extends TypeAdapter<AuthModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AuthModel(
-      token: fields[0] as String?,
+      id: fields[0] as String?,
       nome: fields[1] as String?,
-      cpf: fields[2] as String?,
-      celular: fields[3] as String?,
-      email: fields[4] as String?,
+      email: fields[2] as String?,
+      criadoEm: fields[3] as String?,
       senha: fields[5] as String?,
-      tokenPush: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AuthModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.token)
+      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.nome)
       ..writeByte(2)
-      ..write(obj.cpf)
-      ..writeByte(3)
-      ..write(obj.celular)
-      ..writeByte(4)
       ..write(obj.email)
+      ..writeByte(3)
+      ..write(obj.criadoEm)
       ..writeByte(5)
-      ..write(obj.senha)
-      ..writeByte(6)
-      ..write(obj.tokenPush);
+      ..write(obj.senha);
   }
 
   @override

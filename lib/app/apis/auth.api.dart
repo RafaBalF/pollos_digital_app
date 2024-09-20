@@ -13,41 +13,39 @@ class AuthApi extends BaseApi {
   get _option => BaseOptions(baseUrl: _baseUrl);
   final LoginHive _loginHive = LoginHive();
 
-  Future<BaseModel<AuthModel>> validarLogin(String cpf, String senha) async {
-    BaseModel<AuthModel> b = BaseModel<AuthModel>();
+  Future validarLogin(String user, String senha) async {
+    var b = BaseModel();
+    AuthModel? result = AuthModel();
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
         return BaseModel.networkError();
       }
 
-      var result = (await Dio(_option).post(
-        '/Login/ValidarLogin',
-        data: {
-          "cpf": cpf,
-          "senha": senha,
-        },
-      ))
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option)
+              .get('/API/listausuario.php?email=$user&senha=$senha'))
           .data;
 
       try {
-        b = BaseModel<AuthModel>.fromJson(result, tipo: AuthModel());
+        result = AuthModel.fromJson(response);
+
+        if (result.sucesso) {
+          AuthModel authModel = AuthModel(
+            id: result.id,
+            nome: result.nome,
+            email: result.email,
+            criadoEm: result.criadoEm,
+            senha: senha,
+          );
+
+          await _loginHive.setLogin(authModel);
+          return result;
+        } else {
+          b.message = result.mensagem!;
+        }
       } catch (e) {
-        b.message = getMessage(result);
-      }
-
-      if (b.success && b.data != null) {
-        AuthModel authModel = AuthModel(
-          token: b.data!.token,
-          nome: b.data!.nome,
-          cpf: b.data!.cpf,
-          celular: b.data!.celular,
-          email: b.data!.email,
-          senha: senha,
-        );
-
-        await _loginHive.setLogin(authModel);
-        return b;
+        b.message = response;
       }
     } on DioException catch (e) {
       b.message = handleDioException(e);
@@ -55,7 +53,7 @@ class AuthApi extends BaseApi {
       b = BaseModel();
     }
 
-    return b;
+    return result;
   }
 
   Future<BaseModel<AuthModel>> cadastrarLogin(String cpf, String senha) async {
@@ -79,11 +77,12 @@ class AuthApi extends BaseApi {
 
       if (b.success && b.data != null) {
         AuthModel authModel = AuthModel(
-          token: b.data!.token,
+          id: b.data!.id,
           nome: b.data!.nome,
-          cpf: b.data!.cpf,
-          celular: b.data!.celular,
           email: b.data!.email,
+          criadoEm: b.data!.criadoEm,
+          // email: b.data!.email,
+          // senha: senha,
         );
 
         await _loginHive.setLogin(authModel);

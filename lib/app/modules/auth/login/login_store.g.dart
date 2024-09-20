@@ -25,18 +25,19 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
-  late final _$cpfAtom = Atom(name: 'LoginStoreBase.cpf', context: context);
+  late final _$usuarioAtom =
+      Atom(name: 'LoginStoreBase.usuario', context: context);
 
   @override
-  String? get cpf {
-    _$cpfAtom.reportRead();
-    return super.cpf;
+  String? get usuario {
+    _$usuarioAtom.reportRead();
+    return super.usuario;
   }
 
   @override
-  set cpf(String? value) {
-    _$cpfAtom.reportWrite(value, super.cpf, () {
-      super.cpf = value;
+  set usuario(String? value) {
+    _$usuarioAtom.reportWrite(value, super.usuario, () {
+      super.usuario = value;
     });
   }
 
@@ -75,7 +76,7 @@ mixin _$LoginStore on LoginStoreBase, Store {
       AsyncAction('LoginStoreBase.login', context: context);
 
   @override
-  Future<BaseModel<AuthModel>> login() {
+  Future<dynamic> login() {
     return _$loginAsyncAction.run(() => super.login());
   }
 
@@ -94,11 +95,11 @@ mixin _$LoginStore on LoginStoreBase, Store {
   }
 
   @override
-  void setCpf(String? value) {
+  void setUsuario(String? value) {
     final _$actionInfo = _$LoginStoreBaseActionController.startAction(
-        name: 'LoginStoreBase.setCpf');
+        name: 'LoginStoreBase.setUsuario');
     try {
-      return super.setCpf(value);
+      return super.setUsuario(value);
     } finally {
       _$LoginStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -119,7 +120,7 @@ mixin _$LoginStore on LoginStoreBase, Store {
   String toString() {
     return '''
 authModel: ${authModel},
-cpf: ${cpf},
+usuario: ${usuario},
 senha: ${senha}
     ''';
   }

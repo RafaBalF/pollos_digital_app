@@ -23,7 +23,7 @@ class LaunchPageState extends State<LaunchPage> with TickerProviderStateMixin {
 
   late final Future<void> _future;
 
-  Widget container = Container(color: primary);
+  Widget container = Container(color: const Color.fromARGB(255, 0, 0, 0));
 
   @override
   void initState() {
@@ -76,6 +76,7 @@ class LaunchPageState extends State<LaunchPage> with TickerProviderStateMixin {
         width: 100.w,
         child: Observer(builder: (_) {
           return presentationPages[_store.presentationIndex];
+          
         }),
       ),
     ));
@@ -90,18 +91,18 @@ class LaunchPageState extends State<LaunchPage> with TickerProviderStateMixin {
   Widget _firstPage() {
     return _presentationTemplate(
         'assets/images/app_presentation/first.png',
-        'Descontos Exclusivos',
-        'Inúmeros cupons e promoções para você se dar bem',
+        'Polito',
+        'O Galo que te ajuda a ciscar as melhores oportunidades para você se destacar no mundo digital!',
         Padding(
           padding: EdgeInsets.only(top: 10.h),
           child: ButtonWidget.filledIcon(
             onPressed: () {
               Modular.to.navigate('/auth/login');
             },
-            backgroundColor: primaryDark,
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             iconData: Icons.arrow_forward_ios,
             iconSize: 20.sp,
-            iconColor: white,
+            iconColor: const Color.fromARGB(255, 0, 0, 0),
             buttonSize: ButtonSize.large,
           ),
         ));
@@ -114,7 +115,7 @@ class LaunchPageState extends State<LaunchPage> with TickerProviderStateMixin {
     Widget widget,
   ) {
     return Container(
-      decoration: const BoxDecoration(color: primary),
+      decoration: const BoxDecoration(color: Color.fromARGB(255, 0, 0, 0)),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -135,6 +136,7 @@ class LaunchPageState extends State<LaunchPage> with TickerProviderStateMixin {
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: textWidget(
                 subHeader,
+                fontSize: 2,
                 textAlign: TextAlign.center,
                 style: headTitle(color: white),
               ),

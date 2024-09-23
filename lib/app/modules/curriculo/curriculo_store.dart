@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/apis/curriculo.api.dart';
 import 'package:pollos_digital/app/models/curriculo.model.dart';
+import 'package:pollos_digital/app/models/hives/login.hive.dart';
 import 'package:pollos_digital/app/models/modelos.model.dart';
 import 'package:pollos_digital/loading_store.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,6 +18,7 @@ abstract class CurriculoStoreBase with Store {
 
   //STOREs
   final LoadingStore loadingStore = LoadingStore();
+  final LoginHive _loginHive = LoginHive();
 
   //OBSERVABLEs
   @observable
@@ -212,5 +214,8 @@ abstract class CurriculoStoreBase with Store {
     curriculoModel?.linkImage = imageLink;
     var r = await _curriculoApi.createPage(curriculoModel);
     createdPageUrl = r;
+    var user = _loginHive.getLogin();
+    await _curriculoApi.createProject(
+        user.id, curriculoModel?.nome, createdPageUrl);
   }
 }

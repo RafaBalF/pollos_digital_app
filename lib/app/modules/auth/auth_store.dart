@@ -49,7 +49,7 @@ abstract class AuthStoreBase with Store {
   Future<void> attemptAutoLogin() async {
     await getAuthModel();
 
-    if (authModel == null) {
+    if (authModel?.id == null) {
       attemptedAutoLogin = true;
       return;
     }

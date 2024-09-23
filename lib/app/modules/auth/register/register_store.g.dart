@@ -33,18 +33,35 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
     });
   }
 
-  late final _$cpfAtom = Atom(name: 'RegisterStoreBase.cpf', context: context);
+  late final _$nomeAtom =
+      Atom(name: 'RegisterStoreBase.nome', context: context);
 
   @override
-  String? get cpf {
-    _$cpfAtom.reportRead();
-    return super.cpf;
+  String? get nome {
+    _$nomeAtom.reportRead();
+    return super.nome;
   }
 
   @override
-  set cpf(String? value) {
-    _$cpfAtom.reportWrite(value, super.cpf, () {
-      super.cpf = value;
+  set nome(String? value) {
+    _$nomeAtom.reportWrite(value, super.nome, () {
+      super.nome = value;
+    });
+  }
+
+  late final _$emailAtom =
+      Atom(name: 'RegisterStoreBase.email', context: context);
+
+  @override
+  String? get email {
+    _$emailAtom.reportRead();
+    return super.email;
+  }
+
+  @override
+  set email(String? value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -132,7 +149,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
       AsyncAction('RegisterStoreBase.register', context: context);
 
   @override
-  Future<BaseModel<AuthModel>> register() {
+  Future<dynamic> register() {
     return _$registerAsyncAction.run(() => super.register());
   }
 
@@ -167,11 +184,22 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
-  void setCpf(String? value) {
+  void setNome(String? value) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
-        name: 'RegisterStoreBase.setCpf');
+        name: 'RegisterStoreBase.setNome');
     try {
-      return super.setCpf(value);
+      return super.setNome(value);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEmail(String? value) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setEmail');
+    try {
+      return super.setEmail(value);
     } finally {
       _$RegisterStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -225,7 +253,8 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   String toString() {
     return '''
 authModel: ${authModel},
-cpf: ${cpf},
+nome: ${nome},
+email: ${email},
 password: ${password},
 confirmPassword: ${confirmPassword},
 code: ${code},

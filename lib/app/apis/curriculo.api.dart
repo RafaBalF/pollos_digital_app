@@ -169,4 +169,20 @@ class CurriculoApi extends BaseApi {
     }
     return 'https://vitrine.pollosdigital.com.br/$result';
   }
+
+  Future createProject(userId, nomeProjeto, urlProjeto) async {
+    var dio = Dio();
+    var response = await dio.request(
+      'https://vitrine.pollosdigital.com.br/API/criaprojeto.php?usuario_id=$userId&nome_projeto=$nomeProjeto&url=$urlProjeto',
+      options: Options(
+        method: 'GET',
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      print(json.encode(response.data));
+    } else {
+      print(response.statusMessage);
+    }
+  }
 }

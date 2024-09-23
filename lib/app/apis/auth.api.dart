@@ -56,37 +56,39 @@ class AuthApi extends BaseApi {
     return result;
   }
 
-  Future<BaseModel<AuthModel>> cadastrarLogin(String cpf, String senha) async {
-    BaseModel<AuthModel> b = BaseModel<AuthModel>();
+  Future cadastrarLogin(String nome, String email, String senha) async {
+    var b = BaseModel();
+    AuthModel? result = AuthModel();
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
         return BaseModel.networkError();
       }
 
-      var result = (await Dio(_option).post(
-        '/Login/CadastrarLogin',
-        data: {
-          "cpf": cpf,
-          "senha": senha,
-        },
-      ))
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option)
+              .get('/API/criausuario.php?nome=$nome&email=$email&senha=$senha'))
           .data;
 
-      b = BaseModel<AuthModel>.fromJson(result, tipo: AuthModel());
+      try {
+        result = AuthModel.fromJson(response);
 
-      if (b.success && b.data != null) {
-        AuthModel authModel = AuthModel(
-          id: b.data!.id,
-          nome: b.data!.nome,
-          email: b.data!.email,
-          criadoEm: b.data!.criadoEm,
-          // email: b.data!.email,
-          // senha: senha,
-        );
+        if (result.sucesso) {
+          AuthModel authModel = AuthModel(
+            id: result.id,
+            nome: result.nome,
+            email: result.email,
+            criadoEm: result.criadoEm,
+            senha: senha,
+          );
 
-        await _loginHive.setLogin(authModel);
-        return b;
+          await _loginHive.setLogin(authModel);
+          return result;
+        } else {
+          b.message = result.mensagem!;
+        }
+      } catch (e) {
+        b.message = response;
       }
     } on DioException catch (e) {
       b.message = handleDioException(e);
@@ -94,7 +96,7 @@ class AuthApi extends BaseApi {
       b = BaseModel();
     }
 
-    return b;
+    return result;
   }
 
   Future<BaseModel<StringResponseModel>> recuperarSenha(

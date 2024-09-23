@@ -4,11 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
-import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
-import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class ModelosCriadosPage extends StatefulWidget {
   const ModelosCriadosPage({super.key});

@@ -22,7 +22,7 @@ abstract class RegisterStoreBase with Store {
   final int defaultCounterValue = 60;
 
   //VARIABLES
-  String? _userCpf;
+  String? _userId;
 
   //OBSERVABLE
 
@@ -30,7 +30,10 @@ abstract class RegisterStoreBase with Store {
   AuthModel? authModel;
 
   @observable
-  String? cpf;
+  String? nome;
+
+  @observable
+  String? email;
 
   @observable
   String? password;
@@ -56,7 +59,9 @@ abstract class RegisterStoreBase with Store {
   @action
   void setAuthModel(AuthModel model) => authModel = model;
   @action
-  void setCpf(String? value) => cpf = value;
+  void setNome(String? value) => nome = value;
+  @action
+  void setEmail(String? value) => email = value;
   @action
   void setPassword(String? value) => password = value;
   @action
@@ -82,15 +87,15 @@ abstract class RegisterStoreBase with Store {
   }
 
   @action
-  Future<BaseModel<AuthModel>> register() async {
+  Future register() async {
     loadingStore.show();
 
-    if (cpf == null || password == null) return BaseModel<AuthModel>();
+    if (email == null || password == null) return BaseModel<AuthModel>();
 
-    var r = await authApi.cadastrarLogin(cpf!, password!);
-    if (r.success) {
-      _userCpf = r.data!.cpf;
-    }
+    var r = await authApi.cadastrarLogin(nome!, email!, password!);
+    // if (r.sucesso) {
+    // _userId = r.data!.cpf;
+    // }
 
     loadingStore.hide();
     return r;
@@ -98,11 +103,11 @@ abstract class RegisterStoreBase with Store {
 
   @action
   Future<BaseModel<StringResponseModel>> resendSMS() async {
-    if (_userCpf == null) {
+    if (_userId == null) {
       return BaseModel();
     }
 
-    var result = await authApi.resendSMS(_userCpf!);
+    var result = await authApi.resendSMS(_userId!);
 
     setCounter(defaultCounterValue);
 
@@ -111,13 +116,13 @@ abstract class RegisterStoreBase with Store {
 
   @action
   Future<BaseModel<AuthModel>> validateCode() async {
-    if (_userCpf == null) {
+    if (_userId == null) {
       return BaseModel();
     }
 
     loadingStore.show();
 
-    var r = await authApi.confirmCode(_userCpf!, code!);
+    var r = await authApi.confirmCode(_userId!, code!);
 
     if (r.success && r.data != null) {
       await _loginHive.setLogin(r.data!);

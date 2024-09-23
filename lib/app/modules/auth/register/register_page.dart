@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
+import 'package:pollos_digital/app/models/auth.model.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/password_input_widget.dart';
 import 'package:pollos_digital/app/models/base.model.dart';
 import 'package:pollos_digital/app/modules/auth/register/register_store.dart';
@@ -53,7 +54,8 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
   }
 
   void _clearFields() {
-    _store.setCpf(null);
+    _store.setNome(null);
+    _store.setEmail(null);
     _store.setPassword(null);
     _store.setConfirmPassword(null);
   }
@@ -83,10 +85,18 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
           DividerWidget(height: 2.h),
           Observer(builder: (_) {
             return InputWidget(
-              label: 'Cpf',
-              keyboardType: TextInputType.number,
-              inputFormatters: [cpfFormatter],
-              onChanged: _store.setCpf,
+              label: 'Nome',
+              keyboardType: TextInputType.name,
+              onChanged: _store.setNome,
+              validator: notEmpty,
+            );
+          }),
+          DividerWidget(height: 2.h),
+          Observer(builder: (_) {
+            return InputWidget(
+              label: 'Email',
+              keyboardType: TextInputType.emailAddress,
+              onChanged: _store.setEmail,
               validator: notEmpty,
             );
           }),
@@ -119,20 +129,27 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
 
                   _store.setCode(null);
 
-                  BaseModel b = await _store.register();
+                  var r = await _store.register();
 
                   if (!mounted) return;
 
-                  if (b.success) {
-                    _startTimer();
-                    showCustomBottomSheet(
-                      context,
-                      'CÓDIGO DE VERIFICAÇÃO',
-                      _confirmPhoneSheet(),
-                    );
+                  if (r.email != null) {
+                    Modular.to.navigate('/home/');
                   } else {
-                    showErrorBottomSheet(context, message: b.message);
+                    showErrorBottomSheet(context,
+                        message: "Usuário já cadastrado");
                   }
+
+                  // if (b.success) {
+                  //   _startTimer();
+                  //   showCustomBottomSheet(
+                  //     context,
+                  //     'CÓDIGO DE VERIFICAÇÃO',
+                  //     _confirmPhoneSheet(),
+                  //   );
+                  // } else {
+                  //   showErrorBottomSheet(context, message: b.message);
+                  // }
                 },
                 loading: _store.loadingStore.isLoading,
                 backgroundColor: primary,

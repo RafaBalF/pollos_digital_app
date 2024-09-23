@@ -92,7 +92,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
           PasswordInputWidget(
             labelColor: white,
             onChanged: _store.setSenha,
-            validator: notEmpty,
+            // validator: notEmpty,
           ),
           DividerWidget(height: 1.h),
           Container(
@@ -124,7 +124,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
                   Modular.to.navigate('/home/');
                 } else {
                   if (mounted) {
-                    showErrorBottomSheet(context, message: r.mensagem);
+                    // showErrorBottomSheet(context, message: r.mensagem);
                   }
                 }
               },
@@ -144,7 +144,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
               ),
               GestureDetector(
                 onTap: () async {
-                  Modular.to.navigate('/auth/register');
+                  Modular.to.pushNamed('/auth/register');
                   // const text =
                   //     "Olá, vim do App Laserfast e gostaria de me tornar cliente";
                   // const whatsappUrl =

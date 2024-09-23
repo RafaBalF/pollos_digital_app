@@ -100,6 +100,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
             child: ButtonWidget.filled(
               onPressed: () {
                 _store.criarCurriculo();
+                _store.buttonDisplayed = false;
               },
               title: 'Criar',
               textColor: white,
@@ -120,6 +121,12 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
                   textColor: white,
                   backgroundColor: focus,
                 ),
+                TextButton(
+                  onPressed: () {
+                    _store.criarCurriculo();
+                  },
+                  child: textWidget('Criar outro', color: focus),
+                )
               ],
             ),
           )

@@ -41,70 +41,6 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
     });
   }
 
-  late final _$nomeAtom =
-      Atom(name: 'CurriculoStoreBase.nome', context: context);
-
-  @override
-  String? get nome {
-    _$nomeAtom.reportRead();
-    return super.nome;
-  }
-
-  @override
-  set nome(String? value) {
-    _$nomeAtom.reportWrite(value, super.nome, () {
-      super.nome = value;
-    });
-  }
-
-  late final _$emailAtom =
-      Atom(name: 'CurriculoStoreBase.email', context: context);
-
-  @override
-  String? get email {
-    _$emailAtom.reportRead();
-    return super.email;
-  }
-
-  @override
-  set email(String? value) {
-    _$emailAtom.reportWrite(value, super.email, () {
-      super.email = value;
-    });
-  }
-
-  late final _$telefoneAtom =
-      Atom(name: 'CurriculoStoreBase.telefone', context: context);
-
-  @override
-  String? get telefone {
-    _$telefoneAtom.reportRead();
-    return super.telefone;
-  }
-
-  @override
-  set telefone(String? value) {
-    _$telefoneAtom.reportWrite(value, super.telefone, () {
-      super.telefone = value;
-    });
-  }
-
-  late final _$resumoAtom =
-      Atom(name: 'CurriculoStoreBase.resumo', context: context);
-
-  @override
-  String? get resumo {
-    _$resumoAtom.reportRead();
-    return super.resumo;
-  }
-
-  @override
-  set resumo(String? value) {
-    _$resumoAtom.reportWrite(value, super.resumo, () {
-      super.resumo = value;
-    });
-  }
-
   late final _$habilidadeAtom =
       Atom(name: 'CurriculoStoreBase.habilidade', context: context);
 
@@ -118,6 +54,38 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   set habilidade(String? value) {
     _$habilidadeAtom.reportWrite(value, super.habilidade, () {
       super.habilidade = value;
+    });
+  }
+
+  late final _$extraDescricaoAtom =
+      Atom(name: 'CurriculoStoreBase.extraDescricao', context: context);
+
+  @override
+  String? get extraDescricao {
+    _$extraDescricaoAtom.reportRead();
+    return super.extraDescricao;
+  }
+
+  @override
+  set extraDescricao(String? value) {
+    _$extraDescricaoAtom.reportWrite(value, super.extraDescricao, () {
+      super.extraDescricao = value;
+    });
+  }
+
+  late final _$extraValorAtom =
+      Atom(name: 'CurriculoStoreBase.extraValor', context: context);
+
+  @override
+  String? get extraValor {
+    _$extraValorAtom.reportRead();
+    return super.extraValor;
+  }
+
+  @override
+  set extraValor(String? value) {
+    _$extraValorAtom.reportWrite(value, super.extraValor, () {
+      super.extraValor = value;
     });
   }
 
@@ -185,6 +153,22 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
     });
   }
 
+  late final _$imageAtom =
+      Atom(name: 'CurriculoStoreBase.image', context: context);
+
+  @override
+  XFile? get image {
+    _$imageAtom.reportRead();
+    return super.image;
+  }
+
+  @override
+  set image(XFile? value) {
+    _$imageAtom.reportWrite(value, super.image, () {
+      super.image = value;
+    });
+  }
+
   late final _$listaModelosAtom =
       Atom(name: 'CurriculoStoreBase.listaModelos', context: context);
 
@@ -232,6 +216,17 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
+  dynamic setNomeArquivo(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setNomeArquivo');
+    try {
+      return super.setNomeArquivo(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setEmail(dynamic value) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
         name: 'CurriculoStoreBase.setEmail');
@@ -254,22 +249,55 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
-  dynamic setResumo(dynamic value) {
+  dynamic setDescricao(dynamic value) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setResumo');
+        name: 'CurriculoStoreBase.setDescricao');
     try {
-      return super.setResumo(value);
+      return super.setDescricao(value);
     } finally {
       _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic setHabilidade(dynamic value) {
+  dynamic setLinkDeContato(dynamic value) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setHabilidade');
+        name: 'CurriculoStoreBase.setLinkDeContato');
     try {
-      return super.setHabilidade(value);
+      return super.setLinkDeContato(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setMissao(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setMissao');
+    try {
+      return super.setMissao(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setVisao(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setVisao');
+    try {
+      return super.setVisao(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setValores(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setValores');
+    try {
+      return super.setValores(value);
     } finally {
       _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -287,11 +315,66 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
+  dynamic setHabilidade(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setHabilidade');
+    try {
+      return super.setHabilidade(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExtraDescricao(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setExtraDescricao');
+    try {
+      return super.setExtraDescricao(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExtraValor(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.setExtraValor');
+    try {
+      return super.setExtraValor(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setSelectedModelo(dynamic value) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
         name: 'CurriculoStoreBase.setSelectedModelo');
     try {
       return super.setSelectedModelo(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addFile(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.addFile');
+    try {
+      return super.addFile(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deleteFile() {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.deleteFile');
+    try {
+      return super.deleteFile();
     } finally {
       _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -320,6 +403,28 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   @override
+  dynamic deleteExtra(dynamic value) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.deleteExtra');
+    try {
+      return super.deleteExtra(value);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addExtra(dynamic descricao, dynamic valor) {
+    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
+        name: 'CurriculoStoreBase.addExtra');
+    try {
+      return super.addExtra(descricao, valor);
+    } finally {
+      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setModeloSelecionado(dynamic index) {
     final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
         name: 'CurriculoStoreBase.setModeloSelecionado');
@@ -335,15 +440,14 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
     return '''
 curriculoModel: ${curriculoModel},
 audio: ${audio},
-nome: ${nome},
-email: ${email},
-telefone: ${telefone},
-resumo: ${resumo},
 habilidade: ${habilidade},
+extraDescricao: ${extraDescricao},
+extraValor: ${extraValor},
 selectedModelo: ${selectedModelo},
 skillsCodeModelo1: ${skillsCodeModelo1},
 buttonDisplayed: ${buttonDisplayed},
 createdPageUrl: ${createdPageUrl},
+image: ${image},
 listaModelos: ${listaModelos}
     ''';
   }

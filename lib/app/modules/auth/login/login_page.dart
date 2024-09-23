@@ -144,12 +144,13 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
               ),
               GestureDetector(
                 onTap: () async {
-                  const text =
-                      "Olá, vim do App Laserfast e gostaria de me tornar cliente";
-                  const whatsappUrl =
-                      "https://wa.me/$telefoneContato?text=$text";
+                  Modular.to.navigate('/auth/register');
+                  // const text =
+                  //     "Olá, vim do App Laserfast e gostaria de me tornar cliente";
+                  // const whatsappUrl =
+                  //     "https://wa.me/$telefoneContato?text=$text";
 
-                  await launchUrlString(whatsappUrl);
+                  // await launchUrlString(whatsappUrl);
                 },
                 child: Container(
                   decoration: const BoxDecoration(

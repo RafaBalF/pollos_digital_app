@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:dio/dio.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -176,12 +174,27 @@ class _CurriculoPageState extends State<CurriculoPage> {
               // await _store.handleAudio(_store.audio);
               _store.curriculoModel = CurriculoModel(
                 nome: 'Rafael Baleeiro',
+                nomeArquivo: 'rafael-baleeiro',
                 email: 'rafae@mail.com',
                 telefone: '(12) 98989-9898',
-                resumo:
+                descricao:
                     'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                linkContato:
+                    'https://wa.me/5516991996799?text=Quero%20saber%20mais',
+                missao:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                visao:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                valores:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                linkImage:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2c2WGEjMK5F7fpo1b6b7Ej__G9OQ6n9dAQ&s',
                 habilidades: ObservableList<String>.of(
                     ['Boa comunicação', 'Responsável']),
+                extras: ObservableList<ExtrasModel>.of([
+                  ExtrasModel(descricao: 'projeto', valor: 12),
+                  ExtrasModel(descricao: 'projeto', valor: 12)
+                ]),
               );
               Modular.to.pushNamed('/curriculo/dados-resultados');
             },

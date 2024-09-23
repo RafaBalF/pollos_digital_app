@@ -2,47 +2,104 @@ import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
 class CurriculoModel extends FromJsonModel {
+  int? modelo;
   String? nome;
+  String? nomeArquivo;
   String? email;
   String? telefone;
-  String? resumo;
+  String? descricao;
+  String? linkContato;
+  String? missao;
+  String? visao;
+  String? valores;
+  String? linkImage;
   ObservableList? habilidades = ObservableList<String>.of([]);
+  ObservableList? extras = ObservableList<ExtrasModel>.of([]);
   String? message;
 
-  CurriculoModel({
-    this.nome,
-    this.email,
-    this.telefone,
-    this.resumo,
-    this.habilidades,
-  });
+  CurriculoModel(
+      {this.modelo,
+      this.nome,
+      this.nomeArquivo,
+      this.email,
+      this.telefone,
+      this.descricao,
+      this.linkContato,
+      this.missao,
+      this.visao,
+      this.valores,
+      this.linkImage,
+      this.habilidades,
+      this.extras});
 
   CurriculoModel.createNew(CurriculoModel model) {
     nome = model.nome;
     email = model.email;
     telefone = model.telefone;
-    resumo = model.resumo;
+    descricao = model.descricao;
     habilidades = model.habilidades;
   }
 
   CurriculoModel.fromJson(Map<String, dynamic> json) {
+    modelo = json['modelo'];
     nome = json['nome'];
+    nomeArquivo = json['nomearquivo'];
     email = json['email'];
     telefone = json['telefone'];
-    resumo = json['resumo'];
+    descricao = json['descricao'];
+    linkContato = json['linkcontato'];
+    missao = json['missao'];
+    visao = json['visao'];
+    valores = json['valores'];
+    linkImage = json['linkimage'];
     habilidades = json['habilidades'];
+    extras = json['extras'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['nome'] = nome;
+    json['modelo'] = modelo;
+    json['nomepessoa'] = nome;
+    json['nomearquivo'] = nomeArquivo;
     json['email'] = email;
     json['telefone'] = telefone;
-    json['resumo'] = resumo;
+    json['descricao'] = descricao;
+    json['linkentrecontato'] = linkContato;
+    json['missao'] = missao;
+    json['visao'] = visao;
+    json['valores'] = valores;
+    json['linkdaimagem1'] = linkImage;
     json['habilidades'] = habilidades;
+    json['extras'] = extras;
     return json;
   }
 
   @override
   fromJson(Map<String, dynamic> json) => CurriculoModel.fromJson(json);
+}
+
+class ExtrasModel extends FromJsonModel {
+  String? descricao;
+  int? valor;
+
+  ExtrasModel({
+    this.descricao,
+    this.valor,
+  });
+
+  ExtrasModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['descricao'] = descricao;
+    json['valor'] = valor;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['descricao'] = descricao;
+    json['valor'] = valor;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => ExtrasModel.fromJson(json);
 }

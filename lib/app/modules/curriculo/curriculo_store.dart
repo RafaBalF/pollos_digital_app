@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/apis/curriculo.api.dart';
 import 'package:pollos_digital/app/models/curriculo.model.dart';
 import 'package:pollos_digital/app/models/modelos.model.dart';
 import 'package:pollos_digital/loading_store.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'curriculo_store.g.dart';
 
@@ -26,19 +26,13 @@ abstract class CurriculoStoreBase with Store {
   File? audio;
 
   @observable
-  String? nome;
-
-  @observable
-  String? email;
-
-  @observable
-  String? telefone;
-
-  @observable
-  String? resumo;
-
-  @observable
   String? habilidade;
+
+  @observable
+  String? extraDescricao;
+
+  @observable
+  String? extraValor;
 
   @observable
   int? selectedModelo;
@@ -51,6 +45,9 @@ abstract class CurriculoStoreBase with Store {
 
   @observable
   String? createdPageUrl;
+
+  @observable
+  XFile? image;
 
   @observable
   ObservableList listaModelos = ObservableList<CurriculoModeloModel>.of([
@@ -113,25 +110,52 @@ abstract class CurriculoStoreBase with Store {
 
   //ACTIONs
   @action
-  setNome(value) => nome = value;
+  setNome(value) => curriculoModel?.nome = value;
 
   @action
-  setEmail(value) => email = value;
+  setNomeArquivo(value) => curriculoModel?.nomeArquivo = value;
 
   @action
-  setTelefone(value) => telefone = value;
+  setEmail(value) => curriculoModel?.email = value;
 
   @action
-  setResumo(value) => resumo = value;
+  setTelefone(value) => curriculoModel?.telefone = value;
 
   @action
-  setHabilidade(value) => habilidade = value;
+  setDescricao(value) => curriculoModel?.descricao = value;
+
+  @action
+  setLinkDeContato(value) => curriculoModel?.linkContato = value;
+
+  @action
+  setMissao(value) => curriculoModel?.missao = value;
+
+  @action
+  setVisao(value) => curriculoModel?.visao = value;
+
+  @action
+  setValores(value) => curriculoModel?.valores = value;
 
   @action
   setAudio(value) => audio = value;
 
   @action
+  setHabilidade(value) => habilidade = value;
+
+  @action
+  setExtraDescricao(value) => extraDescricao = value;
+
+  @action
+  setExtraValor(value) => extraValor = value;
+
+  @action
   setSelectedModelo(value) => selectedModelo = value;
+
+  @action
+  addFile(value) => image = value;
+
+  @action
+  deleteFile() => image = null;
 
   @action
   handleAudio(File? audio) async {
@@ -154,6 +178,17 @@ abstract class CurriculoStoreBase with Store {
   }
 
   @action
+  deleteExtra(value) {
+    curriculoModel!.extras?.remove(value);
+  }
+
+  @action
+  addExtra(descricao, valor) {
+    var value = ExtrasModel(descricao: descricao, valor: int.parse(valor));
+    curriculoModel!.extras?.add(value);
+  }
+
+  @action
   setModeloSelecionado(index) {
     for (var i = 0; i < listaModelos.length; i++) {
       if (i == index) {
@@ -168,13 +203,14 @@ abstract class CurriculoStoreBase with Store {
             modelo: i + 1);
       }
     }
-    selectedModelo = index + 1;
+    curriculoModel?.modelo = index + 1;
   }
 
   @action
   criarCurriculo() async {
-    var r = await _curriculoApi.createPage(curriculoModel, selectedModelo);
+    var imageLink = await _curriculoApi.uploadImage(image);
+    curriculoModel?.linkImage = imageLink;
+    var r = await _curriculoApi.createPage(curriculoModel);
     createdPageUrl = r;
-    buttonDisplayed = !buttonDisplayed;
   }
 }

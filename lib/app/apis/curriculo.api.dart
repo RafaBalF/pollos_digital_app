@@ -64,7 +64,33 @@ class CurriculoApi extends BaseApi {
           {
             "role": "user",
             "content":
-                "Considerando o seguinte texto $audioTranscripted me monte um json contendo, nome, email, telefone no formato brasileiro (00) 00000-0000, resumo profissional é apenas uma string coloque o nome da chave apenas como resumo, habilidades, habilidades sera uma lista, um array, o que não for definido coloque null."
+                """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
+   "nomepessoa":"Mariana Oliveira Costa",
+   "nomearquivo":"mariana-oliveira-costa",
+   "descricao":"Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
+   "telefone":"16991996799",
+   "email":"mariana@gmail.com",
+   "missao":"Minha missão é desenvolver soluções tecnológicas que impactem positivamente a sociedade, promovendo inovação, eficiência e acessibilidade em todos os projetos que lidero ou participo",
+   "visao":"Ser uma referência no desenvolvimento de software de alta qualidade, sempre buscando o aprimoramento contínuo e a adoção de novas tecnologias que possam transformar o mercado e a vida das pessoas",
+   "valores":"Excelência: Compromisso com a entrega de soluções de alta qualidade. Inclusão: Acredita que a tecnologia deve ser acessível e inclusiva para todos. Inovação: Busca constante por novas ideias e abordagens tecnológicas. Ética: Transparência, honestidade e responsabilidade em todas as relações profissionais.",
+   "habilidades":[
+      "Css",
+      "html",
+      "javascript",
+      "C#"
+   ],
+   "extras":[
+      {
+         "descricao":"projeto",
+         "valor":12
+      },
+      {
+         "descricao":"projeto",
+         "valor":12
+      }
+   ]
+
+}, elabore e crie por conta própria o que não for informado, exceto por nome, telefone e email esses pode retornar null.""",
           }
         ]
       });
@@ -90,54 +116,57 @@ class CurriculoApi extends BaseApi {
     return b;
   }
 
-  Future createPage(dados, modelo) async {
-    var b = CurriculoModel();
-    String result;
+  Future uploadImage(image) async {
     try {
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response =
-          (await Dio(option).get('/modelo$modelo.php?nome=${dados.nome}')).data;
+      String basicAuth =
+          'Basic ${base64.encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
+      var headers = {'Authorization': basicAuth};
+      var data = FormData.fromMap({
+        'file': [
+          await MultipartFile.fromFile(image.path, filename: image.name)
+        ],
+      });
 
-      result = response;
+      var dio = Dio();
+      var response = await dio.request(
+        'https://pollosdigital.com.br/wp-json/wp/v2/media',
+        options: Options(
+          method: 'POST',
+          headers: headers,
+        ),
+        data: data,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data['link'];
+      } else {
+        print(response.statusMessage);
+      }
+    } catch (e) {}
+  }
+
+  Future createPage(data) async {
+    var b = CurriculoModel();
+    String? result;
+    CurriculoModel curriculoModelData = data;
+    try {
+      var data = json.encode(curriculoModelData.toJson());
+
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option).post(
+        '/API/criarpagina.php',
+        data: data,
+      ))
+          .data;
+
+      var responseData = json.decode(response);
+      result = responseData['url'];
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
     } catch (e) {
-      return BaseModel();
+      // return BaseModel();
     }
-    return result;
+    return 'https://vitrine.pollosdigital.com.br/$result';
   }
-
-  // Future createPost(title, content) async {
-  //   var b = CurriculoModel();
-  //   String result;
-  //   try {
-  //     var auth = 'Basic ${base64Encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
-
-  //     var headers = {'Content-Type': 'application/json', 'Authorization': auth};
-
-  //     var data = json.encode({
-  //       "title": title,
-  //       "status": "publish",
-  //       "categories": [38],
-  //       "content": content
-  //     });
-
-  //     var option = BaseOptions(
-  //         baseUrl: 'https://pollosdigital.com.br', headers: headers);
-  //     var response = (await Dio(option).post(
-  //       '/wp-json/wp/v2/posts',
-  //       data: data,
-  //     ))
-  //         .data;
-
-  //     result = response['link'];
-  //   } on DioException catch (e) {
-  //     result = "Algo deu errado, tente novamente mais tarde.";
-  //     b.message = handleDioException(e);
-  //   } catch (e) {
-  //     return BaseModel();
-  //   }
-  //   return result;
-  // }
 }

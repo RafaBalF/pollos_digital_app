@@ -13,7 +13,7 @@ abstract class HomeStoreBase with Store {
 
   final LoadingStore loadingStore = LoadingStore();
 
-  final ProjetoStore curriculoStore = ProjetoStore();
+  final ProjetoStore projetoStore = ProjetoStore();
 
   //==============================================
   //==== BOTTOM-BAR ==============================
@@ -21,8 +21,8 @@ abstract class HomeStoreBase with Store {
 
   final List<String> routes = [
     '/home/',
-    '/sessao/historico',
-    '/notificacoes/',
+    '/projeto/',
+    '/projeto/projetos-criados',
     // '/pagamentos/',
     // '/chats/',
   ];
@@ -46,6 +46,7 @@ abstract class HomeStoreBase with Store {
 
   @action
   Future<void> initHome() async {
+    await projetoStore.carregarModelos();
     await getCashback();
   }
 

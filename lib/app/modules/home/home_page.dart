@@ -149,26 +149,26 @@ class HomePageState extends State<HomePage> {
         children: [
           RedirectCardWidget(
             imgPath: 'assets/icons/svg/document_accent.svg',
-            label: 'Criar currículo',
-            route: '/curriculo/',
+            label: 'Criar projeto',
+            route: '/projeto/',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
           ),
           RedirectCardWidget(
-            imgPath: 'assets/icons/svg/document_accent.svg',
-            label: 'Acessar modelos',
-            route: '/curriculo/modelos-criados',
+            imgPath: 'assets/icons/svg/list-details_accent.svg',
+            label: 'Acessar projetos',
+            route: '/projeto/projetos-criados',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
           ),
-          // RedirectCardWidget(
-          //   imgPath: 'assets/icons/svg/money_accent.svg',
-          //   label: 'Pagamentos',
-          //   route: '/pagamentos/',
-          //   labelColor: primary,
-          //   margin: EdgeInsets.only(right: 2.w),
-          //   maxlines: 1,
-          // ),
+          RedirectCardWidget(
+            imgPath: 'assets/icons/svg/iconmonstr-whatsapp-1.svg',
+            label: 'Chamar no WhatsApp',
+            link:
+                'https://api.whatsapp.com/send/?phone=5516991996799&text=Quero+saber+mais&type=phone_number&app_absent=0',
+            labelColor: primary,
+            margin: EdgeInsets.only(right: 2.w),
+          ),
           // RedirectCardWidget(
           //   imgPath: 'assets/icons/svg/blockquote_accent.svg',
           //   label: 'Diário',
@@ -176,13 +176,13 @@ class HomePageState extends State<HomePage> {
           //   labelColor: primary,
           //   margin: EdgeInsets.only(right: 2.w),
           // ),
-          RedirectCardWidget(
-            imgPath: 'assets/icons/svg/list-details_accent.svg',
-            label: 'Perguntas frequentes',
-            route: '/faq',
-            labelColor: primary,
-            margin: EdgeInsets.only(right: 2.w),
-          ),
+          // RedirectCardWidget(
+          //   imgPath: 'assets/icons/svg/list-details_accent.svg',
+          //   label: 'Perguntas frequentes',
+          //   route: '/faq',
+          //   labelColor: primary,
+          //   margin: EdgeInsets.only(right: 2.w),
+          // ),
           // RedirectCardWidget(
           //   imgPath: 'assets/icons/svg/chat_accent.svg',
           //   label: 'Chat',
@@ -190,27 +190,27 @@ class HomePageState extends State<HomePage> {
           //   labelColor: primary,
           //   margin: EdgeInsets.only(right: 2.w),
           // ),
-          RedirectCardWidget(
-            imgPath: 'assets/icons/svg/calendar_accent.svg',
-            label: 'Agenda',
-            route: '/sessao/agendamento',
-            labelColor: primary,
-            margin: EdgeInsets.only(right: 2.w),
-          ),
-          RedirectCardWidget(
-            imgPath: 'assets/icons/svg/calendar_accent.svg',
-            label: 'Agenda',
-            route: '/sessao/agendamento',
-            labelColor: primary,
-            margin: EdgeInsets.only(right: 2.w),
-          ),
-          RedirectCardWidget(
-            imgPath: 'assets/icons/svg/calendar_accent.svg',
-            label: 'Agenda',
-            route: '/sessao/agendamento',
-            labelColor: primary,
-            margin: EdgeInsets.only(right: 2.w),
-          ),
+          // RedirectCardWidget(
+          //   imgPath: 'assets/icons/svg/calendar_accent.svg',
+          //   label: 'Agenda',
+          //   route: '/sessao/agendamento',
+          //   labelColor: primary,
+          //   margin: EdgeInsets.only(right: 2.w),
+          // ),
+          // RedirectCardWidget(
+          //   imgPath: 'assets/icons/svg/calendar_accent.svg',
+          //   label: 'Agenda',
+          //   route: '/sessao/agendamento',
+          //   labelColor: primary,
+          //   margin: EdgeInsets.only(right: 2.w),
+          // ),
+          // RedirectCardWidget(
+          //   imgPath: 'assets/icons/svg/calendar_accent.svg',
+          //   label: 'Agenda',
+          //   route: '/sessao/agendamento',
+          //   labelColor: primary,
+          //   margin: EdgeInsets.only(right: 2.w),
+          // ),
         ],
       ),
     );
@@ -232,7 +232,7 @@ class HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // _mostAccessedCard('MEU DIÁRIO', '/diario/'),
-              _mostAccessedCard('MEU TRATAMENTO', '/sessao/historico'),
+              _mostAccessedCard('CRIAR PROJETO', '/projeto/'),
               // _mostAccessedCard('FINANCEIRO', '/pagamentos/'),
             ],
           ),
@@ -273,12 +273,14 @@ class HomePageState extends State<HomePage> {
       children: [
         _horizontalBanner(
           'assets/images/banners/ban-ofertas.png',
-          () => Modular.to.pushNamed('/parceiros/'),
+          () => launchUrlString(
+              'https://api.whatsapp.com/send/?phone=5516991996799&text=Quero+saber+mais&type=phone_number&app_absent=0'),
         ),
         DividerWidget(height: 1.h),
         _horizontalBanner(
           'assets/images/banners/ban-contato.png',
-          () => Modular.to.pushNamed("/sessao/historico"),
+          () => launchUrlString(
+              'https://api.whatsapp.com/send/?phone=5516991996799&text=Quero+saber+mais&type=phone_number&app_absent=0'),
         ),
       ],
     );
@@ -309,11 +311,11 @@ class HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
-            itemCount: _store.curriculoStore.listaModelos.length,
+            itemCount: _store.projetoStore.listaModelos.length,
             itemBuilder: (BuildContext context, int index) {
               return _verticalBanner(
-                _store.curriculoStore.listaModelos[index].asset,
-                _store.curriculoStore.listaModelos[index].link,
+                _store.projetoStore.listaModelos[index].imgUrl,
+                _store.projetoStore.listaModelos[index].modeloUrl,
               );
             },
           ),
@@ -322,7 +324,7 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _verticalBanner(String imgPath, String route) {
+  Widget _verticalBanner(String imgUrl, String route) {
     return SizedBox(
       child: GestureDetector(
         onTap: () {
@@ -330,7 +332,7 @@ class HomePageState extends State<HomePage> {
         },
         child: Padding(
           padding: const EdgeInsets.all(3),
-          child: Image.asset(imgPath),
+          child: Image.network(imgUrl),
         ),
       ),
     );

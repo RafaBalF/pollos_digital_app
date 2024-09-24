@@ -119,7 +119,7 @@ class DadosPessoaisPageState extends State<DadosPessoaisPage> {
           children: [
             _info('Nome:', _store.dadosPessoaisModel!.nome!),
             _info('Email:', _store.dadosPessoaisModel!.email!),
-            _info('CPF:', _store.dadosPessoaisModel!.cpf!),
+            _info('ID:', _store.dadosPessoaisModel!.id!),
             _info('Celular:', _store.dadosPessoaisModel!.celular!),
           ],
         ),

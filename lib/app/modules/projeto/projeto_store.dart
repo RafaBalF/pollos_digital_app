@@ -5,6 +5,7 @@ import 'package:pollos_digital/app/apis/projeto.api.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/models/hives/login.hive.dart';
 import 'package:pollos_digital/app/models/projeto_modelos.model.dart';
+import 'package:pollos_digital/app/models/projetos_criados.model.dart';
 import 'package:pollos_digital/loading_store.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,6 +24,9 @@ abstract class ProjetoStoreBase with Store {
   //OBSERVABLEs
   @observable
   ProjetoModel? projetoModel = ProjetoModel();
+
+  @observable
+  bool buttonEnabilitiy = true;
 
   @observable
   File? audio;
@@ -52,65 +56,15 @@ abstract class ProjetoStoreBase with Store {
   XFile? image;
 
   @observable
-  ObservableList listaModelos = ObservableList<ProjetoModeloModel>.of([
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/1.png',
-        selected: false,
-        modelo: 1,
-        link: 'https://pollosdigital.com.br/2024/09/18/leonardo-2/'),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/2.png',
-        selected: false,
-        modelo: 2,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/3.png',
-        selected: false,
-        modelo: 3,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/4.png',
-        selected: false,
-        modelo: 4,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/5.png',
-        selected: false,
-        modelo: 5,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/6.png',
-        selected: false,
-        modelo: 6,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/7.png',
-        selected: false,
-        modelo: 7,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/8.png',
-        selected: false,
-        modelo: 8,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/9.png',
-        selected: false,
-        modelo: 9,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/10.png',
-        selected: false,
-        modelo: 10,
-        link: ''),
-    ProjetoModeloModel(
-        asset: 'assets/images/projeto/11.png',
-        selected: false,
-        modelo: 11,
-        link: ''),
-  ]);
+  ObservableList listaModelos = ObservableList<ProjetoModeloModel>.of([]);
+
+  @observable
+  ObservableList listaProjetos = ObservableList<ProjetosCriadosModel>.of([]);
 
   //ACTIONs
+  @action
+  setButtonEnabilitiy() => buttonEnabilitiy = false;
+
   @action
   setNome(value) => projetoModel?.nome = value;
 
@@ -194,15 +148,9 @@ abstract class ProjetoStoreBase with Store {
   setModeloSelecionado(index) {
     for (var i = 0; i < listaModelos.length; i++) {
       if (i == index) {
-        listaModelos[i] = ProjetoModeloModel(
-            asset: 'assets/images/projeto/${i + 1}.png',
-            selected: true,
-            modelo: i + 1);
+        listaModelos[i] = ProjetoModeloModel();
       } else {
-        listaModelos[i] = ProjetoModeloModel(
-            asset: 'assets/images/projeto/${i + 1}.png',
-            selected: false,
-            modelo: i + 1);
+        listaModelos[i] = ProjetoModeloModel();
       }
     }
     projetoModel?.modelo = index + 1;
@@ -210,6 +158,7 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   criarProjeto() async {
+    loadingStore.show();
     var imageLink = await _projetoApi.uploadImage(image);
     projetoModel?.linkImage = imageLink;
     var r = await _projetoApi.createPage(projetoModel);
@@ -217,5 +166,37 @@ abstract class ProjetoStoreBase with Store {
     var user = _loginHive.getLogin();
     await _projetoApi.createProject(
         user.id, projetoModel?.nome, createdPageUrl);
+    loadingStore.hide();
+  }
+
+  @action
+  carregarModelos() async {
+    var arrayModelos = await _projetoApi.carregarModelos();
+    for (var e in arrayModelos) {
+      listaModelos.add(ProjetoModeloModel.fromJson(e));
+    }
+  }
+
+  @action
+  carregarProjetosCriados() async {
+    var user = _loginHive.getLogin();
+    var arrayModelos = await _projetoApi.carregarProjetos(user.id);
+    for (var e in arrayModelos['projetos']) {
+      listaProjetos.add(ProjetosCriadosModel.fromJson(e));
+    }
+  }
+
+  @action
+  excluirProjeto(projetoId) async {
+    await _projetoApi.excluirProjeto(projetoId);
+    loadingStore.show();
+    listaProjetos.clear();
+    await carregarProjetosCriados();
+    loadingStore.hide();
+  }
+
+  @action
+  Future<void> initProjetosCriado() async {
+    await carregarProjetosCriados();
   }
 }

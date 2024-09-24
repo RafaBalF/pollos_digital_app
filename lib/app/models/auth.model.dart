@@ -23,6 +23,7 @@ class AuthModel extends FromJsonModel {
   // @HiveField(6)
   // String? tokenPush;
   String? mensagem;
+  String? celular;
 
   AuthModel.cpf({this.cpf});
 
@@ -32,6 +33,7 @@ class AuthModel extends FromJsonModel {
     this.email,
     this.criadoEm,
     this.senha,
+    this.celular,
   });
 
   AuthModel.fromJson(Map<String, dynamic> json) {

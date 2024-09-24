@@ -124,6 +124,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
                   Modular.to.navigate('/home/');
                 } else {
                   if (mounted) {
+                    _showToast(context, r.mensagem);
                     // showErrorBottomSheet(context, message: r.mensagem);
                   }
                 }
@@ -167,6 +168,17 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
           ),
           DividerWidget(height: 12.h),
         ],
+      ),
+    );
+  }
+
+  void _showToast(BuildContext context, message) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        action: SnackBarAction(
+            label: 'Ok', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }

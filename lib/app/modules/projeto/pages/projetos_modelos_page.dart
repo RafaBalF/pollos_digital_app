@@ -109,26 +109,31 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
           ),
           Visibility(
             visible: !_store.buttonDisplayed,
-            child: Column(
-              children: [
-                textWidget('Link para sua pagina: ${_store.createdPageUrl}'),
-                DividerWidget(height: 2.h),
-                ButtonWidget.filled(
-                  onPressed: () {
-                    launchUrlString(_store.createdPageUrl.toString());
-                  },
-                  title: 'Acessar',
-                  textColor: white,
-                  backgroundColor: focus,
-                ),
-                TextButton(
-                  onPressed: () {
-                    _store.criarProjeto();
-                  },
-                  child: textWidget('Criar outro', color: focus),
-                )
-              ],
-            ),
+            child: _store.loadingStore.isLoading
+                ? const CircularProgressIndicator(
+                    color: focus,
+                  )
+                : Column(
+                    children: [
+                      textWidget(
+                          'Link para sua pagina: ${_store.createdPageUrl}'),
+                      DividerWidget(height: 2.h),
+                      ButtonWidget.filled(
+                        onPressed: () {
+                          launchUrlString(_store.createdPageUrl.toString());
+                        },
+                        title: 'Acessar',
+                        textColor: white,
+                        backgroundColor: focus,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _store.criarProjeto();
+                        },
+                        child: textWidget('Criar outro', color: focus),
+                      )
+                    ],
+                  ),
           )
         ],
       ),

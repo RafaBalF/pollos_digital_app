@@ -43,9 +43,10 @@ abstract class ProfileStoreBase with Store {
     AuthModel auth = _loginHive.getLogin();
 
     dadosPessoaisModel = DadosPessoaisModel(
-      nome: auth.nome,
-      email: auth.email,
-      cpf: auth.cpf,
+      nome: auth.nome ?? '',
+      email: auth.email ?? '',
+      id: auth.id ?? '',
+      celular: auth.celular ?? '',
     );
   }
 

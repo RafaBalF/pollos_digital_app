@@ -1,36 +1,39 @@
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
 class ProjetoModeloModel extends FromJsonModel {
-  String? asset;
-  bool? selected;
-  int? modelo;
-  String? link;
+  int? id;
+  String? nome;
+  String? descricao;
+  String? modeloUrl;
+  String? imgUrl;
+  String? status;
 
   ProjetoModeloModel({
-    this.asset,
-    this.selected,
-    this.modelo,
-    this.link,
+    this.id,
+    this.nome,
+    this.descricao,
+    this.imgUrl,
+    this.modeloUrl,
+    this.status,
   });
 
-  ProjetoModeloModel.createNew(ProjetoModeloModel model) {
-    asset = model.asset;
-    selected = model.selected;
-    modelo = model.modelo;
-    link = model.link;
-  }
-
   ProjetoModeloModel.fromJson(Map<String, dynamic> json) {
-    asset = json['asset'];
-    selected = json['selected'];
-    modelo = json['modelo'];
+    id = json['id'];
+    nome = json['nome'];
+    descricao = json['descricao'];
+    modeloUrl = json['url'];
+    imgUrl = json['img'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['asset'] = asset;
-    json['selected'] = selected;
-    json['modelo'] = modelo;
+    json['id'] = id;
+    json['nome'] = nome;
+    json['descricao'] = descricao;
+    json['url'] = modeloUrl;
+    json['img'] = imgUrl;
+    json['status'] = status;
     return json;
   }
 

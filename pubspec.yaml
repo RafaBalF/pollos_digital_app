@@ -125,7 +125,7 @@ flutter:
     - assets/images/pagamentos/
     - assets/images/profile/
     - assets/images/diario/
-    - assets/images/curriculo/
+    - assets/images/projeto/
     - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -136,8 +136,9 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
                   if (r.email != null) {
                     Modular.to.navigate('/home/');
                   } else {
-                    showErrorBottomSheet(context,
-                        message: "Usuário já cadastrado");
+                    _showToast(context, "Usuário já cadastrado");
+                    // showErrorBottomSheet(context,
+                    //     message: "Usuário já cadastrado");
                   }
 
                   // if (b.success) {
@@ -250,6 +251,17 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
           }),
         )
       ],
+    );
+  }
+
+  void _showToast(BuildContext context, message) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        action: SnackBarAction(
+            label: 'Ok', onPressed: scaffold.hideCurrentSnackBar),
+      ),
     );
   }
 }

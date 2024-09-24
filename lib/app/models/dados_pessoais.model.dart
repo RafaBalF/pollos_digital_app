@@ -5,12 +5,14 @@ class DadosPessoaisModel extends FromJsonModel {
   String? email;
   String? cpf;
   String? celular;
+  String? id;
 
   DadosPessoaisModel({
     this.nome,
     this.email,
     this.cpf,
     this.celular,
+    this.id,
   });
 
   DadosPessoaisModel.createNew(DadosPessoaisModel model) {
@@ -18,6 +20,7 @@ class DadosPessoaisModel extends FromJsonModel {
     email = model.email;
     cpf = model.cpf;
     celular = model.celular;
+    id = model.id;
   }
 
   DadosPessoaisModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +28,7 @@ class DadosPessoaisModel extends FromJsonModel {
     email = json['email'];
     cpf = json['cpf'];
     celular = json['celular'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +37,7 @@ class DadosPessoaisModel extends FromJsonModel {
     json['email'] = email;
     json['cpf'] = cpf;
     json['celular'] = celular;
+    json['id'] = id;
     return json;
   }
 

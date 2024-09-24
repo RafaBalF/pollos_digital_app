@@ -7,6 +7,7 @@ import 'package:pollos_digital/app/apis/base.api.dart';
 import 'package:pollos_digital/app/constants/constants.dart';
 import 'package:pollos_digital/app/models/base.model.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
+import 'package:pollos_digital/app/models/projetos_criados.model.dart';
 
 class ProjetoApi extends BaseApi {
   get _baseUrl => API_CHAT_GPT;
@@ -148,9 +149,9 @@ class ProjetoApi extends BaseApi {
   Future createPage(data) async {
     var b = ProjetoModel();
     String? result;
-    ProjetoModel curriculoModelData = data;
+    ProjetoModel projetoModelData = data;
     try {
-      var data = json.encode(curriculoModelData.toJson());
+      var data = json.encode(projetoModelData.toJson());
 
       var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
       var response = (await Dio(option).post(
@@ -184,5 +185,59 @@ class ProjetoApi extends BaseApi {
     } else {
       print(response.statusMessage);
     }
+  }
+
+  Future carregarModelos() async {
+    var b = ProjetoModel();
+    var result;
+    try {
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option).get('/API/listamodelo.php')).data;
+
+      var responseData = json.decode(response);
+      result = responseData['modelos'];
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  Future carregarProjetos(userId) async {
+    var b = ProjetosCriadosModel();
+    var result;
+    try {
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response =
+          (await Dio(option).get('/API/listarprojetos.php?usuario_id=$userId'))
+              .data;
+      result = response;
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  Future excluirProjeto(projetoId) async {
+    var b = ProjetosCriadosModel();
+    var result;
+    try {
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response = (await Dio(option)
+              .get('/API/deletarprojeto.php?projeto_id=$projetoId'))
+          .data;
+      result = response;
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
   }
 }

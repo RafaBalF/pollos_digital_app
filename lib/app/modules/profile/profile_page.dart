@@ -56,16 +56,16 @@ class ProfilePageState extends State<ProfilePage> {
       //   'Conversas',
       //   () => Modular.to.pushNamed('/profile/chat'),
       // ),
-      _tileCard(
-        'assets/icons/svg/parceiros_accent.svg',
-        'Parceiros',
-        () => Modular.to.pushNamed('/parceiros/'),
-      ),
-      _tileCard(
-        'assets/icons/svg/users_accent.svg',
-        'Indicação',
-        () => Modular.to.pushNamed('/indicar/'),
-      ),
+      // _tileCard(
+      //   'assets/icons/svg/parceiros_accent.svg',
+      //   'Parceiros',
+      //   () => Modular.to.pushNamed('/parceiros/'),
+      // ),
+      // _tileCard(
+      //   'assets/icons/svg/users_accent.svg',
+      //   'Indicação',
+      //   () => Modular.to.pushNamed('/indicar/'),
+      // ),
       // _tileCard(
       //   'assets/icons/svg/favorite_accent.svg',
       //   'Diário',
@@ -82,27 +82,27 @@ class ProfilePageState extends State<ProfilePage> {
         'Políticas de privacidade',
         () => Modular.to.pushNamed('/profile/politicas-de-privacidade'),
       ),
-      _tileCard(
-        'assets/icons/svg/orders_table_accent.svg',
-        'Histórico de sessões',
-        () => Modular.to.pushNamed('/sessao/historico'),
-      ),
+      // _tileCard(
+      //   'assets/icons/svg/orders_table_accent.svg',
+      //   'Histórico de sessões',
+      //   () => Modular.to.pushNamed('/sessao/historico'),
+      // ),
       _tileCard(
         'assets/icons/svg/change-password_accent.svg',
         'Redefinir senha',
         () => Modular.to.pushNamed('/profile/redefinir-senha'),
       ),
-      _tileCard(
-        'assets/icons/svg/franchise_accent.svg',
-        'Seja um franqueado',
-        () => launchUrlString('https://laserfast.com.br/franquia'),
-      ),
-      _tileCard(
-        '',
-        'Contratos',
-        () => Modular.to.pushNamed('/profile/contratos'),
-        icon: Icons.format_list_bulleted,
-      ),
+      // _tileCard(
+      //   'assets/icons/svg/franchise_accent.svg',
+      //   'Seja um franqueado',
+      //   () => launchUrlString('https://laserfast.com.br/franquia'),
+      // ),
+      // _tileCard(
+      //   '',
+      //   'Contratos',
+      //   () => Modular.to.pushNamed('/profile/contratos'),
+      //   icon: Icons.format_list_bulleted,
+      // ),
     ];
   }
 

@@ -94,26 +94,29 @@ class ConfiguracoesPageState extends State<ConfiguracoesPage> {
   }
 
   Widget _tile(String label, Function()? onTap) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            textWidget(label, style: headTitle()),
-            GestureDetector(
-              onTap: onTap,
-              child: Icon(
-                Icons.chevron_right,
-                color: primary,
-                size: 24.sp,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                textWidget(label, style: headTitle()),
+                Icon(
+                  Icons.chevron_right,
+                  color: primary,
+                  size: 24.sp,
+                ),
+              ],
             ),
+            DividerWidget(height: 1.h),
+            const Divider()
           ],
         ),
-        DividerWidget(height: 1.h),
-        const Divider()
-      ],
+      ),
     );
   }
 

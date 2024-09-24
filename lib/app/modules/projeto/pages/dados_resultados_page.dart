@@ -188,7 +188,6 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      // itemCount: widget.curriculo?.habilidades?.length,
                       itemCount: _store.projetoModel?.habilidades?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
@@ -267,7 +266,6 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      // itemCount: widget.curriculo?.habilidades?.length,
                       itemCount: _store.projetoModel?.extras?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
@@ -297,7 +295,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
         DividerWidget(height: 4.h),
         ButtonWidget.filled(
           onPressed: () {
-            Modular.to.pushNamed('/curriculo/curriculos-modelos');
+            Modular.to.pushNamed('/projeto/projetos-modelos');
           },
           title: 'AVANÇAR',
           textColor: white,

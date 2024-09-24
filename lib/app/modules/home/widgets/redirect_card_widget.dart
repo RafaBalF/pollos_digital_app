@@ -5,11 +5,13 @@ import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class RedirectCardWidget extends StatelessWidget {
   final String imgPath;
   final String label;
-  final String route;
+  final String? route;
+  final String? link;
   final Color? labelColor;
   final EdgeInsets? margin;
   final int? maxlines;
@@ -18,7 +20,8 @@ class RedirectCardWidget extends StatelessWidget {
     super.key,
     required this.imgPath,
     required this.label,
-    required this.route,
+    this.route,
+    this.link,
     this.labelColor,
     this.margin,
     this.maxlines,
@@ -59,7 +62,12 @@ class RedirectCardWidget extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Modular.to.pushNamed(route);
+          if (route != null) {
+            Modular.to.pushNamed(route!);
+          }
+          if (link != null) {
+            launchUrlString(link!);
+          }
         },
       ),
     );

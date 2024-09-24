@@ -136,6 +136,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
                   onPressed: () async {
                     if (isRecording) {
                       String? filePath = await audioRecorder.stop();
+                      _store.setButtonEnabilitiy();
                       if (filePath != null) {
                         var file = File(filePath);
                         await _store.setAudio(file);
@@ -199,6 +200,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
               Modular.to.pushNamed('/projeto/dados-resultados');
             },
             loading: _store.loadingStore.isLoading,
+            disabled: _store.buttonEnabilitiy,
             title: 'AVANÇAR',
             textColor: white,
             backgroundColor: focus,

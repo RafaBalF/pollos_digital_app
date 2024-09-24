@@ -37,12 +37,12 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               'Início',
             ),
             _bottomNavigationBarItem(
-              'assets/icons/svg/calendar.svg',
-              'Agenda',
+              'assets/icons/svg/document.svg',
+              'Criar projeto',
             ),
-            _bottomNavigationBarIconItem(
-              Icons.notifications_none_outlined,
-              "Notificações",
+            _bottomNavigationBarItem(
+              'assets/icons/svg/list-details.svg',
+              "Acessar projetos",
             ),
             // _bottomNavigationBarItem(
             //   'assets/icons/svg/ticket.svg',

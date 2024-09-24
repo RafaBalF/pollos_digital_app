@@ -25,6 +25,22 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$buttonEnabilitiyAtom =
+      Atom(name: 'ProjetoStoreBase.buttonEnabilitiy', context: context);
+
+  @override
+  bool get buttonEnabilitiy {
+    _$buttonEnabilitiyAtom.reportRead();
+    return super.buttonEnabilitiy;
+  }
+
+  @override
+  set buttonEnabilitiy(bool value) {
+    _$buttonEnabilitiyAtom.reportWrite(value, super.buttonEnabilitiy, () {
+      super.buttonEnabilitiy = value;
+    });
+  }
+
   late final _$audioAtom =
       Atom(name: 'ProjetoStoreBase.audio', context: context);
 
@@ -185,6 +201,22 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$listaProjetosAtom =
+      Atom(name: 'ProjetoStoreBase.listaProjetos', context: context);
+
+  @override
+  ObservableList<dynamic> get listaProjetos {
+    _$listaProjetosAtom.reportRead();
+    return super.listaProjetos;
+  }
+
+  @override
+  set listaProjetos(ObservableList<dynamic> value) {
+    _$listaProjetosAtom.reportWrite(value, super.listaProjetos, () {
+      super.listaProjetos = value;
+    });
+  }
+
   late final _$handleAudioAsyncAction =
       AsyncAction('ProjetoStoreBase.handleAudio', context: context);
 
@@ -201,8 +233,45 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     return _$criarProjetoAsyncAction.run(() => super.criarProjeto());
   }
 
+  late final _$carregarModelosAsyncAction =
+      AsyncAction('ProjetoStoreBase.carregarModelos', context: context);
+
+  @override
+  Future carregarModelos() {
+    return _$carregarModelosAsyncAction.run(() => super.carregarModelos());
+  }
+
+  late final _$carregarProjetosCriadosAsyncAction =
+      AsyncAction('ProjetoStoreBase.carregarProjetosCriados', context: context);
+
+  @override
+  Future carregarProjetosCriados() {
+    return _$carregarProjetosCriadosAsyncAction
+        .run(() => super.carregarProjetosCriados());
+  }
+
+  late final _$initProjetosCriadoAsyncAction =
+      AsyncAction('ProjetoStoreBase.initProjetosCriado', context: context);
+
+  @override
+  Future<void> initProjetosCriado() {
+    return _$initProjetosCriadoAsyncAction
+        .run(() => super.initProjetosCriado());
+  }
+
   late final _$ProjetoStoreBaseActionController =
       ActionController(name: 'ProjetoStoreBase', context: context);
+
+  @override
+  dynamic setButtonEnabilitiy() {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setButtonEnabilitiy');
+    try {
+      return super.setButtonEnabilitiy();
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setNome(dynamic value) {
@@ -439,6 +508,7 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   String toString() {
     return '''
 projetoModel: ${projetoModel},
+buttonEnabilitiy: ${buttonEnabilitiy},
 audio: ${audio},
 habilidade: ${habilidade},
 extraDescricao: ${extraDescricao},
@@ -448,7 +518,8 @@ skillsCodeModelo1: ${skillsCodeModelo1},
 buttonDisplayed: ${buttonDisplayed},
 createdPageUrl: ${createdPageUrl},
 image: ${image},
-listaModelos: ${listaModelos}
+listaModelos: ${listaModelos},
+listaProjetos: ${listaProjetos}
     ''';
   }
 }

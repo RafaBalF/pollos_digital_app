@@ -29,8 +29,8 @@ class AppModule extends Module {
       transition: defaultTransitonType,
     );
     r.module(
-      '/curriculo',
-      module: CurriculoModule(),
+      '/projeto',
+      module: ProjetoModule(),
       transition: defaultTransitonType,
     );
     r.module(

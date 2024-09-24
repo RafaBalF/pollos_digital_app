@@ -42,7 +42,7 @@ class ProjetoModel extends FromJsonModel {
 
   ProjetoModel.fromJson(Map<String, dynamic> json) {
     modelo = json['modelo'];
-    nome = json['nome'];
+    nome = json['nomepessoa'];
     nomeArquivo = json['nomearquivo'];
     email = json['email'];
     telefone = json['telefone'];

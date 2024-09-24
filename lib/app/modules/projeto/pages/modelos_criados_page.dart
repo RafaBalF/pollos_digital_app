@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
+import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class ModelosCriadosPage extends StatefulWidget {
-  const ModelosCriadosPage({super.key});
+class ProjetosCriadosPage extends StatefulWidget {
+  const ProjetosCriadosPage({super.key});
 
   @override
-  State<ModelosCriadosPage> createState() => _ModelosCriadosPageState();
+  State<ProjetosCriadosPage> createState() => _ProjetosCriadosPageState();
 }
 
-class _ModelosCriadosPageState extends State<ModelosCriadosPage> {
-  final CurriculoStore _store = Modular.get<CurriculoStore>();
+class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
+  final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 
   @override

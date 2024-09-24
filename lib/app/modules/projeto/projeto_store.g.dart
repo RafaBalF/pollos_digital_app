@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'curriculo_store.dart';
+part of 'projeto_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,25 +8,25 @@ part of 'curriculo_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$CurriculoStore on CurriculoStoreBase, Store {
-  late final _$curriculoModelAtom =
-      Atom(name: 'CurriculoStoreBase.curriculoModel', context: context);
+mixin _$ProjetoStore on ProjetoStoreBase, Store {
+  late final _$projetoModelAtom =
+      Atom(name: 'ProjetoStoreBase.projetoModel', context: context);
 
   @override
-  CurriculoModel? get curriculoModel {
-    _$curriculoModelAtom.reportRead();
-    return super.curriculoModel;
+  ProjetoModel? get projetoModel {
+    _$projetoModelAtom.reportRead();
+    return super.projetoModel;
   }
 
   @override
-  set curriculoModel(CurriculoModel? value) {
-    _$curriculoModelAtom.reportWrite(value, super.curriculoModel, () {
-      super.curriculoModel = value;
+  set projetoModel(ProjetoModel? value) {
+    _$projetoModelAtom.reportWrite(value, super.projetoModel, () {
+      super.projetoModel = value;
     });
   }
 
   late final _$audioAtom =
-      Atom(name: 'CurriculoStoreBase.audio', context: context);
+      Atom(name: 'ProjetoStoreBase.audio', context: context);
 
   @override
   File? get audio {
@@ -42,7 +42,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$habilidadeAtom =
-      Atom(name: 'CurriculoStoreBase.habilidade', context: context);
+      Atom(name: 'ProjetoStoreBase.habilidade', context: context);
 
   @override
   String? get habilidade {
@@ -58,7 +58,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$extraDescricaoAtom =
-      Atom(name: 'CurriculoStoreBase.extraDescricao', context: context);
+      Atom(name: 'ProjetoStoreBase.extraDescricao', context: context);
 
   @override
   String? get extraDescricao {
@@ -74,7 +74,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$extraValorAtom =
-      Atom(name: 'CurriculoStoreBase.extraValor', context: context);
+      Atom(name: 'ProjetoStoreBase.extraValor', context: context);
 
   @override
   String? get extraValor {
@@ -90,7 +90,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$selectedModeloAtom =
-      Atom(name: 'CurriculoStoreBase.selectedModelo', context: context);
+      Atom(name: 'ProjetoStoreBase.selectedModelo', context: context);
 
   @override
   int? get selectedModelo {
@@ -106,7 +106,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$skillsCodeModelo1Atom =
-      Atom(name: 'CurriculoStoreBase.skillsCodeModelo1', context: context);
+      Atom(name: 'ProjetoStoreBase.skillsCodeModelo1', context: context);
 
   @override
   String? get skillsCodeModelo1 {
@@ -122,7 +122,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$buttonDisplayedAtom =
-      Atom(name: 'CurriculoStoreBase.buttonDisplayed', context: context);
+      Atom(name: 'ProjetoStoreBase.buttonDisplayed', context: context);
 
   @override
   bool get buttonDisplayed {
@@ -138,7 +138,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$createdPageUrlAtom =
-      Atom(name: 'CurriculoStoreBase.createdPageUrl', context: context);
+      Atom(name: 'ProjetoStoreBase.createdPageUrl', context: context);
 
   @override
   String? get createdPageUrl {
@@ -154,7 +154,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$imageAtom =
-      Atom(name: 'CurriculoStoreBase.image', context: context);
+      Atom(name: 'ProjetoStoreBase.image', context: context);
 
   @override
   XFile? get image {
@@ -170,7 +170,7 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$listaModelosAtom =
-      Atom(name: 'CurriculoStoreBase.listaModelos', context: context);
+      Atom(name: 'ProjetoStoreBase.listaModelos', context: context);
 
   @override
   ObservableList<dynamic> get listaModelos {
@@ -186,259 +186,259 @@ mixin _$CurriculoStore on CurriculoStoreBase, Store {
   }
 
   late final _$handleAudioAsyncAction =
-      AsyncAction('CurriculoStoreBase.handleAudio', context: context);
+      AsyncAction('ProjetoStoreBase.handleAudio', context: context);
 
   @override
   Future handleAudio(File? audio) {
     return _$handleAudioAsyncAction.run(() => super.handleAudio(audio));
   }
 
-  late final _$criarCurriculoAsyncAction =
-      AsyncAction('CurriculoStoreBase.criarCurriculo', context: context);
+  late final _$criarProjetoAsyncAction =
+      AsyncAction('ProjetoStoreBase.criarProjeto', context: context);
 
   @override
-  Future criarCurriculo() {
-    return _$criarCurriculoAsyncAction.run(() => super.criarCurriculo());
+  Future criarProjeto() {
+    return _$criarProjetoAsyncAction.run(() => super.criarProjeto());
   }
 
-  late final _$CurriculoStoreBaseActionController =
-      ActionController(name: 'CurriculoStoreBase', context: context);
+  late final _$ProjetoStoreBaseActionController =
+      ActionController(name: 'ProjetoStoreBase', context: context);
 
   @override
   dynamic setNome(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setNome');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setNome');
     try {
       return super.setNome(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setNomeArquivo(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setNomeArquivo');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setNomeArquivo');
     try {
       return super.setNomeArquivo(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setEmail(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setEmail');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setEmail');
     try {
       return super.setEmail(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setTelefone(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setTelefone');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setTelefone');
     try {
       return super.setTelefone(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setDescricao(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setDescricao');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setDescricao');
     try {
       return super.setDescricao(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setLinkDeContato(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setLinkDeContato');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setLinkDeContato');
     try {
       return super.setLinkDeContato(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setMissao(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setMissao');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setMissao');
     try {
       return super.setMissao(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setVisao(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setVisao');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setVisao');
     try {
       return super.setVisao(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setValores(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setValores');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setValores');
     try {
       return super.setValores(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setAudio(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setAudio');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setAudio');
     try {
       return super.setAudio(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setHabilidade(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setHabilidade');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setHabilidade');
     try {
       return super.setHabilidade(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setExtraDescricao(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setExtraDescricao');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExtraDescricao');
     try {
       return super.setExtraDescricao(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setExtraValor(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setExtraValor');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExtraValor');
     try {
       return super.setExtraValor(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setSelectedModelo(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setSelectedModelo');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setSelectedModelo');
     try {
       return super.setSelectedModelo(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic addFile(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.addFile');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addFile');
     try {
       return super.addFile(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic deleteFile() {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.deleteFile');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deleteFile');
     try {
       return super.deleteFile();
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic deleteHabilidade(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.deleteHabilidade');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deleteHabilidade');
     try {
       return super.deleteHabilidade(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic addHabilidade(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.addHabilidade');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addHabilidade');
     try {
       return super.addHabilidade(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic deleteExtra(dynamic value) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.deleteExtra');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deleteExtra');
     try {
       return super.deleteExtra(value);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic addExtra(dynamic descricao, dynamic valor) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.addExtra');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addExtra');
     try {
       return super.addExtra(descricao, valor);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setModeloSelecionado(dynamic index) {
-    final _$actionInfo = _$CurriculoStoreBaseActionController.startAction(
-        name: 'CurriculoStoreBase.setModeloSelecionado');
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setModeloSelecionado');
     try {
       return super.setModeloSelecionado(index);
     } finally {
-      _$CurriculoStoreBaseActionController.endAction(_$actionInfo);
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String toString() {
     return '''
-curriculoModel: ${curriculoModel},
+projetoModel: ${projetoModel},
 audio: ${audio},
 habilidade: ${habilidade},
 extraDescricao: ${extraDescricao},

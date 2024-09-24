@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
-class CurriculoModel extends FromJsonModel {
+class ProjetoModel extends FromJsonModel {
   int? modelo;
   String? nome;
   String? nomeArquivo;
@@ -17,7 +17,7 @@ class CurriculoModel extends FromJsonModel {
   ObservableList? extras = ObservableList<ExtrasModel>.of([]);
   String? message;
 
-  CurriculoModel(
+  ProjetoModel(
       {this.modelo,
       this.nome,
       this.nomeArquivo,
@@ -32,7 +32,7 @@ class CurriculoModel extends FromJsonModel {
       this.habilidades,
       this.extras});
 
-  CurriculoModel.createNew(CurriculoModel model) {
+  ProjetoModel.createNew(ProjetoModel model) {
     nome = model.nome;
     email = model.email;
     telefone = model.telefone;
@@ -40,7 +40,7 @@ class CurriculoModel extends FromJsonModel {
     habilidades = model.habilidades;
   }
 
-  CurriculoModel.fromJson(Map<String, dynamic> json) {
+  ProjetoModel.fromJson(Map<String, dynamic> json) {
     modelo = json['modelo'];
     nome = json['nome'];
     nomeArquivo = json['nomearquivo'];
@@ -75,7 +75,7 @@ class CurriculoModel extends FromJsonModel {
   }
 
   @override
-  fromJson(Map<String, dynamic> json) => CurriculoModel.fromJson(json);
+  fromJson(Map<String, dynamic> json) => ProjetoModel.fromJson(json);
 }
 
 class ExtrasModel extends FromJsonModel {

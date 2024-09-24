@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
+import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
@@ -10,15 +10,15 @@ import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class CurriculosModelosPage extends StatefulWidget {
-  const CurriculosModelosPage({super.key});
+class ProjetosModelosPage extends StatefulWidget {
+  const ProjetosModelosPage({super.key});
 
   @override
-  State<CurriculosModelosPage> createState() => _CurriculosModelosPageState();
+  State<ProjetosModelosPage> createState() => _ProjetosModelosPageState();
 }
 
-class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
-  final CurriculoStore _store = Modular.get<CurriculoStore>();
+class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
+  final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 
   @override
@@ -99,7 +99,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
             visible: _store.buttonDisplayed,
             child: ButtonWidget.filled(
               onPressed: () {
-                _store.criarCurriculo();
+                _store.criarProjeto();
                 _store.buttonDisplayed = false;
               },
               title: 'Criar',
@@ -123,7 +123,7 @@ class _CurriculosModelosPageState extends State<CurriculosModelosPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    _store.criarCurriculo();
+                    _store.criarProjeto();
                   },
                   child: textWidget('Criar outro', color: focus),
                 )

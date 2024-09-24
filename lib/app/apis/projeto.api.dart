@@ -6,9 +6,9 @@ import 'package:dio/dio.dart';
 import 'package:pollos_digital/app/apis/base.api.dart';
 import 'package:pollos_digital/app/constants/constants.dart';
 import 'package:pollos_digital/app/models/base.model.dart';
-import 'package:pollos_digital/app/models/curriculo.model.dart';
+import 'package:pollos_digital/app/models/projeto.model.dart';
 
-class CurriculoApi extends BaseApi {
+class ProjetoApi extends BaseApi {
   get _baseUrl => API_CHAT_GPT;
   get _option => BaseOptions(baseUrl: _baseUrl);
 
@@ -49,7 +49,7 @@ class CurriculoApi extends BaseApi {
   }
 
   Future getAiResponse(String audioTranscripted) async {
-    var b = CurriculoModel();
+    var b = ProjetoModel();
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
@@ -104,7 +104,7 @@ class CurriculoApi extends BaseApi {
 
       var jsonData = json.decode(result['choices'][0]['message']['content']);
       try {
-        b = CurriculoModel.fromJson(jsonData);
+        b = ProjetoModel.fromJson(jsonData);
       } catch (e) {
         b.message = getMessage(result);
       }
@@ -146,9 +146,9 @@ class CurriculoApi extends BaseApi {
   }
 
   Future createPage(data) async {
-    var b = CurriculoModel();
+    var b = ProjetoModel();
     String? result;
-    CurriculoModel curriculoModelData = data;
+    ProjetoModel curriculoModelData = data;
     try {
       var data = json.encode(curriculoModelData.toJson());
 

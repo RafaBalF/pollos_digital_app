@@ -6,8 +6,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pollos_digital/app/models/curriculo.model.dart';
-import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
+import 'package:pollos_digital/app/models/projeto.model.dart';
+import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
@@ -17,15 +17,15 @@ import 'package:record/record.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:path/path.dart' as p;
 
-class CurriculoPage extends StatefulWidget {
-  const CurriculoPage({super.key});
+class ProjetoPage extends StatefulWidget {
+  const ProjetoPage({super.key});
 
   @override
-  State<CurriculoPage> createState() => _CurriculoPageState();
+  State<ProjetoPage> createState() => _ProjetoPageState();
 }
 
-class _CurriculoPageState extends State<CurriculoPage> {
-  final CurriculoStore _store = Modular.get<CurriculoStore>();
+class _ProjetoPageState extends State<ProjetoPage> {
+  final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 
   final AudioRecorder audioRecorder = AudioRecorder();
@@ -87,7 +87,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
             radius: 10.h,
             backgroundColor: Colors.black,
             backgroundImage: const AssetImage(
-                'assets/images/curriculo/pollos-digital-agencia-cria-seu-site.png'),
+                'assets/images/projeto/pollos-digital-agencia-cria-seu-site.png'),
           ),
           DividerWidget(height: 2.h),
           textWidget('Sou Polito', fontWeight: FontWeight.bold, fontSize: 3.h),
@@ -99,7 +99,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
             textAlign: TextAlign.center,
             color: Colors.grey[700],
           ),
-          if (isRecording) Image.asset('assets/images/curriculo/soundbar.jpg'),
+          if (isRecording) Image.asset('assets/images/projeto/soundbar.jpg'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -172,7 +172,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
           ButtonWidget.filled(
             onPressed: () async {
               // await _store.handleAudio(_store.audio);
-              _store.curriculoModel = CurriculoModel(
+              _store.projetoModel = ProjetoModel(
                 nome: 'Rafael Baleeiro',
                 nomeArquivo: 'rafael-baleeiro',
                 email: 'rafae@mail.com',
@@ -196,7 +196,7 @@ class _CurriculoPageState extends State<CurriculoPage> {
                   ExtrasModel(descricao: 'projeto', valor: 12)
                 ]),
               );
-              Modular.to.pushNamed('/curriculo/dados-resultados');
+              Modular.to.pushNamed('/projeto/dados-resultados');
             },
             loading: _store.loadingStore.isLoading,
             title: 'AVANÇAR',

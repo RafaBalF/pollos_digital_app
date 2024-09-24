@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
+import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
 import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
@@ -23,7 +23,7 @@ class DadosResultadosPage extends StatefulWidget {
 }
 
 class _DadosResultadosPageState extends State<DadosResultadosPage> {
-  final CurriculoStore _store = Modular.get<CurriculoStore>();
+  final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 
   final double cardWidth = 90.w;
@@ -74,27 +74,27 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
         InputWidget(
           label: 'Nome',
           onChanged: _store.setNome,
-          controller: TextEditingController(text: _store.curriculoModel?.nome),
+          controller: TextEditingController(text: _store.projetoModel?.nome),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Nome do Arquivo',
           onChanged: _store.setNomeArquivo,
           controller:
-              TextEditingController(text: _store.curriculoModel?.nomeArquivo),
+              TextEditingController(text: _store.projetoModel?.nomeArquivo),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Email',
           onChanged: _store.setEmail,
-          controller: TextEditingController(text: _store.curriculoModel?.email),
+          controller: TextEditingController(text: _store.projetoModel?.email),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Telefone',
           onChanged: _store.setTelefone,
           controller:
-              TextEditingController(text: _store.curriculoModel?.telefone),
+              TextEditingController(text: _store.projetoModel?.telefone),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -103,14 +103,14 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           maxLines: 4,
           onChanged: _store.setDescricao,
           controller:
-              TextEditingController(text: _store.curriculoModel?.descricao),
+              TextEditingController(text: _store.projetoModel?.descricao),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Link de Contato',
           onChanged: _store.setLinkDeContato,
           controller:
-              TextEditingController(text: _store.curriculoModel?.linkContato),
+              TextEditingController(text: _store.projetoModel?.linkContato),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -118,8 +118,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setMissao,
-          controller:
-              TextEditingController(text: _store.curriculoModel?.missao),
+          controller: TextEditingController(text: _store.projetoModel?.missao),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -127,7 +126,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setVisao,
-          controller: TextEditingController(text: _store.curriculoModel?.visao),
+          controller: TextEditingController(text: _store.projetoModel?.visao),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -135,8 +134,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setValores,
-          controller:
-              TextEditingController(text: _store.curriculoModel?.valores),
+          controller: TextEditingController(text: _store.projetoModel?.valores),
         ),
         DividerWidget(height: 2.h),
         Container(
@@ -191,21 +189,20 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       // itemCount: widget.curriculo?.habilidades?.length,
-                      itemCount: _store.curriculoModel?.habilidades?.length,
+                      itemCount: _store.projetoModel?.habilidades?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
                             ListTile(
-                              title:
-                                  (_store.curriculoModel?.habilidades != null)
-                                      ? Text(_store
-                                          .curriculoModel?.habilidades?[index])
-                                      : const Text(''),
+                              title: (_store.projetoModel?.habilidades != null)
+                                  ? Text(
+                                      _store.projetoModel?.habilidades?[index])
+                                  : const Text(''),
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  _store.deleteHabilidade(_store
-                                      .curriculoModel?.habilidades?[index]);
+                                  _store.deleteHabilidade(
+                                      _store.projetoModel?.habilidades?[index]);
                                 },
                               ),
                             ),
@@ -271,20 +268,20 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       // itemCount: widget.curriculo?.habilidades?.length,
-                      itemCount: _store.curriculoModel?.extras?.length,
+                      itemCount: _store.projetoModel?.extras?.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
                             ListTile(
-                              title: (_store.curriculoModel?.extras != null)
+                              title: (_store.projetoModel?.extras != null)
                                   ? Text(
-                                      '${_store.curriculoModel?.extras?[index].descricao}: ${_store.curriculoModel?.extras?[index].valor}')
+                                      '${_store.projetoModel?.extras?[index].descricao}: ${_store.projetoModel?.extras?[index].valor}')
                                   : const Text(''),
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
                                   _store.deleteExtra(
-                                      _store.curriculoModel?.extras?[index]);
+                                      _store.projetoModel?.extras?[index]);
                                 },
                               ),
                             ),

@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/apis/cashback.api.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pollos_digital/app/modules/curriculo/curriculo_store.dart';
+import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/loading_store.dart';
 
 part 'home_store.g.dart';
@@ -13,7 +13,7 @@ abstract class HomeStoreBase with Store {
 
   final LoadingStore loadingStore = LoadingStore();
 
-  final CurriculoStore curriculoStore = CurriculoStore();
+  final ProjetoStore curriculoStore = ProjetoStore();
 
   //==============================================
   //==== BOTTOM-BAR ==============================

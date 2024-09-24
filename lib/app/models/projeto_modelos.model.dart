@@ -1,26 +1,26 @@
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
-class CurriculoModeloModel extends FromJsonModel {
+class ProjetoModeloModel extends FromJsonModel {
   String? asset;
   bool? selected;
   int? modelo;
   String? link;
 
-  CurriculoModeloModel({
+  ProjetoModeloModel({
     this.asset,
     this.selected,
     this.modelo,
     this.link,
   });
 
-  CurriculoModeloModel.createNew(CurriculoModeloModel model) {
+  ProjetoModeloModel.createNew(ProjetoModeloModel model) {
     asset = model.asset;
     selected = model.selected;
     modelo = model.modelo;
     link = model.link;
   }
 
-  CurriculoModeloModel.fromJson(Map<String, dynamic> json) {
+  ProjetoModeloModel.fromJson(Map<String, dynamic> json) {
     asset = json['asset'];
     selected = json['selected'];
     modelo = json['modelo'];
@@ -35,5 +35,5 @@ class CurriculoModeloModel extends FromJsonModel {
   }
 
   @override
-  fromJson(Map<String, dynamic> json) => CurriculoModeloModel.fromJson(json);
+  fromJson(Map<String, dynamic> json) => ProjetoModeloModel.fromJson(json);
 }

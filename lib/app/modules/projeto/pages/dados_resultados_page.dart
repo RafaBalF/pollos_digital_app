@@ -74,27 +74,29 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
         InputWidget(
           label: 'Nome',
           onChanged: _store.setNome,
-          controller: TextEditingController(text: _store.projetoModel?.nome),
+          controller:
+              TextEditingController(text: _store.projetoModel?.nome ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Nome do Arquivo',
           onChanged: _store.setNomeArquivo,
-          controller:
-              TextEditingController(text: _store.projetoModel?.nomeArquivo),
+          controller: TextEditingController(
+              text: _store.projetoModel?.nomeArquivo ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Email',
           onChanged: _store.setEmail,
-          controller: TextEditingController(text: _store.projetoModel?.email),
+          controller:
+              TextEditingController(text: _store.projetoModel?.email ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Telefone',
           onChanged: _store.setTelefone,
           controller:
-              TextEditingController(text: _store.projetoModel?.telefone),
+              TextEditingController(text: _store.projetoModel?.telefone ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -103,14 +105,14 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           maxLines: 4,
           onChanged: _store.setDescricao,
           controller:
-              TextEditingController(text: _store.projetoModel?.descricao),
+              TextEditingController(text: _store.projetoModel?.descricao ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
           label: 'Link de Contato',
           onChanged: _store.setLinkDeContato,
-          controller:
-              TextEditingController(text: _store.projetoModel?.linkContato),
+          controller: TextEditingController(
+              text: _store.projetoModel?.linkContato ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -118,7 +120,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setMissao,
-          controller: TextEditingController(text: _store.projetoModel?.missao),
+          controller:
+              TextEditingController(text: _store.projetoModel?.missao ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -126,7 +129,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setVisao,
-          controller: TextEditingController(text: _store.projetoModel?.visao),
+          controller:
+              TextEditingController(text: _store.projetoModel?.visao ?? ''),
         ),
         DividerWidget(height: 2.h),
         InputWidget(
@@ -134,7 +138,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           minLines: 4,
           maxLines: 4,
           onChanged: _store.setValores,
-          controller: TextEditingController(text: _store.projetoModel?.valores),
+          controller:
+              TextEditingController(text: _store.projetoModel?.valores ?? ''),
         ),
         DividerWidget(height: 2.h),
         Container(

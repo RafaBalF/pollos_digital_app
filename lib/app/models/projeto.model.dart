@@ -52,8 +52,12 @@ class ProjetoModel extends FromJsonModel {
     visao = json['visao'];
     valores = json['valores'];
     linkImage = json['linkimage'];
-    habilidades = json['habilidades'];
-    extras = json['extras'];
+    for (var e in json['habilidades']) {
+      habilidades!.add(e);
+    }
+    for (var e in json['extras']) {
+      extras!.add(ExtrasModel(descricao: e['descricao'], valor: e['valor']));
+    }
   }
 
   Map<String, dynamic> toJson() {

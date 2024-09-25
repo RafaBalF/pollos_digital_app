@@ -65,12 +65,12 @@ class ProjetoApi extends BaseApi {
           {
             "role": "user",
             "content":
-                """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
-   "nomepessoa":"Mariana Oliveira Costa",
-   "nomearquivo":"mariana-oliveira-costa",
-   "descricao":"Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
-   "telefone":"16991996799",
-   "email":"mariana@gmail.com",
+                """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo exatamente o seguinte modelo {
+   "nomepessoa":"Nome da pessoa",
+   "nomearquivo":"nome-da-pessoa",
+   "descricao":"Exemplo descricão: Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
+   "telefone":"(00) 00000-0000",
+   "email":"exemplo@exemplo.com",
    "missao":"Minha missão é desenvolver soluções tecnológicas que impactem positivamente a sociedade, promovendo inovação, eficiência e acessibilidade em todos os projetos que lidero ou participo",
    "visao":"Ser uma referência no desenvolvimento de software de alta qualidade, sempre buscando o aprimoramento contínuo e a adoção de novas tecnologias que possam transformar o mercado e a vida das pessoas",
    "valores":"Excelência: Compromisso com a entrega de soluções de alta qualidade. Inclusão: Acredita que a tecnologia deve ser acessível e inclusiva para todos. Inovação: Busca constante por novas ideias e abordagens tecnológicas. Ética: Transparência, honestidade e responsabilidade em todas as relações profissionais.",
@@ -91,7 +91,7 @@ class ProjetoApi extends BaseApi {
       }
    ]
 
-}, elabore e crie por conta própria o que não for informado, exceto por nome, telefone e email esses pode retornar null.""",
+}, elabore e crie por conta própria os dados que não forem informado, exceto por nome, telefone e email esses dados caso nao sejam detectados retornar null.""",
           }
         ]
       });

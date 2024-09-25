@@ -148,9 +148,9 @@ abstract class ProjetoStoreBase with Store {
   setModeloSelecionado(index) {
     for (var i = 0; i < listaModelos.length; i++) {
       if (i == index) {
-        listaModelos[i] = ProjetoModeloModel();
+        listaModelos[i].selected = true;
       } else {
-        listaModelos[i] = ProjetoModeloModel();
+        listaModelos[i].selected = false;
       }
     }
     projetoModel?.modelo = index + 1;
@@ -198,5 +198,10 @@ abstract class ProjetoStoreBase with Store {
   @action
   Future<void> initProjetosCriado() async {
     await carregarProjetosCriados();
+  }
+
+  @action
+  Future<void> initProjetosModelo() async {
+    await carregarModelos();
   }
 }

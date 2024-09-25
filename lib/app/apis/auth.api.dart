@@ -76,9 +76,9 @@ class AuthApi extends BaseApi {
         if (result.sucesso) {
           AuthModel authModel = AuthModel(
             id: result.id,
-            nome: result.nome,
-            email: result.email,
-            criadoEm: result.criadoEm,
+            nome: nome,
+            email: email,
+            criadoEm: "",
             senha: senha,
           );
 

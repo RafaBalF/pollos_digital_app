@@ -38,6 +38,9 @@ class AuthModel extends FromJsonModel {
 
   AuthModel.fromJson(Map<String, dynamic> json) {
     sucesso = json['sucesso'];
+    if (json['id'] != null) {
+      id = json["id"].toString();
+    }
     if (json["usuarios"] != null) {
       id = json["usuarios"][0]['id'];
       nome = json["usuarios"][0]['nome'];

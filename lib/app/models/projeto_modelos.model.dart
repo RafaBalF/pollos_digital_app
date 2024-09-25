@@ -7,6 +7,7 @@ class ProjetoModeloModel extends FromJsonModel {
   String? modeloUrl;
   String? imgUrl;
   String? status;
+  bool selected = false;
 
   ProjetoModeloModel({
     this.id,

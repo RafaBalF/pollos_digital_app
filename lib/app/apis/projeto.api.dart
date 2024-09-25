@@ -65,7 +65,7 @@ class ProjetoApi extends BaseApi {
           {
             "role": "user",
             "content":
-                """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo exatamente o seguinte modelo {
+                """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
    "nomepessoa":"Nome da pessoa",
    "nomearquivo":"nome-da-pessoa",
    "descricao":"Exemplo descricão: Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",

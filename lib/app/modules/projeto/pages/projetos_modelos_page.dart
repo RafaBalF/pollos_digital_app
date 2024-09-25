@@ -23,9 +23,15 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
 
   @override
   void initState() {
-    _future = Future.wait([]);
+    _future = Future.wait([_store.initProjetosModelo()]);
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _store.listaModelos.clear();
+    super.dispose();
   }
 
   @override
@@ -85,7 +91,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
               itemCount: _store.listaModelos.length,
               itemBuilder: (BuildContext context, int index) {
                 return _verticalBanner(
-                  _store.listaModelos[index].asset,
+                  _store.listaModelos[index].imgUrl,
                   _store.listaModelos[index].selected,
                   () {
                     _store.setModeloSelecionado(index);
@@ -150,7 +156,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
         decoration: BoxDecoration(
             border: Border.all(
                 width: active ? 3 : 1, color: active ? focus : Colors.grey)),
-        child: Image.asset(
+        child: Image.network(
           imgPath,
           alignment: Alignment.topCenter,
           fit: BoxFit.contain,

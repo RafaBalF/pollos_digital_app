@@ -133,10 +133,11 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
 
                   if (!mounted) return;
 
-                  if (r.email != null) {
+                  if (r.id != null) {
                     Modular.to.navigate('/home/');
                   } else {
-                    _showToast(context, "Usuário já cadastrado");
+                    _showToast(
+                        context, r.mensagem ?? 'Tente novamente mais tarde.');
                     // showErrorBottomSheet(context,
                     //     message: "Usuário já cadastrado");
                   }

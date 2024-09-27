@@ -148,9 +148,25 @@ abstract class ProjetoStoreBase with Store {
   setModeloSelecionado(index) {
     for (var i = 0; i < listaModelos.length; i++) {
       if (i == index) {
-        listaModelos[i].selected = true;
+        listaModelos[i] = ProjetoModeloModel(
+          descricao: listaModelos[i].descricao,
+          id: listaModelos[i].id,
+          imgUrl: listaModelos[i].imgUrl,
+          modeloUrl: listaModelos[i].modeloUrl,
+          nome: listaModelos[i].nome,
+          status: listaModelos[i].status,
+          selected: true,
+        );
       } else {
-        listaModelos[i].selected = false;
+        listaModelos[i] = ProjetoModeloModel(
+          descricao: listaModelos[i].descricao,
+          id: listaModelos[i].id,
+          imgUrl: listaModelos[i].imgUrl,
+          modeloUrl: listaModelos[i].modeloUrl,
+          nome: listaModelos[i].nome,
+          status: listaModelos[i].status,
+          selected: false,
+        );
       }
     }
     projetoModel?.modelo = index + 1;

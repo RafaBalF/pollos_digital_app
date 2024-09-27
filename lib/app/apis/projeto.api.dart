@@ -41,12 +41,13 @@ class ProjetoApi extends BaseApi {
         data: data,
       ))
           .data;
+
+      return result['text'];
     } on DioException catch (e) {
       b?.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
     }
-    return result['text'];
   }
 
   Future getAiResponse(String audioTranscripted) async {
@@ -68,9 +69,9 @@ class ProjetoApi extends BaseApi {
                 """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
    "nomepessoa":"Nome da pessoa",
    "nomearquivo":"nome-da-pessoa",
-   "descricao":"Exemplo descricão: Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
+   "descricao":"Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
    "telefone":"(00) 00000-0000",
-   "email":"exemplo@exemplo.com",
+   "email":"mariana@gmail.com",
    "missao":"Minha missão é desenvolver soluções tecnológicas que impactem positivamente a sociedade, promovendo inovação, eficiência e acessibilidade em todos os projetos que lidero ou participo",
    "visao":"Ser uma referência no desenvolvimento de software de alta qualidade, sempre buscando o aprimoramento contínuo e a adoção de novas tecnologias que possam transformar o mercado e a vida das pessoas",
    "valores":"Excelência: Compromisso com a entrega de soluções de alta qualidade. Inclusão: Acredita que a tecnologia deve ser acessível e inclusiva para todos. Inovação: Busca constante por novas ideias e abordagens tecnológicas. Ética: Transparência, honestidade e responsabilidade em todas as relações profissionais.",

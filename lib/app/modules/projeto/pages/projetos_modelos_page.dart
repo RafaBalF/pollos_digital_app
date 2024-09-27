@@ -90,13 +90,10 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
               shrinkWrap: true,
               itemCount: _store.listaModelos.length,
               itemBuilder: (BuildContext context, int index) {
-                return _verticalBanner(
-                  _store.listaModelos[index].imgUrl,
-                  _store.listaModelos[index].selected,
-                  () {
-                    _store.setModeloSelecionado(index);
-                  },
-                );
+                return _verticalBanner(_store.listaModelos[index].imgUrl,
+                    _store.listaModelos[index].selected, () {
+                  _store.setModeloSelecionado(index);
+                }, _store.listaModelos[index].status);
               },
             ),
           ),
@@ -146,21 +143,30 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
     );
   }
 
-  Widget _verticalBanner(String imgPath, active, func) {
+  Widget _verticalBanner(String imgPath, selected, func, active) {
     return GestureDetector(
-      onTap: func,
+      onTap: active == 'ativo' ? func : null,
       child: Container(
         height: 30.h,
         width: 40.w,
         margin: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-            border: Border.all(
-                width: active ? 3 : 1, color: active ? focus : Colors.grey)),
-        child: Image.network(
-          imgPath,
-          alignment: Alignment.topCenter,
-          fit: BoxFit.contain,
+          image: DecorationImage(
+            image: NetworkImage(imgPath),
+            fit: BoxFit.contain,
+            colorFilter: ColorFilter.mode(
+              Colors.white.withOpacity(active == 'ativo' ? 1 : 0.4),
+              BlendMode.dstATop,
+            ),
+          ),
+          border: Border.all(
+              width: selected ? 3 : 1, color: selected ? focus : Colors.grey),
         ),
+        // child: Image.network(
+        //   imgPath,
+        //   alignment: Alignment.topCenter,
+        //   fit: BoxFit.contain,
+        // ),
       ),
     );
   }

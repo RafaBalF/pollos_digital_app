@@ -7,7 +7,7 @@ class ProjetoModeloModel extends FromJsonModel {
   String? modeloUrl;
   String? imgUrl;
   String? status;
-  bool selected = false;
+  bool? selected = false;
 
   ProjetoModeloModel({
     this.id,
@@ -16,6 +16,7 @@ class ProjetoModeloModel extends FromJsonModel {
     this.imgUrl,
     this.modeloUrl,
     this.status,
+    this.selected,
   });
 
   ProjetoModeloModel.fromJson(Map<String, dynamic> json) {

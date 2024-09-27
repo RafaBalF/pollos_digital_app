@@ -110,11 +110,12 @@ abstract class ProfileStoreBase with Store {
   void setSenhaAtual(String s) => senhaAtual = s;
 
   @action
-  Future<BaseModel<EmptyResponseModel>> redefinirSenha(
+  redefinirSenha(
     String senhaAtual,
     String senhaNova,
   ) async {
-    return await _authApi.alterarSenha(senhaAtual, senhaNova);
+    var user = _loginHive.getLogin();
+    return await _authApi.alterarSenha(user.id, senhaAtual, senhaNova);
   }
 
   @action

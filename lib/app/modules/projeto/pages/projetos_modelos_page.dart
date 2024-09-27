@@ -129,11 +129,24 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
                         textColor: white,
                         backgroundColor: focus,
                       ),
-                      TextButton(
-                        onPressed: () {
-                          _store.criarProjeto();
-                        },
-                        child: textWidget('Criar outro', color: focus),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              _store.criarProjeto();
+                            },
+                            child: textWidget('Criar outro', color: focus),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              launchUrlString(
+                                  'https://api.whatsapp.com/send/?phone=5516991996799&text=Quero+saber+mais&type=phone_number&app_absent=0');
+                            },
+                            child:
+                                textWidget('Chamar no WhatsApp', color: focus),
+                          ),
+                        ],
                       )
                     ],
                   ),

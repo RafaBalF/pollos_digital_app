@@ -7,6 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/modules/auth/login/login_store.dart';
 import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
+import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
@@ -124,7 +125,8 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
                   Modular.to.navigate('/home/');
                 } else {
                   if (mounted) {
-                    _showToast(context, r.mensagem);
+                    _showToast(
+                        context, r.mensagem ?? 'Tente novamente mais tarde.');
                     // showErrorBottomSheet(context, message: r.mensagem);
                   }
                 }
@@ -176,9 +178,14 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
-        content: Text(message),
+        duration: const Duration(seconds: 5),
+        backgroundColor: primary,
+        content: textWidget(message, color: Colors.white),
         action: SnackBarAction(
-            label: 'Ok', onPressed: scaffold.hideCurrentSnackBar),
+          label: 'Ok',
+          onPressed: scaffold.hideCurrentSnackBar,
+          textColor: Colors.white,
+        ),
       ),
     );
   }

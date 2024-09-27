@@ -33,8 +33,8 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
   Timer? _verificationCodeTimeout;
   final int timeout = 600;
 
-  final cpfFormatter = MaskTextInputFormatter(
-    mask: '###.###.###-##',
+  final celularFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
@@ -64,6 +64,7 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
   Widget build(BuildContext context) {
     return SimpleScaffoldWidget(
       title: 'NOVA CONTA',
+      reverse: true,
       bodyPadding: EdgeInsets.symmetric(horizontal: 5.w),
       body: Column(
         children: [
@@ -97,6 +98,16 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
               label: 'Email',
               keyboardType: TextInputType.emailAddress,
               onChanged: _store.setEmail,
+              validator: notEmpty,
+            );
+          }),
+          DividerWidget(height: 2.h),
+          Observer(builder: (_) {
+            return InputWidget(
+              label: 'Celular',
+              keyboardType: TextInputType.emailAddress,
+              inputFormatters: [celularFormatter],
+              onChanged: _store.setCelular,
               validator: notEmpty,
             );
           }),

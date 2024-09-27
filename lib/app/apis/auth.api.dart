@@ -36,6 +36,7 @@ class AuthApi extends BaseApi {
             nome: result.nome,
             email: result.email,
             criadoEm: result.criadoEm,
+            celular: result.celular,
             senha: senha,
           );
 
@@ -56,7 +57,8 @@ class AuthApi extends BaseApi {
     return result;
   }
 
-  Future cadastrarLogin(String nome, String email, String senha) async {
+  Future cadastrarLogin(
+      String nome, String email, String celular, String senha) async {
     var b = BaseModel();
     AuthModel? result = AuthModel();
     try {
@@ -66,8 +68,8 @@ class AuthApi extends BaseApi {
       }
 
       var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option)
-              .get('/API/criausuario.php?nome=$nome&email=$email&senha=$senha'))
+      var response = (await Dio(option).get(
+              '/API/criausuario.php?nome=$nome&email=$email&senha=$senha&celular=$celular'))
           .data;
 
       try {
@@ -78,6 +80,7 @@ class AuthApi extends BaseApi {
             id: result.id,
             nome: nome,
             email: email,
+            celular: celular,
             criadoEm: "",
             senha: senha,
           );
@@ -198,36 +201,56 @@ class AuthApi extends BaseApi {
     return b;
   }
 
-  Future<BaseModel<EmptyResponseModel>> alterarSenha(
+  Future alterarSenha(
+    userId,
     String senhaAtual,
     String senhaNova,
   ) async {
-    var b = BaseModel<EmptyResponseModel>();
-
+    var b = BaseModel();
+    var response;
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
-
       if (connectivityResult.contains(ConnectivityResult.none)) {
-        return BaseModel();
+        return BaseModel.networkError();
       }
 
-      const url = '/Login/AlterarSenha';
-
-      var result = (await (await dio).post(url, data: {
-        "cpf": cpf,
-        "senhaAtual": senhaAtual,
-        "senhaNova": senhaNova,
-      }))
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      response = (await Dio(option)
+              .get('/API/trocarsenha.php?id=$userId&senha=$senhaNova'))
           .data;
-
-      b = BaseModel.fromJson(result, tipo: EmptyResponseModel());
     } on DioException catch (e) {
       b.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
     }
 
-    return b;
+    return response;
+    // var b = BaseModel<EmptyResponseModel>();
+
+    // try {
+    //   var connectivityResult = await (Connectivity().checkConnectivity());
+
+    //   if (connectivityResult.contains(ConnectivityResult.none)) {
+    //     return BaseModel();
+    //   }
+
+    //   const url = '/Login/AlterarSenha';
+
+    //   var result = (await (await dio).post(url, data: {
+    //     "cpf": cpf,
+    //     "senhaAtual": senhaAtual,
+    //     "senhaNova": senhaNova,
+    //   }))
+    //       .data;
+
+    //   b = BaseModel.fromJson(result, tipo: EmptyResponseModel());
+    // } on DioException catch (e) {
+    //   b.message = handleDioException(e);
+    // } catch (e) {
+    //   b = BaseModel();
+    // }
+
+    // return b;
   }
 
   Future<BaseModel<EmptyResponseModel>> excluirUsuario() async {

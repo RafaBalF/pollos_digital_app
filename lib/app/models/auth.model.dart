@@ -46,6 +46,7 @@ class AuthModel extends FromJsonModel {
       nome = json["usuarios"][0]['nome'];
       email = json["usuarios"][0]['email'];
       criadoEm = json["usuarios"][0]['criado_em'];
+      celular = json["usuarios"][0]['celular'];
     } else {
       mensagem = json['mensagem'];
     }

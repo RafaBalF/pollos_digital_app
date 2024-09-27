@@ -36,6 +36,9 @@ abstract class RegisterStoreBase with Store {
   String? email;
 
   @observable
+  String? celular;
+
+  @observable
   String? password;
 
   @observable
@@ -62,6 +65,8 @@ abstract class RegisterStoreBase with Store {
   void setNome(String? value) => nome = value;
   @action
   void setEmail(String? value) => email = value;
+  @action
+  void setCelular(String? value) => celular = value;
   @action
   void setPassword(String? value) => password = value;
   @action
@@ -92,7 +97,7 @@ abstract class RegisterStoreBase with Store {
 
     if (email == null || password == null) return BaseModel<AuthModel>();
 
-    var r = await authApi.cadastrarLogin(nome!, email!, password!);
+    var r = await authApi.cadastrarLogin(nome!, email!, celular!, password!);
     // if (r.sucesso) {
     // _userId = r.data!.cpf;
     // }

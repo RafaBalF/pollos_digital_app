@@ -7,6 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class SimpleScaffoldWidget extends StatelessWidget {
   final String title;
   final Widget body;
+  final bool reverse;
   final Widget? progress;
   final Widget? floatingActionButton;
   final List<Widget>? actions;
@@ -35,6 +36,7 @@ class SimpleScaffoldWidget extends StatelessWidget {
     this.bodyColor,
     this.bodyPadding,
     this.showReturnArrow = true,
+    this.reverse = false,
     this.returnArrowColor,
     this.controller,
     this.onBack,
@@ -78,6 +80,7 @@ class SimpleScaffoldWidget extends StatelessWidget {
         actions: actions,
       ),
       body: SingleChildScrollView(
+        reverse: reverse,
         controller: controller,
         child: Container(
           width: 100.w,

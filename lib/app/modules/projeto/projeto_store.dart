@@ -119,7 +119,24 @@ abstract class ProjetoStoreBase with Store {
     loadingStore.show();
     final textTranscripted = await _projetoApi.trancriptAudio(audio!);
     r = await _projetoApi.getAiResponse(textTranscripted ?? "gere sozinho");
-    projetoModel = r;
+    if (r.message == null) {
+      projetoModel = r;
+    } else {
+      projetoModel = ProjetoModel(
+        nome: '',
+        nomeArquivo: '',
+        email: '',
+        telefone: '',
+        descricao: '',
+        linkContato: '',
+        missao: '',
+        visao: '',
+        valores: '',
+        linkImage: '',
+        habilidades: ObservableList<String>.of([]),
+        extras: ObservableList<ExtrasModel>.of([]),
+      );
+    }
     loadingStore.hide();
   }
 

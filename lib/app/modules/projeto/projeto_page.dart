@@ -178,31 +178,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
           DividerWidget(height: 5.h),
           ButtonWidget.filled(
             onPressed: () async {
-              // await _store.handleAudio(_store.audio);
-              _store.projetoModel = ProjetoModel(
-                nome: 'Rafael Baleeiro',
-                nomeArquivo: 'rafael-baleeiro',
-                email: 'rafae@mail.com',
-                telefone: '(12) 98989-9898',
-                descricao:
-                    'Formado em Analise e Desenvolvimento pela Faculdade de Tecnologia de Rio Preto, Fatec RP, ',
-                linkContato:
-                    'https://wa.me/5516991996799?text=Quero%20saber%20mais',
-                missao:
-                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-                visao:
-                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-                valores:
-                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-                linkImage:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2c2WGEjMK5F7fpo1b6b7Ej__G9OQ6n9dAQ&s',
-                habilidades: ObservableList<String>.of(
-                    ['Boa comunicação', 'Responsável']),
-                extras: ObservableList<ExtrasModel>.of([
-                  ExtrasModel(descricao: 'projeto', valor: 12),
-                  ExtrasModel(descricao: 'projeto', valor: 12)
-                ]),
-              );
+              await _store.handleAudio(_store.audio);
               Modular.to.pushNamed('/projeto/dados-resultados');
             },
             loading: _store.loadingStore.isLoading,

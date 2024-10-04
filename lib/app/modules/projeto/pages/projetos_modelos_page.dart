@@ -81,7 +81,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
             textAlign: TextAlign.center,
             color: Colors.grey[700],
           ),
-          DividerWidget(height: 10.h),
+          DividerWidget(height: 5.h),
           SizedBox(
             height: 35.h,
             child: ListView.builder(

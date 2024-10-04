@@ -13,6 +13,25 @@ class ProjetoApi extends BaseApi {
   get _baseUrl => API_CHAT_GPT;
   get _option => BaseOptions(baseUrl: _baseUrl);
 
+  Future getTokenOpenIaAPI() async {
+    var result;
+    try {
+      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
+      var response =
+          (await Dio(option).get('/API/retornatoken.php?a=ADH234dQ3423594'))
+              .data;
+
+      var responseData = json.decode(response);
+      result = responseData['chave'];
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      // b.message = handleDioException(e);
+    } catch (e) {
+      // print(e);
+    }
+    return result;
+  }
+
   Future trancriptAudio(File audioPath) async {
     BaseModel? b;
     try {
@@ -21,8 +40,9 @@ class ProjetoApi extends BaseApi {
         return BaseModel.networkError();
       }
 
+      var token = await getTokenOpenIaAPI();
       var header = {
-        'Authorization': TOKEN,
+        'Authorization': token,
         'Content-Type': 'multipart/form-data'
       };
 
@@ -57,7 +77,8 @@ class ProjetoApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var header = {'Authorization': TOKEN, 'Content-Type': 'application/json'};
+      var token = await getTokenOpenIaAPI();
+      var header = {'Authorization': token, 'Content-Type': 'application/json'};
 
       var data = json.encode({
         "model": "gpt-3.5-turbo",

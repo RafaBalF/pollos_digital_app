@@ -179,7 +179,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
                 email: 'rafae@mail.com',
                 telefone: '(12) 98989-9898',
                 descricao:
-                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                    'Formado em Analise e Desenvolvimento pela Faculdade de Tecnologia de Rio Preto, Fatec RP, ',
                 linkContato:
                     'https://wa.me/5516991996799?text=Quero%20saber%20mais',
                 missao:

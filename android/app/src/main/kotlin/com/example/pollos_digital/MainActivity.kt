@@ -1,4 +1,4 @@
-package com.example.pollos_digital
+package br.com.pollosdigital
 
 import io.flutter.embedding.android.FlutterActivity
 

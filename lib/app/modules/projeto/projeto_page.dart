@@ -147,8 +147,14 @@ class _ProjetoPageState extends State<ProjetoPage> {
                       if (await audioRecorder.hasPermission()) {
                         final Directory appDocumentsDir =
                             await getApplicationDocumentsDirectory();
-                        final String filePath =
-                            p.join(appDocumentsDir.path, "recording.wav");
+                        String filePath;
+                        if (Platform.isIOS) {
+                          filePath =
+                              p.join(appDocumentsDir.path, "recording.m4a");
+                        } else {
+                          filePath =
+                              p.join(appDocumentsDir.path, "recording.wav");
+                        }
                         await audioRecorder.start(const RecordConfig(),
                             path: filePath);
                         setState(() {

@@ -118,7 +118,7 @@ abstract class ProjetoStoreBase with Store {
     var r = ProjetoModel();
     loadingStore.show();
     final textTranscripted = await _projetoApi.trancriptAudio(audio!);
-    r = await _projetoApi.getAiResponse(textTranscripted);
+    r = await _projetoApi.getAiResponse(textTranscripted ?? "gere sozinho");
     projetoModel = r;
     loadingStore.hide();
   }

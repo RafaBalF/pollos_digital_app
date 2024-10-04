@@ -1,12 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
 import 'package:pollos_digital/app/modules/profile/pages/configuracoes_page.dart';
-import 'package:pollos_digital/app/modules/profile/pages/contrato_page.dart';
 import 'package:pollos_digital/app/modules/profile/pages/contratos_page.dart';
 import 'package:pollos_digital/app/modules/profile/pages/dados_pessoais_page.dart';
 import 'package:pollos_digital/app/modules/profile/pages/politicas_de_privacidade_page.dart';
 import 'package:pollos_digital/app/modules/profile/pages/redefinir_senha_page.dart';
-import 'package:pollos_digital/app/modules/profile/pages/termos_contrato_page.dart';
 import 'package:pollos_digital/app/modules/profile/profile_page.dart';
 import 'package:pollos_digital/app/modules/profile/profile_store.dart';
 

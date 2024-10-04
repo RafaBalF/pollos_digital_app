@@ -3,16 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
-import 'package:pollos_digital/app/models/auth.model.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/password_input_widget.dart';
-import 'package:pollos_digital/app/models/base.model.dart';
 import 'package:pollos_digital/app/modules/auth/register/register_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
-import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
-import 'package:pollos_digital/app/shared/text_widget.dart';
-import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
@@ -175,96 +169,96 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
     );
   }
 
-  void _startTimer() {
-    _verificationCodeTimeout =
-        Timer.periodic(const Duration(seconds: 1), (timer) {
-      _store.counter--;
-      _store.setCounter(_store.counter);
-      if (_store.counter == 0 && _verificationCodeTimeout != null) {
-        _verificationCodeTimeout!.cancel();
-      }
-    });
-  }
+  // void _startTimer() {
+  //   _verificationCodeTimeout =
+  //       Timer.periodic(const Duration(seconds: 1), (timer) {
+  //     _store.counter--;
+  //     _store.setCounter(_store.counter);
+  //     if (_store.counter == 0 && _verificationCodeTimeout != null) {
+  //       _verificationCodeTimeout!.cancel();
+  //     }
+  //   });
+  // }
 
-  Widget _confirmPhoneSheet() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        DividerWidget(height: 5.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: textWidget(
-            'Insira o código de verificação enviado para seu celular',
-            textAlign: TextAlign.center,
-            style: h2(),
-          ),
-        ),
-        DividerWidget(height: 5.h),
-        VerificationCode(
-          textStyle: const TextStyle(fontSize: 20.0, color: black),
-          keyboardType: TextInputType.number,
-          underlineColor: primary,
-          length: 6,
-          cursorColor: primary,
-          onCompleted: _store.setCode,
-          onEditing: (bool value) {},
-          fullBorder: true,
-        ),
-        DividerWidget(height: 3.h),
-        Observer(builder: (_) {
-          if (_store.counter == 0) {
-            return GestureDetector(
-              onTap: () async {
-                await _store.resendSMS();
-                _startTimer();
-              },
-              child: textWidget(
-                'Reenviar Código',
-                textAlign: TextAlign.center,
-                style: text(textDecoration: TextDecoration.underline),
-              ),
-            );
-          }
-          return textWidget(
-            'Reenviar em: ${_store.counter} segundos',
-            textAlign: TextAlign.center,
-            style: text(textDecoration: TextDecoration.underline),
-          );
-        }),
-        DividerWidget(height: 3.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Observer(builder: (_) {
-            return ButtonWidget.filled(
-              title: 'CONFIRMAR',
-              onPressed: () async {
-                var r = await _store.validateCode();
+  // Widget _confirmPhoneSheet() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: [
+  //       DividerWidget(height: 5.h),
+  //       Padding(
+  //         padding: EdgeInsets.symmetric(horizontal: 10.w),
+  //         child: textWidget(
+  //           'Insira o código de verificação enviado para seu celular',
+  //           textAlign: TextAlign.center,
+  //           style: h2(),
+  //         ),
+  //       ),
+  //       DividerWidget(height: 5.h),
+  //       VerificationCode(
+  //         textStyle: const TextStyle(fontSize: 20.0, color: black),
+  //         keyboardType: TextInputType.number,
+  //         underlineColor: primary,
+  //         length: 6,
+  //         cursorColor: primary,
+  //         onCompleted: _store.setCode,
+  //         onEditing: (bool value) {},
+  //         fullBorder: true,
+  //       ),
+  //       DividerWidget(height: 3.h),
+  //       Observer(builder: (_) {
+  //         if (_store.counter == 0) {
+  //           return GestureDetector(
+  //             onTap: () async {
+  //               await _store.resendSMS();
+  //               _startTimer();
+  //             },
+  //             child: textWidget(
+  //               'Reenviar Código',
+  //               textAlign: TextAlign.center,
+  //               style: text(textDecoration: TextDecoration.underline),
+  //             ),
+  //           );
+  //         }
+  //         return textWidget(
+  //           'Reenviar em: ${_store.counter} segundos',
+  //           textAlign: TextAlign.center,
+  //           style: text(textDecoration: TextDecoration.underline),
+  //         );
+  //       }),
+  //       DividerWidget(height: 3.h),
+  //       Padding(
+  //         padding: EdgeInsets.symmetric(horizontal: 15.w),
+  //         child: Observer(builder: (_) {
+  //           return ButtonWidget.filled(
+  //             title: 'CONFIRMAR',
+  //             onPressed: () async {
+  //               var r = await _store.validateCode();
 
-                if (mounted) {
-                  if (r.success) {
-                    Timer(const Duration(seconds: 2), () {
-                      Modular.to.navigate('/home/');
-                    });
-                  }
-                  showBaseModalBottomSheet(
-                    context,
-                    r,
-                    onSuccessPressed: () {
-                      Modular.to.navigate('/home/');
-                    },
-                  );
-                }
-              },
-              disabled: !_store.validCode,
-              backgroundColor: primary,
-              textColor: primaryDark,
-            );
-          }),
-        )
-      ],
-    );
-  }
+  //               if (mounted) {
+  //                 if (r.success) {
+  //                   Timer(const Duration(seconds: 2), () {
+  //                     Modular.to.navigate('/home/');
+  //                   });
+  //                 }
+  //                 showBaseModalBottomSheet(
+  //                   context,
+  //                   r,
+  //                   onSuccessPressed: () {
+  //                     Modular.to.navigate('/home/');
+  //                   },
+  //                 );
+  //               }
+  //             },
+  //             disabled: !_store.validCode,
+  //             backgroundColor: primary,
+  //             textColor: primaryDark,
+  //           );
+  //         }),
+  //       )
+  //     ],
+  //   );
+  // }
 
   void _showToast(BuildContext context, message) {
     final scaffold = ScaffoldMessenger.of(context);

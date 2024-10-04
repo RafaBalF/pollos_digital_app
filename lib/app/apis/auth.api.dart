@@ -207,7 +207,6 @@ class AuthApi extends BaseApi {
     String senhaNova,
   ) async {
     var b = BaseModel();
-    var response;
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
@@ -215,16 +214,15 @@ class AuthApi extends BaseApi {
       }
 
       var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      response = (await Dio(option)
+      var response = (await Dio(option)
               .get('/API/trocarsenha.php?id=$userId&senha=$senhaNova'))
           .data;
+      return response;
     } on DioException catch (e) {
       b.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
     }
-
-    return response;
     // var b = BaseModel<EmptyResponseModel>();
 
     // try {

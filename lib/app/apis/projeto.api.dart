@@ -15,7 +15,6 @@ class ProjetoApi extends BaseApi {
 
   Future trancriptAudio(File audioPath) async {
     BaseModel? b;
-    var result;
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
@@ -35,7 +34,7 @@ class ProjetoApi extends BaseApi {
         'model': 'whisper-1'
       });
 
-      result = (await Dio(_option).post(
+      var result = (await Dio(_option).post(
         '/audio/transcriptions',
         options: Options(headers: header),
         data: data,
@@ -201,7 +200,7 @@ class ProjetoApi extends BaseApi {
       result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
     } catch (e) {
-      print(e);
+      // print(e);
     }
     return result;
   }

@@ -2,7 +2,6 @@ import 'package:pollos_digital/app/models/hives/app_presentation.hive.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/apis/auth.api.dart';
 import 'package:pollos_digital/app/models/auth.model.dart';
-import 'package:pollos_digital/app/models/base.model.dart';
 import 'package:pollos_digital/app/models/hives/login.hive.dart';
 import 'package:pollos_digital/loading_store.dart';
 

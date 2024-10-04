@@ -6,7 +6,6 @@ import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

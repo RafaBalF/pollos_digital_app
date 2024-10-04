@@ -4,7 +4,9 @@ import 'package:just_audio/just_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
@@ -76,7 +78,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
   Widget _body() {
     return SizedBox(
       height: MediaQuery.of(context).size.height -
-          (kToolbarHeight + kBottomNavigationBarHeight),
+          (kToolbarHeight + kBottomNavigationBarHeight + 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -173,34 +175,34 @@ class _ProjetoPageState extends State<ProjetoPage> {
               ),
             ],
           ),
-          DividerWidget(height: 10.h),
+          DividerWidget(height: 5.h),
           ButtonWidget.filled(
             onPressed: () async {
-              await _store.handleAudio(_store.audio);
-              // _store.projetoModel = ProjetoModel(
-              //   nome: 'Rafael Baleeiro',
-              //   nomeArquivo: 'rafael-baleeiro',
-              //   email: 'rafae@mail.com',
-              //   telefone: '(12) 98989-9898',
-              //   descricao:
-              //       'Formado em Analise e Desenvolvimento pela Faculdade de Tecnologia de Rio Preto, Fatec RP, ',
-              //   linkContato:
-              //       'https://wa.me/5516991996799?text=Quero%20saber%20mais',
-              //   missao:
-              //       'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-              //   visao:
-              //       'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-              //   valores:
-              //       'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
-              //   linkImage:
-              //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2c2WGEjMK5F7fpo1b6b7Ej__G9OQ6n9dAQ&s',
-              //   habilidades: ObservableList<String>.of(
-              //       ['Boa comunicação', 'Responsável']),
-              //   extras: ObservableList<ExtrasModel>.of([
-              //     ExtrasModel(descricao: 'projeto', valor: 12),
-              //     ExtrasModel(descricao: 'projeto', valor: 12)
-              //   ]),
-              // );
+              // await _store.handleAudio(_store.audio);
+              _store.projetoModel = ProjetoModel(
+                nome: 'Rafael Baleeiro',
+                nomeArquivo: 'rafael-baleeiro',
+                email: 'rafae@mail.com',
+                telefone: '(12) 98989-9898',
+                descricao:
+                    'Formado em Analise e Desenvolvimento pela Faculdade de Tecnologia de Rio Preto, Fatec RP, ',
+                linkContato:
+                    'https://wa.me/5516991996799?text=Quero%20saber%20mais',
+                missao:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                visao:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                valores:
+                    'njdswufindfn wfundiswunfdis cvdwbfchdws cv sdhc isdh cdscnisunciwjuen cwdsiunjciowsdujnciodsjn cjweiocjwiodseec joidswjciosdjmnic sdc sdoincijunweiudnc iuwdesnciujwdesn ciouws dncwiuons dioucsd',
+                linkImage:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2c2WGEjMK5F7fpo1b6b7Ej__G9OQ6n9dAQ&s',
+                habilidades: ObservableList<String>.of(
+                    ['Boa comunicação', 'Responsável']),
+                extras: ObservableList<ExtrasModel>.of([
+                  ExtrasModel(descricao: 'projeto', valor: 12),
+                  ExtrasModel(descricao: 'projeto', valor: 12)
+                ]),
+              );
               Modular.to.pushNamed('/projeto/dados-resultados');
             },
             loading: _store.loadingStore.isLoading,

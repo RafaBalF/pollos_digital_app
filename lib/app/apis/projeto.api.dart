@@ -29,7 +29,7 @@ class ProjetoApi extends BaseApi {
       var data = FormData.fromMap({
         'file': [
           await MultipartFile.fromFile(audioPath.path,
-              filename: 'recording.wav')
+              filename: Platform.isIOS ? 'recording.m4a' : 'recording.wav')
         ],
         'model': 'whisper-1'
       });

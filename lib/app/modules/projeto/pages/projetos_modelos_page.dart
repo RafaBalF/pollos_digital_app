@@ -150,7 +150,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
                       )
                     ],
                   ),
-          )
+          ),
+          DividerWidget(height: 4.h),
         ],
       ),
     );

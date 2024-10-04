@@ -305,7 +305,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
           title: 'AVANÇAR',
           textColor: white,
           backgroundColor: focus,
-        )
+        ),
+        DividerWidget(height: 4.h),
       ],
     );
   }

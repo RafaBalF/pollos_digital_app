@@ -24,8 +24,7 @@ class ProjetoApi extends BaseApi {
       var responseData = json.decode(response);
       result = responseData['chave'];
     } on DioException catch (e) {
-      result = "Algo deu errado, tente novamente mais tarde.";
-      // b.message = handleDioException(e);
+      result = handleDioException(e);
     } catch (e) {
       // print(e);
     }

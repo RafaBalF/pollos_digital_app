@@ -76,7 +76,7 @@ class _ProjetoPageState extends State<ProjetoPage> {
   Widget _body() {
     return SizedBox(
       height: MediaQuery.of(context).size.height -
-          (kToolbarHeight + kBottomNavigationBarHeight + 50),
+          (kToolbarHeight + kBottomNavigationBarHeight + 40),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

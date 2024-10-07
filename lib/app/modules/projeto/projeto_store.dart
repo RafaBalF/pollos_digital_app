@@ -192,8 +192,12 @@ abstract class ProjetoStoreBase with Store {
   @action
   criarProjeto() async {
     loadingStore.show();
-    var imageLink = await _projetoApi.uploadImage(image);
-    projetoModel?.linkImage = imageLink;
+    _projetoApi.uploadImage(image);
+    DateTime data = DateTime.now();
+    int ano = data.year;
+    int mes = data.month;
+    projetoModel?.linkImage =
+        'https://pollosdigital.com.br/wp-content/uploads/$ano/$mes/${image?.name}';
     var r = await _projetoApi.createPage(projetoModel);
     createdPageUrl = r;
     var user = _loginHive.getLogin();

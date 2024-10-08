@@ -54,9 +54,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>your usage description here</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Este aplicativo solicita acesso ao microfone para gravar mensagens de voz dos usuários. Essas gravações são utilizadas para coletar informações como nome, contato e uma breve descrição pessoal, permitindo a criação de uma página web personalizada que reflete a identidade do usuário. As gravações são processadas de forma segura e são fundamentais para proporcionar uma experiência mais interativa e personalizada.</string>
+	<string>Este aplicativo solicita acesso ao microfone para gravar sua voz, coletando seu nome, contato e uma breve descrição para criar uma página web personalizada. As gravações são processadas com segurança.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Este aplicativo requer acesso à galeria de imagens para permitir que os usuários selecionem uma foto pessoal que será usada na sua página web. A imagem escolhida ajuda a personalizar a experiência do usuário, garantindo que a página reflita sua identidade visual. Todas as imagens são tratadas com cuidado e respeitando a privacidade do usuário.</string>
+	<string>Este aplicativo precisa acessar sua galeria de imagens para que você selecione uma foto pessoal, que será usada na sua página web. Respeitamos sua privacidade e garantimos segurança nas imagens.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>your usage description here</string>
 </dict>

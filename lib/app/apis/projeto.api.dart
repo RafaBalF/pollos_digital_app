@@ -111,7 +111,7 @@ class ProjetoApi extends BaseApi {
       }
    ]
 
-}, elabore e crie por conta própria os dados que não forem informado, exceto por nome, telefone e email esses dados caso nao sejam detectados retornar null.""",
+}, não leve em conta as informações no json de exemploe, informações pessoais como nome, telefone e email esses dados caso nao sejam detectados colocar o valor deles como null, o nome do arquivo deve ser o nome da pessoa em kebab case, pode elaborar por conta própria os dados que não forem informado, mas nao leve em consideração as informações no json de exemplo fornecido.""",
           }
         ]
       });

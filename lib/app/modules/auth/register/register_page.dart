@@ -102,7 +102,7 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
               keyboardType: TextInputType.emailAddress,
               inputFormatters: [celularFormatter],
               onChanged: _store.setCelular,
-              validator: notEmpty,
+              // validator: notEmpty,
             );
           }),
           DividerWidget(height: 2.h),

@@ -58,7 +58,7 @@ class AuthApi extends BaseApi {
   }
 
   Future cadastrarLogin(
-      String nome, String email, String celular, String senha) async {
+      String nome, String email, String? celular, String senha) async {
     var b = BaseModel();
     AuthModel? result = AuthModel();
     try {
@@ -69,7 +69,7 @@ class AuthApi extends BaseApi {
 
       var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
       var response = (await Dio(option).get(
-              '/API/criausuario.php?nome=$nome&email=$email&senha=$senha&celular=$celular'))
+              '/API/criausuario.php?nome=$nome&email=$email&senha=$senha&celular=${celular ?? ''}'))
           .data;
 
       try {

@@ -97,7 +97,7 @@ abstract class RegisterStoreBase with Store {
 
     if (email == null || password == null) return BaseModel<AuthModel>();
 
-    var r = await authApi.cadastrarLogin(nome!, email!, celular!, password!);
+    var r = await authApi.cadastrarLogin(nome!, email!, celular, password!);
     // if (r.sucesso) {
     // _userId = r.data!.cpf;
     // }

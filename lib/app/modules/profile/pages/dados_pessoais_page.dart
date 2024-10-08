@@ -120,7 +120,11 @@ class DadosPessoaisPageState extends State<DadosPessoaisPage> {
             _info('Nome:', _store.dadosPessoaisModel!.nome!),
             _info('Email:', _store.dadosPessoaisModel!.email!),
             _info('ID:', _store.dadosPessoaisModel!.id!),
-            _info('Celular:', _store.dadosPessoaisModel!.celular!),
+            _info(
+                'Celular:',
+                _store.dadosPessoaisModel!.celular! == ''
+                    ? 'Não informado'
+                    : _store.dadosPessoaisModel!.celular!),
           ],
         ),
       ),

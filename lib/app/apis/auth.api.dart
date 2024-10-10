@@ -10,7 +10,11 @@ import 'base.api.dart';
 
 class AuthApi extends BaseApi {
   get _baseUrl => API_URL;
-  get _option => BaseOptions(baseUrl: _baseUrl);
+  get _option => BaseOptions(baseUrl: _baseUrl, headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': TOKEN
+      });
   final LoginHive _loginHive = LoginHive();
 
   Future validarLogin(String user, String senha) async {
@@ -22,33 +26,29 @@ class AuthApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option)
-              .get('/API/listausuario.php?email=$user&senha=$senha'))
+      var response = (await Dio(_option)
+              .post('/Usuarios/login', data: {"email": user, "senha": senha}))
           .data;
 
       try {
         result = AuthModel.fromJson(response);
 
-        if (result.sucesso) {
-          AuthModel authModel = AuthModel(
-            id: result.id,
-            nome: result.nome,
-            email: result.email,
-            criadoEm: result.criadoEm,
-            celular: result.celular,
-            senha: senha,
-          );
+        AuthModel authModel = AuthModel(
+          id: result.id,
+          nome: result.nome,
+          email: result.email,
+          celular: result.celular,
+          senha: senha,
+        );
 
-          await _loginHive.setLogin(authModel);
-          return result;
-        } else {
-          b.message = result.mensagem!;
-        }
+        await _loginHive.setLogin(authModel);
+        return result;
       } catch (e) {
         b.message = response;
       }
     } on DioException catch (e) {
+      result = AuthModel(
+          mensagem: e.response?.data['messages']['error'], sucesso: false);
       b.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
@@ -67,33 +67,34 @@ class AuthApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option).get(
-              '/API/criausuario.php?nome=$nome&email=$email&senha=$senha&celular=${celular ?? ''}'))
+      var response = (await Dio(_option).post('/Usuarios/create', data: {
+        "nome": nome,
+        "email": email,
+        "senha": senha,
+        "celular": celular ?? ''
+      }))
           .data;
 
       try {
         result = AuthModel.fromJson(response);
 
-        if (result.sucesso) {
-          AuthModel authModel = AuthModel(
-            id: result.id,
-            nome: nome,
-            email: email,
-            celular: celular,
-            criadoEm: "",
-            senha: senha,
-          );
+        AuthModel authModel = AuthModel(
+          id: result.id,
+          nome: result.nome,
+          email: result.email,
+          celular: result.celular,
+          senha: senha,
+          sucesso: true,
+        );
 
-          await _loginHive.setLogin(authModel);
-          return result;
-        } else {
-          b.message = result.mensagem!;
-        }
+        await _loginHive.setLogin(authModel);
+        return result;
       } catch (e) {
         b.message = response;
       }
     } on DioException catch (e) {
+      result = AuthModel(
+          mensagem: e.response?.data['messages']['error'], sucesso: false);
       b.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
@@ -102,37 +103,33 @@ class AuthApi extends BaseApi {
     return result;
   }
 
-  Future<BaseModel<StringResponseModel>> recuperarSenha(
-    String email,
-    String cpf,
-  ) async {
+  Future recuperarSenha(String email) async {
     BaseModel<StringResponseModel> b = BaseModel<StringResponseModel>();
+    AuthModel? result;
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult.contains(ConnectivityResult.none)) {
         return BaseModel.networkError();
       }
 
-      var result = (await Dio(_option).post(
-        '/Login/RecuperarSenha',
+      var response = (await Dio(_option).post(
+        '/Usuarios/resetPassword',
         data: {
           "email": email,
-          "cpf": cpf,
         },
       ))
           .data;
 
-      b = BaseModel<StringResponseModel>.fromJson(
-        result,
-        tipo: StringResponseModel(),
-      );
+      result = AuthModel(mensagem: response['message'], sucesso: true);
     } on DioException catch (e) {
+      result = AuthModel(
+          mensagem: e.response?.data['messages']['error'], sucesso: false);
       b.message = handleDioException(e);
     } catch (e) {
       b = BaseModel();
     }
 
-    return b;
+    return result;
   }
 
   Future<BaseModel<StringResponseModel>> resendSMS(String user,
@@ -213,42 +210,17 @@ class AuthApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option)
-              .get('/API/trocarsenha.php?id=$userId&senha=$senhaNova'))
+      var response = (await Dio(_option).post(
+              '/Usuarios/changePassword/$userId',
+              data: {"nova_senha": senhaNova}))
           .data;
       return response;
     } on DioException catch (e) {
       b.message = handleDioException(e);
+      return e.response?.data['messages']['error'];
     } catch (e) {
       b = BaseModel();
     }
-    // var b = BaseModel<EmptyResponseModel>();
-
-    // try {
-    //   var connectivityResult = await (Connectivity().checkConnectivity());
-
-    //   if (connectivityResult.contains(ConnectivityResult.none)) {
-    //     return BaseModel();
-    //   }
-
-    //   const url = '/Login/AlterarSenha';
-
-    //   var result = (await (await dio).post(url, data: {
-    //     "cpf": cpf,
-    //     "senhaAtual": senhaAtual,
-    //     "senhaNova": senhaNova,
-    //   }))
-    //       .data;
-
-    //   b = BaseModel.fromJson(result, tipo: EmptyResponseModel());
-    // } on DioException catch (e) {
-    //   b.message = handleDioException(e);
-    // } catch (e) {
-    //   b = BaseModel();
-    // }
-
-    // return b;
   }
 
   Future<BaseModel<EmptyResponseModel>> excluirUsuario() async {

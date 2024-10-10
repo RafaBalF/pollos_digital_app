@@ -130,29 +130,13 @@ class RedefinirSenhaPageState extends State<RedefinirSenhaPage>
 
                 if (!mounted) return;
 
-                r["sucesso"]
+                r["message"] == 'Senha atualizada com sucesso'
                     ? showSuccessBottomSheet(context, onPressed: () {
                         Modular.to.pop();
                         Modular.to.pop();
-                      }, message: r["mensagem"])
+                      }, message: r["message"])
                     : showErrorBottomSheet(context,
-                        message: r["mensagem"] ?? "Tente novamente");
-
-                // showBaseModalBottomSheet(
-                //   context,
-                //   r,
-                //   dismissable: false,
-                //   onClose: () {
-                //     Modular.to.pop();
-                //   },
-                //   onErrorPressed: () {
-                //     Modular.to.pop();
-                //   },
-                //   onSuccessPressed: () {
-                //     Modular.to.pop();
-                //     Modular.to.pop();
-                //   },
-                // );
+                        message: r["message"] ?? "Tente novamente");
               },
               title: 'SALVAR',
             ),

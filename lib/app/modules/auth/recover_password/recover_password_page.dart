@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/modules/auth/recover_password/recover_password_store.dart';
+import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
@@ -84,7 +85,7 @@ class RecoverPasswordPageState extends State<RecoverPasswordPage>
           DividerWidget(height: 5.h),
           Observer(builder: (_) {
             return ButtonWidget.filled(
-              title: 'ENTRAR',
+              title: 'REDEFINIR',
               onPressed: () async {
                 if (!formKey.currentState!.validate()) return;
 
@@ -92,26 +93,35 @@ class RecoverPasswordPageState extends State<RecoverPasswordPage>
 
                 if (!mounted) return;
 
-                showBaseModalBottomSheet(
-                  context,
-                  r,
-                  onErrorPressed: () {
-                    Modular.to.pop();
-                  },
-                  onClose: () {
-                    Modular.to.pop();
-                    Modular.to.pop();
-                  },
-                  onSuccessPressed: () {
-                    Modular.to.pop();
-                    Modular.to.pop();
-                  },
-                );
+                if (r.sucesso) {
+                  _showToast(context,
+                      r.mensagem ?? 'Tente novamente mais tarde.', true);
+                  Modular.to.pop();
+                } else {
+                  _showToast(context,
+                      r.mensagem ?? 'Tente novamente mais tarde.', false);
+                }
               },
               loading: _store.loadingStore.isLoading,
             );
           }),
         ],
+      ),
+    );
+  }
+
+  void _showToast(BuildContext context, message, sucess) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 5),
+        backgroundColor: sucess ? Colors.green : primary,
+        content: textWidget(message, color: Colors.white),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: scaffold.hideCurrentSnackBar,
+          textColor: Colors.white,
+        ),
       ),
     );
   }

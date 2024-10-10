@@ -36,10 +36,10 @@ abstract class RecoverPasswordStoreBase with Store {
   void setCpf(String? value) => cpf = value;
 
   @action
-  Future<BaseModel<StringResponseModel>> recoverPassword() async {
+  Future recoverPassword() async {
     loadingStore.show();
 
-    var result = await authApi.recuperarSenha(email!, cpf!);
+    var result = await authApi.recuperarSenha(email!);
 
     loadingStore.hide();
     return result;

@@ -83,7 +83,7 @@ class _MainScaffoldWidgetState extends State<MainScaffoldWidget> {
     //   height: 3.h,
     // );
 
-    return Text('PollosDigital');
+    return const Text('PollosDigital');
   }
 
   Widget _padding(Widget child) {

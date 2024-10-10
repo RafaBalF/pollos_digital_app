@@ -45,7 +45,7 @@ mixin _$RecoverPasswordStore on RecoverPasswordStoreBase, Store {
       AsyncAction('RecoverPasswordStoreBase.recoverPassword', context: context);
 
   @override
-  Future<BaseModel<StringResponseModel>> recoverPassword() {
+  Future<dynamic> recoverPassword() {
     return _$recoverPasswordAsyncAction.run(() => super.recoverPassword());
   }
 

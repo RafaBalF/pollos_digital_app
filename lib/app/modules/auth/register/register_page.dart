@@ -141,7 +141,7 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
 
                   if (!mounted) return;
 
-                  if (r.id != null) {
+                  if (r.sucesso) {
                     Modular.to.navigate('/home/');
                   } else {
                     _showToast(

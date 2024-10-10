@@ -512,6 +512,17 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  String? validarUrlAmigavel(String? value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.validarUrlAmigavel');
+    try {
+      return super.validarUrlAmigavel(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 projetoModel: ${projetoModel},

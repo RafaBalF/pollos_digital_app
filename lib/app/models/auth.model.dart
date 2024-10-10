@@ -15,7 +15,7 @@ class AuthModel extends FromJsonModel {
   @HiveField(3)
   String? criadoEm;
   String? cpf;
-  bool sucesso = false;
+  bool? sucesso = false;
   // @HiveField(4)
   // String? email;
   @HiveField(5)
@@ -34,25 +34,16 @@ class AuthModel extends FromJsonModel {
     this.criadoEm,
     this.senha,
     this.celular,
+    this.mensagem,
+    this.sucesso,
   });
 
   AuthModel.fromJson(Map<String, dynamic> json) {
-    sucesso = json['sucesso'];
-    if (json['id'] != null) {
-      id = json["id"].toString();
-    }
-    if (json["usuarios"] != null) {
-      id = json["usuarios"][0]['id'];
-      nome = json["usuarios"][0]['nome'];
-      email = json["usuarios"][0]['email'];
-      criadoEm = json["usuarios"][0]['criado_em'];
-      celular = json["usuarios"][0]['celular'];
-    } else {
-      mensagem = json['mensagem'];
-    }
-    // email = json['cliente']['email'];
-    // senha = json['cliente']['senha'];
-    // tokenPush = json['cliente']['tokenPush'];
+    id = json['id'];
+    nome = json['nome'];
+    email = json['email'];
+    celular = json['celular'];
+    sucesso = true;
   }
 
   Map<String, dynamic> toJson() {

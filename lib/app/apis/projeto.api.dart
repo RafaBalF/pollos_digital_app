@@ -211,11 +211,10 @@ class ProjetoApi extends BaseApi {
     var b = ProjetoModel();
     var result;
     try {
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option).get('/API/listamodelo.php')).data;
+      var response = (await Dio(_option).post('/Modelos')).data;
 
       var responseData = json.decode(response);
-      result = responseData['modelos'];
+      result = responseData;
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);

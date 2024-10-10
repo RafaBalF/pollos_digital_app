@@ -25,7 +25,8 @@ class _MainScaffoldWidgetState extends State<MainScaffoldWidget> {
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.only(left: 5.w),
-          child: Image.asset('assets/icons/icon-pollos-digital.png'),
+          child:
+              SvgPicture.asset('assets/icons/svg/galo-fundo-transparente.svg'),
         ),
         centerTitle: true,
         backgroundColor: white,

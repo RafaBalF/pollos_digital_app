@@ -260,4 +260,22 @@ class ProjetoApi extends BaseApi {
     }
     return result;
   }
+
+  Future<String?> validarUrlAmigavel(value) async {
+    var b = ProjetosCriadosModel();
+    var result;
+    try {
+      var option = BaseOptions(baseUrl: 'http://apipollosdigital.example.com');
+      var response =
+          (await Dio(option).post('/Projetos/verificarurlamigavel/$value'))
+              .data;
+      result = response['mensagem'];
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
 }

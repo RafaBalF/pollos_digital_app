@@ -137,7 +137,7 @@ mixin _$ProfileStore on ProfileStoreBase, Store {
       AsyncAction('ProfileStoreBase.redefinirSenha', context: context);
 
   @override
-  redefinirSenha(String senhaAtual, String senhaNova) {
+  Future redefinirSenha(String senhaAtual, String senhaNova) {
     return _$redefinirSenhaAsyncAction
         .run(() => super.redefinirSenha(senhaAtual, senhaNova));
   }

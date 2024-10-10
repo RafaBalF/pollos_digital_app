@@ -11,7 +11,6 @@ import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/password_input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,12 +21,6 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> with FormValidationsMixin {
   final LoginStore _store = Modular.get<LoginStore>();
-
-  final cpfFormatter = MaskTextInputFormatter(
-    mask: '###.###.###-##',
-    filter: {"#": RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy,
-  );
 
   @override
   void initState() {
@@ -78,10 +71,9 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
         children: [
           Observer(builder: (_) {
             return InputWidget(
-              label: 'Login',
+              label: 'E-mail',
               labelColor: white,
               keyboardType: TextInputType.emailAddress,
-              // inputFormatters: [cpfFormatter],
               onChanged: _store.setUsuario,
               validator: notEmpty,
             );
@@ -90,7 +82,7 @@ class LoginPageState extends State<LoginPage> with FormValidationsMixin {
           PasswordInputWidget(
             labelColor: white,
             onChanged: _store.setSenha,
-            // validator: notEmpty,
+            validator: notEmpty,
           ),
           DividerWidget(height: 1.h),
           Container(

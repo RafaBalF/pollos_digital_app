@@ -250,6 +250,15 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         .run(() => super.carregarProjetosCriados());
   }
 
+  late final _$excluirProjetoAsyncAction =
+      AsyncAction('ProjetoStoreBase.excluirProjeto', context: context);
+
+  @override
+  Future excluirProjeto(dynamic projetoId) {
+    return _$excluirProjetoAsyncAction
+        .run(() => super.excluirProjeto(projetoId));
+  }
+
   late final _$initProjetosCriadoAsyncAction =
       AsyncAction('ProjetoStoreBase.initProjetosCriado', context: context);
 
@@ -257,6 +266,15 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   Future<void> initProjetosCriado() {
     return _$initProjetosCriadoAsyncAction
         .run(() => super.initProjetosCriado());
+  }
+
+  late final _$initProjetosModeloAsyncAction =
+      AsyncAction('ProjetoStoreBase.initProjetosModelo', context: context);
+
+  @override
+  Future<void> initProjetosModelo() {
+    return _$initProjetosModeloAsyncAction
+        .run(() => super.initProjetosModelo());
   }
 
   late final _$ProjetoStoreBaseActionController =
@@ -285,11 +303,11 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
-  dynamic setNomeArquivo(dynamic value) {
+  dynamic setNomePagina(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
-        name: 'ProjetoStoreBase.setNomeArquivo');
+        name: 'ProjetoStoreBase.setNomePagina');
     try {
-      return super.setNomeArquivo(value);
+      return super.setNomePagina(value);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -323,17 +341,6 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         name: 'ProjetoStoreBase.setDescricao');
     try {
       return super.setDescricao(value);
-    } finally {
-      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic setLinkDeContato(dynamic value) {
-    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
-        name: 'ProjetoStoreBase.setLinkDeContato');
-    try {
-      return super.setLinkDeContato(value);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }

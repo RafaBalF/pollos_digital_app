@@ -58,7 +58,7 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
   Widget build(BuildContext context) {
     return SimpleScaffoldWidget(
       title: 'NOVA CONTA',
-      reverse: true,
+      reverse: false,
       bodyPadding: EdgeInsets.symmetric(horizontal: 5.w),
       body: Column(
         children: [
@@ -92,13 +92,16 @@ class RegisterPageState extends State<RegisterPage> with FormValidationsMixin {
               label: 'Email',
               keyboardType: TextInputType.emailAddress,
               onChanged: _store.setEmail,
-              validator: notEmpty,
+              validator: (v) => combine([
+                () => notEmpty(v),
+                () => validEmail(v),
+              ]),
             );
           }),
           DividerWidget(height: 2.h),
           Observer(builder: (_) {
             return InputWidget(
-              label: 'Celular',
+              label: 'WhatsApp',
               keyboardType: TextInputType.emailAddress,
               inputFormatters: [celularFormatter],
               onChanged: _store.setCelular,

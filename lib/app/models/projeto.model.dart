@@ -4,7 +4,7 @@ import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 class ProjetoModel extends FromJsonModel {
   int? modelo;
   String? nome;
-  String? nomeArquivo;
+  String? nomePagina;
   String? email;
   String? telefone;
   String? descricao;
@@ -20,7 +20,7 @@ class ProjetoModel extends FromJsonModel {
   ProjetoModel(
       {this.modelo,
       this.nome,
-      this.nomeArquivo,
+      this.nomePagina,
       this.email,
       this.telefone,
       this.descricao,
@@ -43,7 +43,7 @@ class ProjetoModel extends FromJsonModel {
   ProjetoModel.fromJson(Map<String, dynamic> json) {
     modelo = json['modelo'];
     nome = json['nomepessoa'];
-    nomeArquivo = json['nomearquivo'];
+    nomePagina = json['nomearquivo'];
     email = json['email'];
     telefone = json['telefone'];
     descricao = json['descricao'];
@@ -64,7 +64,7 @@ class ProjetoModel extends FromJsonModel {
     final Map<String, dynamic> json = <String, dynamic>{};
     json['modelo'] = modelo;
     json['nomepessoa'] = nome;
-    json['nomearquivo'] = nomeArquivo;
+    json['nomearquivo'] = nomePagina;
     json['email'] = email;
     json['telefone'] = telefone;
     json['descricao'] = descricao;

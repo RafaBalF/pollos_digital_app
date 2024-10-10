@@ -65,6 +65,22 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
     });
   }
 
+  late final _$celularAtom =
+      Atom(name: 'RegisterStoreBase.celular', context: context);
+
+  @override
+  String? get celular {
+    _$celularAtom.reportRead();
+    return super.celular;
+  }
+
+  @override
+  set celular(String? value) {
+    _$celularAtom.reportWrite(value, super.celular, () {
+      super.celular = value;
+    });
+  }
+
   late final _$passwordAtom =
       Atom(name: 'RegisterStoreBase.password', context: context);
 
@@ -206,6 +222,17 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
   }
 
   @override
+  void setCelular(String? value) {
+    final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
+        name: 'RegisterStoreBase.setCelular');
+    try {
+      return super.setCelular(value);
+    } finally {
+      _$RegisterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setPassword(String? value) {
     final _$actionInfo = _$RegisterStoreBaseActionController.startAction(
         name: 'RegisterStoreBase.setPassword');
@@ -255,6 +282,7 @@ mixin _$RegisterStore on RegisterStoreBase, Store {
 authModel: ${authModel},
 nome: ${nome},
 email: ${email},
+celular: ${celular},
 password: ${password},
 confirmPassword: ${confirmPassword},
 code: ${code},

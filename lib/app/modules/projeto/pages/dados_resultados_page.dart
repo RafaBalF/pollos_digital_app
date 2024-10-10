@@ -11,6 +11,7 @@ import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
+import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -22,7 +23,8 @@ class DadosResultadosPage extends StatefulWidget {
   State<DadosResultadosPage> createState() => _DadosResultadosPageState();
 }
 
-class _DadosResultadosPageState extends State<DadosResultadosPage> {
+class _DadosResultadosPageState extends State<DadosResultadosPage>
+    with FormValidationsMixin {
   final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 
@@ -65,249 +67,252 @@ class _DadosResultadosPageState extends State<DadosResultadosPage> {
   }
 
   Widget _body() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        inputImage(),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Nome',
-          onChanged: _store.setNome,
-          controller:
-              TextEditingController(text: _store.projetoModel?.nome ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Nome do Arquivo',
-          onChanged: _store.setNomeArquivo,
-          controller: TextEditingController(
-              text: _store.projetoModel?.nomeArquivo ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Email',
-          onChanged: _store.setEmail,
-          controller:
-              TextEditingController(text: _store.projetoModel?.email ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Telefone',
-          onChanged: _store.setTelefone,
-          controller:
-              TextEditingController(text: _store.projetoModel?.telefone ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Descrição',
-          minLines: 4,
-          maxLines: 4,
-          onChanged: _store.setDescricao,
-          controller:
-              TextEditingController(text: _store.projetoModel?.descricao ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Link de Contato',
-          onChanged: _store.setLinkDeContato,
-          controller: TextEditingController(
-              text: _store.projetoModel?.linkContato ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Missão',
-          minLines: 4,
-          maxLines: 4,
-          onChanged: _store.setMissao,
-          controller:
-              TextEditingController(text: _store.projetoModel?.missao ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Visão',
-          minLines: 4,
-          maxLines: 4,
-          onChanged: _store.setVisao,
-          controller:
-              TextEditingController(text: _store.projetoModel?.visao ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        InputWidget(
-          label: 'Valores',
-          minLines: 4,
-          maxLines: 4,
-          onChanged: _store.setValores,
-          controller:
-              TextEditingController(text: _store.projetoModel?.valores ?? ''),
-        ),
-        DividerWidget(height: 2.h),
-        Container(
-          width: 90.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
+    final formKey = GlobalKey<FormState>();
+    return Form(
+      key: formKey,
+      autovalidateMode: AutovalidateMode.onUnfocus,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          inputImage(),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Nome',
+            onChanged: _store.setNome,
+            controller:
+                TextEditingController(text: _store.projetoModel?.nome ?? ''),
           ),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(10.0),
-                      topLeft: Radius.circular(10.0)),
-                  color: Colors.grey[400],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Habilidades',
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5),
-                      ),
-                      ButtonWidget.outlined(
-                        onPressed: () {
-                          showCustomBottomSheet(context, 'ADICIONAR HABILIDADE',
-                              _addHabilidade());
-                        },
-                        title: 'Adicionar',
-                        buttonSize: ButtonSize.small,
-                        width: 150,
-                      )
-                    ],
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Nome da Página',
+            onChanged: _store.setNomePagina,
+            controller: TextEditingController(
+                text: _store.projetoModel?.nomePagina ?? ''),
+            validator: (v) => combine([
+              () => notEmpty(v),
+              () => _store.validarUrlAmigavel(v),
+            ]),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Email',
+            onChanged: _store.setEmail,
+            controller:
+                TextEditingController(text: _store.projetoModel?.email ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'WhatsApp',
+            onChanged: _store.setTelefone,
+            controller: TextEditingController(
+                text: _store.projetoModel?.telefone ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Descrição',
+            minLines: 4,
+            maxLines: 4,
+            onChanged: _store.setDescricao,
+            controller: TextEditingController(
+                text: _store.projetoModel?.descricao ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Missão',
+            minLines: 4,
+            maxLines: 4,
+            onChanged: _store.setMissao,
+            controller:
+                TextEditingController(text: _store.projetoModel?.missao ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Visão',
+            minLines: 4,
+            maxLines: 4,
+            onChanged: _store.setVisao,
+            controller:
+                TextEditingController(text: _store.projetoModel?.visao ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          InputWidget(
+            label: 'Valores',
+            minLines: 4,
+            maxLines: 4,
+            onChanged: _store.setValores,
+            controller:
+                TextEditingController(text: _store.projetoModel?.valores ?? ''),
+          ),
+          DividerWidget(height: 2.h),
+          Container(
+            width: 90.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10.0),
+                        topLeft: Radius.circular(10.0)),
+                    color: Colors.grey[400],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Habilidades',
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5),
+                        ),
+                        ButtonWidget.outlined(
+                          onPressed: () {
+                            showCustomBottomSheet(context,
+                                'ADICIONAR HABILIDADE', _addHabilidade());
+                          },
+                          title: 'Adicionar',
+                          buttonSize: ButtonSize.small,
+                          width: 150,
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(10.0),
-                      bottomLeft: Radius.circular(10.0)),
-                  color: Colors.grey[200],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: _store.projetoModel?.habilidades?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            ListTile(
-                              title: (_store.projetoModel?.habilidades != null)
-                                  ? Text(
-                                      _store.projetoModel?.habilidades?[index])
-                                  : const Text(''),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  _store.deleteHabilidade(
-                                      _store.projetoModel?.habilidades?[index]);
-                                },
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(10.0),
+                        bottomLeft: Radius.circular(10.0)),
+                    color: Colors.grey[200],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _store.projetoModel?.habilidades?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              ListTile(
+                                title:
+                                    (_store.projetoModel?.habilidades != null)
+                                        ? Text(_store
+                                            .projetoModel?.habilidades?[index])
+                                        : const Text(''),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    _store.deleteHabilidade(_store
+                                        .projetoModel?.habilidades?[index]);
+                                  },
+                                ),
                               ),
-                            ),
-                            const Divider(height: 0),
-                          ],
-                        );
-                      }),
-                ),
-              )
-            ],
+                              const Divider(height: 0),
+                            ],
+                          );
+                        }),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        DividerWidget(height: 2.h),
-        Container(
-          width: 90.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(10.0),
-                      topLeft: Radius.circular(10.0)),
-                  color: Colors.grey[400],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Extras',
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5),
-                      ),
-                      ButtonWidget.outlined(
-                        onPressed: () {
-                          showCustomBottomSheet(
-                              context, 'ADICIONAR EXTRA', _addExtra());
-                        },
-                        title: 'Adicionar',
-                        buttonSize: ButtonSize.small,
-                        width: 150,
-                      )
-                    ],
+          DividerWidget(height: 2.h),
+          Container(
+            width: 90.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(10.0),
+                        topLeft: Radius.circular(10.0)),
+                    color: Colors.grey[400],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Extras',
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5),
+                        ),
+                        ButtonWidget.outlined(
+                          onPressed: () {
+                            showCustomBottomSheet(
+                                context, 'ADICIONAR EXTRA', _addExtra());
+                          },
+                          title: 'Adicionar',
+                          buttonSize: ButtonSize.small,
+                          width: 150,
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomRight: Radius.circular(10.0),
-                      bottomLeft: Radius.circular(10.0)),
-                  color: Colors.grey[200],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: _store.projetoModel?.extras?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            ListTile(
-                              title: (_store.projetoModel?.extras != null)
-                                  ? Text(
-                                      '${_store.projetoModel?.extras?[index].descricao}: ${_store.projetoModel?.extras?[index].valor}')
-                                  : const Text(''),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  _store.deleteExtra(
-                                      _store.projetoModel?.extras?[index]);
-                                },
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(10.0),
+                        bottomLeft: Radius.circular(10.0)),
+                    color: Colors.grey[200],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _store.projetoModel?.extras?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              ListTile(
+                                title: (_store.projetoModel?.extras != null)
+                                    ? Text(
+                                        '${_store.projetoModel?.extras?[index].descricao}: ${_store.projetoModel?.extras?[index].valor}')
+                                    : const Text(''),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    _store.deleteExtra(
+                                        _store.projetoModel?.extras?[index]);
+                                  },
+                                ),
                               ),
-                            ),
-                            const Divider(height: 0),
-                          ],
-                        );
-                      }),
-                ),
-              )
-            ],
+                              const Divider(height: 0),
+                            ],
+                          );
+                        }),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        DividerWidget(height: 4.h),
-        ButtonWidget.filled(
-          onPressed: () {
-            Modular.to.pushNamed('/projeto/projetos-modelos');
-          },
-          title: 'AVANÇAR',
-          textColor: white,
-          backgroundColor: focus,
-        ),
-        DividerWidget(height: 4.h),
-      ],
+          DividerWidget(height: 4.h),
+          ButtonWidget.filled(
+            onPressed: () {
+              Modular.to.pushNamed('/projeto/projetos-modelos');
+            },
+            title: 'AVANÇAR',
+            textColor: white,
+            backgroundColor: focus,
+          ),
+          DividerWidget(height: 4.h),
+        ],
+      ),
     );
   }
 

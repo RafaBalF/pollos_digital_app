@@ -58,7 +58,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
 
   Widget _body() {
     return SizedBox(
-      height: 100.h,
+      height: 100.h - (kToolbarHeight + 40),
       width: 100.w,
       child: _store.loadingStore.isLoading
           ? Center(child: _loadingBody())
@@ -66,45 +66,30 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
               ? GridView.builder(
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 2,
+                      childAspectRatio: 1,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemCount: _store.listaProjetos.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(15)),
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(8),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             textWidget(_store.listaProjetos[index].nomeProjeto),
-                            GestureDetector(
-                              onTap: () {
-                                launchUrlString(
-                                    _store.listaProjetos[index].url);
-                              },
-                              child: textWidget("acessar página",
-                                  color: primary,
-                                  style: const TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: primary,
-                                      color: primary,
-                                      fontWeight: FontWeight.bold)),
-                            ),
                             SizedBox(
                               width: 100.w,
-                              child: ElevatedButton.icon(
+                              child: ElevatedButton(
                                 onPressed: () {
-                                  _store.excluirProjeto(
-                                      _store.listaProjetos[index].id);
+                                  launchUrlString(
+                                      _store.listaProjetos[index].url);
                                 },
-                                label:
-                                    textWidget('EXCLUIR', color: Colors.white),
-                                icon: const Icon(Icons.delete_outline),
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -112,10 +97,43 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                   ),
                                   foregroundColor: Colors.white,
                                   backgroundColor: primary,
-                                  iconColor: Colors.white,
                                 ),
+                                child:
+                                    textWidget('ACESSAR', color: Colors.white),
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              width: 100.w,
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  Modular.to
+                                      .pushNamed('/projeto/dados-resultados');
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(color: primary),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(10), // <-- Radius
+                                  ),
+                                  foregroundColor: primary,
+                                  backgroundColor: Colors.white,
+                                ),
+                                child: textWidget('Editar', color: primary),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                _store.excluirProjeto(
+                                    _store.listaProjetos[index].id);
+                              },
+                              child: textWidget("apagar página",
+                                  color: primary,
+                                  style: const TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: primary,
+                                      color: primary,
+                                      fontWeight: FontWeight.bold)),
+                            ),
                           ],
                         ),
                       ),

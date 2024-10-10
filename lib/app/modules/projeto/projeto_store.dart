@@ -69,19 +69,22 @@ abstract class ProjetoStoreBase with Store {
   setNome(value) => projetoModel?.nome = value;
 
   @action
-  setNomeArquivo(value) => projetoModel?.nomeArquivo = value;
+  setNomePagina(value) => projetoModel?.nomePagina = value;
 
   @action
   setEmail(value) => projetoModel?.email = value;
 
   @action
-  setTelefone(value) => projetoModel?.telefone = value;
+  setTelefone(value) {
+    projetoModel?.telefone = value;
+    String telefoneSomenteNumero =
+        value.replaceAll(RegExp(r'[^0-9]'), ''); // '23'
+    projetoModel?.linkContato =
+        'https://api.whatsapp.com/send/?phone=55$telefoneSomenteNumero';
+  }
 
   @action
   setDescricao(value) => projetoModel?.descricao = value;
-
-  @action
-  setLinkDeContato(value) => projetoModel?.linkContato = value;
 
   @action
   setMissao(value) => projetoModel?.missao = value;
@@ -124,7 +127,7 @@ abstract class ProjetoStoreBase with Store {
     } else {
       projetoModel = ProjetoModel(
         nome: '',
-        nomeArquivo: '',
+        nomePagina: '',
         email: '',
         telefone: '',
         descricao: '',
@@ -240,5 +243,12 @@ abstract class ProjetoStoreBase with Store {
   @action
   Future<void> initProjetosModelo() async {
     await carregarModelos();
+  }
+
+  @action
+  String? validarUrlAmigavel(String? value) {
+    var r = _projetoApi.validarUrlAmigavel(value);
+    String mensagem = r.toString();
+    return mensagem != '' ? mensagem : null;
   }
 }

@@ -10,7 +10,6 @@ import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecoverPasswordPage extends StatefulWidget {
@@ -23,12 +22,6 @@ class RecoverPasswordPage extends StatefulWidget {
 class RecoverPasswordPageState extends State<RecoverPasswordPage>
     with FormValidationsMixin {
   final RecoverPasswordStore _store = Modular.get<RecoverPasswordStore>();
-
-  final cpfFormatter = MaskTextInputFormatter(
-    mask: '###.###.###-##',
-    filter: {"#": RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy,
-  );
 
   @override
   void initState() {
@@ -57,7 +50,7 @@ class RecoverPasswordPageState extends State<RecoverPasswordPage>
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: textWidget(
-              "Escreva seu email e cpf cadastrados e redefina sua senha",
+              "Escreva seu email cadastrados e redefina sua senha",
               style: h2(),
               textAlign: TextAlign.center,
             ),
@@ -86,16 +79,6 @@ class RecoverPasswordPageState extends State<RecoverPasswordPage>
                 () => notEmpty(v),
                 () => validEmail(v),
               ]),
-            );
-          }),
-          DividerWidget(height: 2.5.h),
-          Observer(builder: (_) {
-            return InputWidget(
-              label: 'Cpf',
-              keyboardType: TextInputType.number,
-              inputFormatters: [cpfFormatter],
-              onChanged: _store.setCpf,
-              validator: notEmpty,
             );
           }),
           DividerWidget(height: 5.h),

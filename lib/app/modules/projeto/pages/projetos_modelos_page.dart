@@ -59,7 +59,9 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
   }
 
   Widget _loadingBody() {
-    return const CircularProgressIndicator();
+    return const CircularProgressIndicator(
+      color: primary,
+    );
   }
 
   Widget _body() {
@@ -101,10 +103,13 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
           Visibility(
             visible: _store.buttonDisplayed,
             child: ButtonWidget.filled(
-              onPressed: () {
-                _store.criarProjeto();
-                _store.buttonDisplayed = false;
+              onPressed: () async {
+                await _store.criarProjeto();
+                // _store.buttonDisplayed = false;
+                Modular.to.popUntil((route) => route.isFirst);
+                Modular.to.pushNamed('/projeto/projetos-criados');
               },
+              loading: _store.loadingStore.isLoading,
               title: 'Criar',
               textColor: white,
               backgroundColor: focus,

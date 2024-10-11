@@ -23,6 +23,9 @@ abstract class ProjetoStoreBase with Store {
 
   //OBSERVABLEs
   @observable
+  String? urlAmigavelErroMessage;
+
+  @observable
   ProjetoModel? projetoModel = ProjetoModel();
 
   @observable
@@ -59,9 +62,11 @@ abstract class ProjetoStoreBase with Store {
   ObservableList listaModelos = ObservableList<ProjetoModeloModel>.of([]);
 
   @observable
-  ObservableList listaProjetos = ObservableList<ProjetosCriadosModel>.of([]);
+  ObservableList listaProjetos = ObservableList<ProjetoModel>.of([]);
 
   //ACTIONs
+  @action
+  setUrlAmigavelErroMessage(value) => urlAmigavelErroMessage = value;
   @action
   setButtonEnabilitiy() => buttonEnabilitiy = false;
 
@@ -69,7 +74,10 @@ abstract class ProjetoStoreBase with Store {
   setNome(value) => projetoModel?.nome = value;
 
   @action
-  setNomePagina(value) => projetoModel?.nomePagina = value;
+  setNomePagina(value) {
+    projetoModel?.nomePagina = value;
+    projetoModel?.urlAmigavel = value;
+  }
 
   @action
   setEmail(value) => projetoModel?.email = value;
@@ -120,8 +128,10 @@ abstract class ProjetoStoreBase with Store {
   handleAudio(File? audio) async {
     var r = ProjetoModel();
     loadingStore.show();
-    final textTranscripted = await _projetoApi.trancriptAudio(audio!);
-    r = await _projetoApi.getAiResponse(textTranscripted ?? "gere sozinho");
+    var token = await _projetoApi.getTokenOpenIaAPI();
+    final textTranscripted = await _projetoApi.trancriptAudio(audio!, token);
+    r = await _projetoApi.getAiResponse(
+        textTranscripted ?? "gere sozinho", token);
     if (r.message == null) {
       projetoModel = r;
     } else {
@@ -199,21 +209,24 @@ abstract class ProjetoStoreBase with Store {
     DateTime data = DateTime.now();
     int ano = data.year;
     int mes = data.month;
-    projetoModel?.linkImage =
+    projetoModel?.linkImage ??=
         'https://pollosdigital.com.br/wp-content/uploads/$ano/$mes/${image?.name}';
-    var r = await _projetoApi.createPage(projetoModel);
-    createdPageUrl = r;
     var user = _loginHive.getLogin();
-    await _projetoApi.createProject(
-        user.id, projetoModel?.nome, createdPageUrl);
+    projetoModel!.usuarioId = int.parse(user.id.toString());
+    var r = await _projetoApi.criarProjeto(projetoModel);
     loadingStore.hide();
+    return r;
   }
 
   @action
   carregarModelos() async {
     var arrayModelos = await _projetoApi.carregarModelos();
     for (var e in arrayModelos) {
-      listaModelos.add(ProjetoModeloModel.fromJson(e));
+      ProjetoModeloModel projetoModelMapped = ProjetoModeloModel.fromJson(e);
+      if (projetoModel?.modelo == projetoModelMapped.id) {
+        projetoModelMapped.selected = true;
+      }
+      listaModelos.add(projetoModelMapped);
     }
   }
 
@@ -222,7 +235,7 @@ abstract class ProjetoStoreBase with Store {
     var user = _loginHive.getLogin();
     var arrayModelos = await _projetoApi.carregarProjetos(user.id);
     for (var e in arrayModelos['projetos']) {
-      listaProjetos.add(ProjetosCriadosModel.fromJson(e));
+      listaProjetos.add(ProjetoModel.fromJson(e));
     }
   }
 
@@ -246,8 +259,8 @@ abstract class ProjetoStoreBase with Store {
   }
 
   @action
-  String? validarUrlAmigavel(String? value) {
-    var r = _projetoApi.validarUrlAmigavel(value);
+  Future<String?> validarUrlAmigavel() async {
+    var r = await _projetoApi.validarUrlAmigavel(projetoModel?.urlAmigavel);
     String mensagem = r.toString();
     return mensagem != '' ? mensagem : null;
   }

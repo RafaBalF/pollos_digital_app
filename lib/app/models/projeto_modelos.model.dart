@@ -1,7 +1,7 @@
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
 class ProjetoModeloModel extends FromJsonModel {
-  int? id;
+  String? id;
   String? nome;
   String? descricao;
   String? modeloUrl;

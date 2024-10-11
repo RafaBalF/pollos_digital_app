@@ -8,7 +8,6 @@ import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class ProjetosModelosPage extends StatefulWidget {
   const ProjetosModelosPage({super.key});
@@ -104,57 +103,27 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
             visible: _store.buttonDisplayed,
             child: ButtonWidget.filled(
               onPressed: () async {
-                await _store.criarProjeto();
+                var r;
+                if (_store.projetoModel?.usuarioId == null) {
+                  r = await _store.criarProjeto();
+                } else {
+                  r = await _store.criarProjeto();
+                }
+                if (r != null) {
+                  _showToast(context, 'Página criada com sucesso', true);
+                  Modular.to.popUntil((route) => route.isFirst);
+                  Modular.to.pushNamed('/projeto/projetos-criados');
+                } else {
+                  _showToast(
+                      context, 'Falha ao criar página, tente novamente', false);
+                }
                 // _store.buttonDisplayed = false;
-                Modular.to.popUntil((route) => route.isFirst);
-                Modular.to.pushNamed('/projeto/projetos-criados');
               },
               loading: _store.loadingStore.isLoading,
-              title: 'Criar',
+              title: 'Salvar',
               textColor: white,
               backgroundColor: focus,
             ),
-          ),
-          Visibility(
-            visible: !_store.buttonDisplayed,
-            child: _store.loadingStore.isLoading
-                ? const CircularProgressIndicator(
-                    color: focus,
-                  )
-                : Column(
-                    children: [
-                      textWidget(
-                          'Link para sua pagina: ${_store.createdPageUrl}'),
-                      DividerWidget(height: 2.h),
-                      ButtonWidget.filled(
-                        onPressed: () {
-                          launchUrlString(_store.createdPageUrl.toString());
-                        },
-                        title: 'Acessar',
-                        textColor: white,
-                        backgroundColor: focus,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              _store.criarProjeto();
-                            },
-                            child: textWidget('Criar outro', color: focus),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              launchUrlString(
-                                  'https://api.whatsapp.com/send/?phone=5516991996799&text=Quero+saber+mais&type=phone_number&app_absent=0');
-                            },
-                            child:
-                                textWidget('Chamar no WhatsApp', color: focus),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
           ),
           DividerWidget(height: 4.h),
         ],
@@ -186,6 +155,22 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
         //   alignment: Alignment.topCenter,
         //   fit: BoxFit.contain,
         // ),
+      ),
+    );
+  }
+
+  void _showToast(BuildContext context, message, sucess) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 5),
+        backgroundColor: sucess ? Colors.green : primary,
+        content: textWidget(message, color: Colors.white),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: scaffold.hideCurrentSnackBar,
+          textColor: Colors.white,
+        ),
       ),
     );
   }

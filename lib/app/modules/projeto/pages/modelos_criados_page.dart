@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
@@ -42,7 +44,9 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                     return _body();
                   });
                 } else {
-                  return _loadingBody();
+                  return _store.listaProjetos.isNotEmpty
+                      ? Center(child: textWidget('Nenhum projeto criado'))
+                      : _loadingBody();
                 }
               },
             ));
@@ -82,13 +86,14 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            textWidget(_store.listaProjetos[index].nomeProjeto),
+                            textWidget(_store.listaProjetos[index].nome,
+                                textAlign: TextAlign.center),
                             SizedBox(
                               width: 100.w,
                               child: ElevatedButton(
                                 onPressed: () {
                                   launchUrlString(
-                                      _store.listaProjetos[index].url);
+                                      'https://site.pollosdigital.com.br/${_store.listaProjetos[index].urlAmigavel}');
                                 },
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -106,6 +111,23 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                               width: 100.w,
                               child: OutlinedButton(
                                 onPressed: () {
+                                  var lista = _store.listaProjetos;
+                                  _store.projetoModel = ProjetoModel(
+                                    nome: lista[index].nome,
+                                    urlAmigavel: lista[index].urlAmigavel,
+                                    descricao: lista[index].descricao,
+                                    email: lista[index].email,
+                                    linkContato: lista[index].linkContato,
+                                    linkImage: lista[index].linkImage,
+                                    missao: lista[index].missao,
+                                    visao: lista[index].visao,
+                                    valores: lista[index].valores,
+                                    telefone: lista[index].telefone,
+                                    modelo: lista[index].modelo,
+                                    usuarioId: lista[index].usuarioId,
+                                    habilidades: ObservableList<String>.of([]),
+                                    extras: ObservableList<ExtrasModel>.of([]),
+                                  );
                                   Modular.to
                                       .pushNamed('/projeto/dados-resultados');
                                 },

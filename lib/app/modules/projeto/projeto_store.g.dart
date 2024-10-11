@@ -9,6 +9,23 @@ part of 'projeto_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProjetoStore on ProjetoStoreBase, Store {
+  late final _$urlAmigavelErroMessageAtom =
+      Atom(name: 'ProjetoStoreBase.urlAmigavelErroMessage', context: context);
+
+  @override
+  String? get urlAmigavelErroMessage {
+    _$urlAmigavelErroMessageAtom.reportRead();
+    return super.urlAmigavelErroMessage;
+  }
+
+  @override
+  set urlAmigavelErroMessage(String? value) {
+    _$urlAmigavelErroMessageAtom
+        .reportWrite(value, super.urlAmigavelErroMessage, () {
+      super.urlAmigavelErroMessage = value;
+    });
+  }
+
   late final _$projetoModelAtom =
       Atom(name: 'ProjetoStoreBase.projetoModel', context: context);
 
@@ -277,8 +294,28 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         .run(() => super.initProjetosModelo());
   }
 
+  late final _$validarUrlAmigavelAsyncAction =
+      AsyncAction('ProjetoStoreBase.validarUrlAmigavel', context: context);
+
+  @override
+  Future<String?> validarUrlAmigavel() {
+    return _$validarUrlAmigavelAsyncAction
+        .run(() => super.validarUrlAmigavel());
+  }
+
   late final _$ProjetoStoreBaseActionController =
       ActionController(name: 'ProjetoStoreBase', context: context);
+
+  @override
+  dynamic setUrlAmigavelErroMessage(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setUrlAmigavelErroMessage');
+    try {
+      return super.setUrlAmigavelErroMessage(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setButtonEnabilitiy() {
@@ -512,19 +549,9 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
-  String? validarUrlAmigavel(String? value) {
-    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
-        name: 'ProjetoStoreBase.validarUrlAmigavel');
-    try {
-      return super.validarUrlAmigavel(value);
-    } finally {
-      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
+urlAmigavelErroMessage: ${urlAmigavelErroMessage},
 projetoModel: ${projetoModel},
 buttonEnabilitiy: ${buttonEnabilitiy},
 audio: ${audio},

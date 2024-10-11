@@ -33,6 +33,8 @@ class InputWidget extends StatefulWidget {
   final String? Function(String?)? validator;
   final int? errorMaxLines;
   final TextStyle? labelStyle;
+  final FocusNode? focusNode;
+  final Color? borderColor;
 
   const InputWidget({
     super.key,
@@ -63,6 +65,8 @@ class InputWidget extends StatefulWidget {
     this.validator,
     this.errorMaxLines = 3,
     this.labelStyle,
+    this.focusNode,
+    this.borderColor,
   });
 
   @override
@@ -111,6 +115,7 @@ class _InputWidgetState extends State<InputWidget> {
           SizedBox(
             height: widget.height,
             child: TextFormField(
+              focusNode: widget.focusNode,
               style: TextStyle(
                 fontSize: widget.fontSize?.sp,
                 color: darkerGrey,

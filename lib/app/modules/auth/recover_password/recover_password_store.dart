@@ -1,7 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/apis/auth.api.dart';
-import 'package:pollos_digital/app/models/base.model.dart';
-import 'package:pollos_digital/app/models/string_response.model.dart';
 import 'package:pollos_digital/loading_store.dart';
 
 part 'recover_password_store.g.dart';

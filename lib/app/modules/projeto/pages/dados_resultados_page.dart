@@ -27,15 +27,39 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
     with FormValidationsMixin {
   final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
+  final FocusNode _focusNode = FocusNode();
 
   final double cardWidth = 90.w;
   final double cardHeight = 30.h;
+
+  String? urlAmigavelInauterada = '';
 
   @override
   void initState() {
     _future = Future.wait([]);
 
+    // //Adiciona um listener para o FocusNode
+    // _focusNode.addListener(() {
+    //   if (!_focusNode.hasFocus) {
+    //     // Chame sua função quando o campo perder o foco
+    //     _callValidate();
+    //   }
+    // });
+
+    urlAmigavelInauterada = _store.projetoModel?.urlAmigavel;
+
     super.initState();
+  }
+
+  // _callValidate() async {
+  //   var r = await _store.validarUrlAmigavel();
+  //   _store.setUrlAmigavelErroMessage(r);
+  // }
+
+  @override
+  void dispose() {
+    _focusNode.dispose(); // Não se esqueça de liberar o FocusNode
+    super.dispose();
   }
 
   @override
@@ -75,7 +99,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          inputImage(),
+          inputImage(_store.projetoModel?.linkImage),
           DividerWidget(height: 2.h),
           InputWidget(
             label: 'Nome',
@@ -85,15 +109,22 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           ),
           DividerWidget(height: 2.h),
           InputWidget(
+            // focusNode: _focusNode,
             label: 'Nome da Página',
             onChanged: _store.setNomePagina,
             controller: TextEditingController(
-                text: _store.projetoModel?.nomePagina ?? ''),
-            validator: (v) => combine([
-              () => notEmpty(v),
-              () => _store.validarUrlAmigavel(v),
-            ]),
+                text: _store.projetoModel?.urlAmigavel ?? ''),
+            validator: notEmpty,
           ),
+          // SizedBox(
+          //   width: 90.w,
+          //   child: textWidget(
+          //     _store.urlAmigavelErroMessage,
+          //     color: primary,
+          //     fontSize: 12,
+          //     fontWeight: FontWeight.normal,
+          //   ),
+          // ),
           DividerWidget(height: 2.h),
           InputWidget(
             label: 'Email',
@@ -303,8 +334,19 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           ),
           DividerWidget(height: 4.h),
           ButtonWidget.filled(
-            onPressed: () {
-              Modular.to.pushNamed('/projeto/projetos-modelos');
+            onPressed: () async {
+              if (_store.projetoModel?.usuarioId == null ||
+                  _store.projetoModel?.urlAmigavel != urlAmigavelInauterada) {
+                var r = await _store.validarUrlAmigavel();
+                if (r == null) {
+                  Modular.to.pushNamed('/projeto/projetos-modelos');
+                } else {
+                  // ignore: use_build_context_synchronously
+                  _showToast(context, r);
+                }
+              } else {
+                Modular.to.pushNamed('/projeto/projetos-modelos');
+              }
             },
             title: 'AVANÇAR',
             textColor: white,
@@ -363,11 +405,13 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
     );
   }
 
-  Widget inputImage() {
-    return _store.image == null ? _addFileWidget() : _fileCard();
+  Widget inputImage(imagemLink) {
+    return (_store.image == null && imagemLink == null)
+        ? _addFileWidget()
+        : _fileCard(imagemLink);
   }
 
-  Widget _fileCard() {
+  Widget _fileCard(imagemLink) {
     return Container(
         width: 100.w,
         height: 40.h,
@@ -381,7 +425,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
               padding: EdgeInsets.all(5.w),
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child: _image(),
+                child: _image(imagemLink),
               ),
             )),
             Positioned(
@@ -401,6 +445,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
                     ),
                     onPressed: () async {
                       await _store.deleteFile();
+                      imagemLink = null;
                     }),
               ),
             )
@@ -408,11 +453,13 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
         ));
   }
 
-  Widget _image() {
-    return Image.file(
-      File(_store.image!.path),
-      fit: BoxFit.cover,
-    );
+  Widget _image(imagemLink) {
+    return imagemLink == null
+        ? Image.file(
+            File(_store.image!.path),
+            fit: BoxFit.cover,
+          )
+        : Image.network(imagemLink);
   }
 
   Widget _addFileWidget() {
@@ -452,5 +499,21 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     _store.addFile(image);
+  }
+
+  void _showToast(BuildContext context, message) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 5),
+        backgroundColor: primary,
+        content: textWidget(message, color: Colors.white),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: scaffold.hideCurrentSnackBar,
+          textColor: Colors.white,
+        ),
+      ),
+    );
   }
 }

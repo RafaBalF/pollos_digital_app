@@ -7,22 +7,22 @@ import 'package:pollos_digital/app/apis/base.api.dart';
 import 'package:pollos_digital/app/constants/constants.dart';
 import 'package:pollos_digital/app/models/base.model.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
-import 'package:pollos_digital/app/models/projetos_criados.model.dart';
 
 class ProjetoApi extends BaseApi {
-  get _baseUrl => API_CHAT_GPT;
-  get _option => BaseOptions(baseUrl: _baseUrl);
+  get _baseUrl => API_URL;
+  get _option => BaseOptions(baseUrl: _baseUrl, headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Authorization": TOKEN
+      });
 
   Future getTokenOpenIaAPI() async {
     var result;
     try {
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response =
-          (await Dio(option).get('/API/retornatoken.php?a=ADH234dQ3423594'))
-              .data;
+      var response = (await Dio(_option).post('/Token')).data;
 
-      var responseData = json.decode(response);
-      result = responseData['chave'];
+      // var responseData = json.decode(response);
+      result = response['chave'];
     } on DioException catch (e) {
       result = handleDioException(e);
     } catch (e) {
@@ -31,7 +31,7 @@ class ProjetoApi extends BaseApi {
     return result;
   }
 
-  Future trancriptAudio(File audioPath) async {
+  Future trancriptAudio(File audioPath, String token) async {
     BaseModel? b;
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
@@ -39,7 +39,6 @@ class ProjetoApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var token = await getTokenOpenIaAPI();
       var header = {
         'Authorization': token,
         'Content-Type': 'multipart/form-data'
@@ -53,7 +52,9 @@ class ProjetoApi extends BaseApi {
         'model': 'whisper-1'
       });
 
-      var result = (await Dio(_option).post(
+      var option = BaseOptions(baseUrl: API_CHAT_GPT, headers: header);
+
+      var result = (await Dio(option).post(
         '/audio/transcriptions',
         options: Options(headers: header),
         data: data,
@@ -68,7 +69,7 @@ class ProjetoApi extends BaseApi {
     }
   }
 
-  Future getAiResponse(String audioTranscripted) async {
+  Future getAiResponse(String audioTranscripted, String token) async {
     var b = ProjetoModel();
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
@@ -76,7 +77,6 @@ class ProjetoApi extends BaseApi {
         return BaseModel.networkError();
       }
 
-      var token = await getTokenOpenIaAPI();
       var header = {'Authorization': token, 'Content-Type': 'application/json'};
 
       var data = json.encode({
@@ -87,7 +87,7 @@ class ProjetoApi extends BaseApi {
             "content":
                 """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
    "nomepessoa":"Nome da pessoa",
-   "nomearquivo":" ",
+   "urlamigavel":" ",
    "descricao":"Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
    "telefone":"(00) 00000-0000",
    "email":"mariana@gmail.com",
@@ -116,7 +116,9 @@ class ProjetoApi extends BaseApi {
         ]
       });
 
-      var result = (await Dio(_option).post(
+      var option = BaseOptions(baseUrl: API_CHAT_GPT, headers: header);
+
+      var result = (await Dio(option).post(
         '/chat/completions',
         options: Options(headers: header),
         data: data,
@@ -166,45 +168,27 @@ class ProjetoApi extends BaseApi {
     } catch (e) {}
   }
 
-  Future createPage(data) async {
+  Future criarProjeto(data) async {
     var b = ProjetoModel();
     String? result;
     ProjetoModel projetoModelData = data;
     try {
       var data = json.encode(projetoModelData.toJson());
 
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option).post(
-        '/API/criarpagina.php',
+      var response = (await Dio(_option).post(
+        '/Projetos/create',
         data: data,
       ))
           .data;
 
-      var responseData = json.decode(response);
-      result = responseData['url'];
+      result = response['mensagem'];
     } on DioException catch (e) {
-      result = "Algo deu errado, tente novamente mais tarde.";
+      // result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
     } catch (e) {
       // return BaseModel();
     }
-    return 'https://vitrine.pollosdigital.com.br/$result';
-  }
-
-  Future createProject(userId, nomeProjeto, urlProjeto) async {
-    var dio = Dio();
-    var response = await dio.request(
-      'https://vitrine.pollosdigital.com.br/API/criaprojeto.php?usuario_id=$userId&nome_projeto=$nomeProjeto&url=$urlProjeto',
-      options: Options(
-        method: 'GET',
-      ),
-    );
-
-    if (response.statusCode == 200) {
-      print(json.encode(response.data));
-    } else {
-      print(response.statusMessage);
-    }
+    return result;
   }
 
   Future carregarModelos() async {
@@ -213,25 +197,22 @@ class ProjetoApi extends BaseApi {
     try {
       var response = (await Dio(_option).post('/Modelos')).data;
 
-      var responseData = json.decode(response);
-      result = responseData;
+      result = response;
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
     } catch (e) {
-      // print(e);
+      result = e;
     }
     return result;
   }
 
   Future carregarProjetos(userId) async {
-    var b = ProjetosCriadosModel();
+    var b = ProjetoModel();
     var result;
     try {
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
       var response =
-          (await Dio(option).get('/API/listarprojetos.php?usuario_id=$userId'))
-              .data;
+          (await Dio(_option).post('/Projetos/listProjetos/$userId')).data;
       result = response;
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
@@ -243,13 +224,11 @@ class ProjetoApi extends BaseApi {
   }
 
   Future excluirProjeto(projetoId) async {
-    var b = ProjetosCriadosModel();
+    var b = ProjetoModel();
     var result;
     try {
-      var option = BaseOptions(baseUrl: 'https://vitrine.pollosdigital.com.br');
-      var response = (await Dio(option)
-              .get('/API/deletarprojeto.php?projeto_id=$projetoId'))
-          .data;
+      var response =
+          (await Dio(_option).post('/Projetos/deleteProjeto/$projetoId')).data;
       result = response;
     } on DioException catch (e) {
       result = "Algo deu errado, tente novamente mais tarde.";
@@ -261,16 +240,18 @@ class ProjetoApi extends BaseApi {
   }
 
   Future<String?> validarUrlAmigavel(value) async {
-    var b = ProjetosCriadosModel();
+    var b = ProjetoModel();
     var result;
+    if (value != null && value != '') {
+      value = '/$value';
+    }
     try {
-      var option = BaseOptions(baseUrl: 'http://apipollosdigital.example.com');
+      var option = BaseOptions(baseUrl: 'https://site.pollosdigital.com.br');
       var response =
-          (await Dio(option).post('/Projetos/verificarurlamigavel/$value'))
-              .data;
+          (await Dio(option).post('/Projetos/verificarurlamigavel$value')).data;
       result = response['mensagem'];
     } on DioException catch (e) {
-      result = "Algo deu errado, tente novamente mais tarde.";
+      result = e.response?.data['messages']['error'];
       b.message = handleDioException(e);
     } catch (e) {
       print(e);

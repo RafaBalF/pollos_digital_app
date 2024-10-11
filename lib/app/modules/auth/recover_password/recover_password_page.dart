@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/modules/auth/recover_password/recover_password_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
-import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';

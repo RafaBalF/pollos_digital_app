@@ -121,7 +121,10 @@ abstract class ProjetoStoreBase with Store {
   addFile(value) => image = value;
 
   @action
-  deleteFile() => image = null;
+  deleteFile() {
+    image = null;
+    projetoModel?.linkImage = null;
+  }
 
   @action
   handleAudio(File? audio) async {
@@ -204,14 +207,7 @@ abstract class ProjetoStoreBase with Store {
   @action
   salvarProjeto() async {
     loadingStore.show();
-    _projetoApi.uploadImage(image);
-    DateTime data = DateTime.now();
-    int ano = data.year;
-    int mes = data.month;
-    if (image?.name != null) {
-      projetoModel?.linkImage ??=
-          'https://pollosdigital.com.br/wp-content/uploads/$ano/$mes/${image?.name}';
-    }
+    projetoModel?.linkImage ??= await _projetoApi.uploadImage(image);
     var user = _loginHive.getLogin();
     projetoModel!.usuarioId = int.parse(user.id.toString());
     var r;

@@ -445,7 +445,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
                     ),
                     onPressed: () async {
                       await _store.deleteFile();
-                      imagemLink = null;
+                      setState(() {});
                     }),
               ),
             )

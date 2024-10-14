@@ -141,27 +141,26 @@ class ProjetoApi extends BaseApi {
 
   Future uploadImage(image) async {
     try {
-      String basicAuth =
-          'Basic ${base64.encode(utf8.encode('$USER_WP:$PASSWORD_WP'))}';
-      var headers = {'Authorization': basicAuth};
+      var header = {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data',
+        "Authorization": TOKEN
+      };
+      _option.headers = header;
+
       var data = FormData.fromMap({
-        'file': [
+        'imagem': [
           await MultipartFile.fromFile(image.path, filename: image.name)
         ],
       });
 
-      var dio = Dio();
-      var response = await dio.request(
-        'https://pollosdigital.com.br/wp-json/wp/v2/media',
-        options: Options(
-          method: 'POST',
-          headers: headers,
-        ),
+      var response = (await Dio(_option).post(
+        '/Imagem/upload',
         data: data,
-      );
+      ));
 
-      if (response.statusCode == 201) {
-        return response.data['link'];
+      if (response.statusCode == 200) {
+        return response.data['imagem_url'];
       } else {
         print(response.statusMessage);
       }

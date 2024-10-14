@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
@@ -125,8 +124,9 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                     telefone: lista[index].telefone,
                                     modelo: lista[index].modelo,
                                     usuarioId: lista[index].usuarioId,
-                                    habilidades: ObservableList<String>.of([]),
-                                    extras: ObservableList<ExtrasModel>.of([]),
+                                    id: lista[index].id,
+                                    habilidades: lista[index].habilidades,
+                                    extras: lista[index].extras,
                                   );
                                   Modular.to
                                       .pushNamed('/projeto/dados-resultados');

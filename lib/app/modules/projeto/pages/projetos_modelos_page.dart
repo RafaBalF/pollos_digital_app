@@ -103,14 +103,10 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
             visible: _store.buttonDisplayed,
             child: ButtonWidget.filled(
               onPressed: () async {
-                var r;
-                if (_store.projetoModel?.usuarioId == null) {
-                  r = await _store.criarProjeto();
-                } else {
-                  r = await _store.criarProjeto();
-                }
+                var r = await _store.salvarProjeto();
+
                 if (r != null) {
-                  _showToast(context, 'Página criada com sucesso', true);
+                  _showToast(context, 'Página salva com sucesso', true);
                   Modular.to.popUntil((route) => route.isFirst);
                   Modular.to.pushNamed('/projeto/projetos-criados');
                 } else {

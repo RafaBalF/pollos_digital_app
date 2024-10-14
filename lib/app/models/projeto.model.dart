@@ -21,7 +21,8 @@ class ProjetoModel extends FromJsonModel {
   String? message;
 
   ProjetoModel(
-      {this.usuarioId,
+      {this.id,
+      this.usuarioId,
       this.urlAmigavel,
       this.modelo,
       this.nome,
@@ -47,7 +48,7 @@ class ProjetoModel extends FromJsonModel {
 
   ProjetoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    usuarioId = int.parse(json['usuario_id']);
+    if (json['usuario_id'] != null) usuarioId = int.parse(json['usuario_id']);
     modelo = json['modeloescolhido'];
     nome = json['nomepessoa'];
     nomePagina = json['nomearquivo'];
@@ -56,20 +57,24 @@ class ProjetoModel extends FromJsonModel {
     telefone = json['telefone'];
     descricao = json['descricao'];
     String? telefoneSomenteNumero = telefone?.replaceAll(RegExp(r'[^0-9]'), '');
-    linkContato = json['linkentrecontato'] ??
-        'https://api.whatsapp.com/send/?phone=55$telefoneSomenteNumero';
+    if (telefoneSomenteNumero != null) {
+      linkContato = json['linkentrecontato'] ??
+          'https://api.whatsapp.com/send/?phone=55$telefoneSomenteNumero';
+    }
     missao = json['missao'];
     visao = json['visao'];
     valores = json['valores'];
     linkImage = json['linkdaimagem1'];
-    if (json['habilidades'] != null) {
+    if (json['habilidades'] != []) {
       for (var e in json['habilidades']) {
         habilidades!.add(e);
       }
     }
-    if (json['extras'] != null) {
+    if (json['extras'] != []) {
       for (var e in json['extras']) {
-        extras!.add(ExtrasModel(descricao: e['descricao'], valor: e['valor']));
+        extras!.add(ExtrasModel(
+            descricao: e['descricao'],
+            valor: double.tryParse(e['valor'].toString())?.toInt()));
       }
     }
   }

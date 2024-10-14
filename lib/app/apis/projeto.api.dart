@@ -191,6 +191,29 @@ class ProjetoApi extends BaseApi {
     return result;
   }
 
+  Future editarProjeto(data) async {
+    var b = ProjetoModel();
+    String? result;
+    ProjetoModel projetoModelData = data;
+    try {
+      var dataJson = json.encode(projetoModelData.toJson());
+
+      var response = (await Dio(_option).put(
+        '/Projetos/update/${data.id}',
+        data: dataJson,
+      ))
+          .data;
+
+      result = response['mensagem'];
+    } on DioException catch (e) {
+      // result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      // return BaseModel();
+    }
+    return result;
+  }
+
   Future carregarModelos() async {
     var b = ProjetoModel();
     var result;
@@ -244,6 +267,8 @@ class ProjetoApi extends BaseApi {
     var result;
     if (value != null && value != '') {
       value = '/$value';
+    } else {
+      value = '';
     }
     try {
       var option = BaseOptions(baseUrl: 'https://site.pollosdigital.com.br');

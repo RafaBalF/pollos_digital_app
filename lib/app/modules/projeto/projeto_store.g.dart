@@ -242,12 +242,12 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     return _$handleAudioAsyncAction.run(() => super.handleAudio(audio));
   }
 
-  late final _$criarProjetoAsyncAction =
-      AsyncAction('ProjetoStoreBase.criarProjeto', context: context);
+  late final _$salvarProjetoAsyncAction =
+      AsyncAction('ProjetoStoreBase.salvarProjeto', context: context);
 
   @override
-  Future criarProjeto() {
-    return _$criarProjetoAsyncAction.run(() => super.criarProjeto());
+  Future salvarProjeto() {
+    return _$salvarProjetoAsyncAction.run(() => super.salvarProjeto());
   }
 
   late final _$carregarModelosAsyncAction =

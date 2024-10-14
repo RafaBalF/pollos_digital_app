@@ -5,7 +5,6 @@ import 'package:pollos_digital/app/apis/projeto.api.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/models/hives/login.hive.dart';
 import 'package:pollos_digital/app/models/projeto_modelos.model.dart';
-import 'package:pollos_digital/app/models/projetos_criados.model.dart';
 import 'package:pollos_digital/loading_store.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -145,7 +144,7 @@ abstract class ProjetoStoreBase with Store {
         missao: '',
         visao: '',
         valores: '',
-        linkImage: '',
+        linkImage: null,
         habilidades: ObservableList<String>.of([]),
         extras: ObservableList<ExtrasModel>.of([]),
       );
@@ -199,21 +198,28 @@ abstract class ProjetoStoreBase with Store {
         );
       }
     }
-    projetoModel?.modelo = index + 1;
+    projetoModel?.modelo = (index + 1).toString();
   }
 
   @action
-  criarProjeto() async {
+  salvarProjeto() async {
     loadingStore.show();
     _projetoApi.uploadImage(image);
     DateTime data = DateTime.now();
     int ano = data.year;
     int mes = data.month;
-    projetoModel?.linkImage ??=
-        'https://pollosdigital.com.br/wp-content/uploads/$ano/$mes/${image?.name}';
+    if (image?.name != null) {
+      projetoModel?.linkImage ??=
+          'https://pollosdigital.com.br/wp-content/uploads/$ano/$mes/${image?.name}';
+    }
     var user = _loginHive.getLogin();
     projetoModel!.usuarioId = int.parse(user.id.toString());
-    var r = await _projetoApi.criarProjeto(projetoModel);
+    var r;
+    if (projetoModel?.id == null) {
+      r = await _projetoApi.criarProjeto(projetoModel);
+    } else {
+      r = await _projetoApi.editarProjeto(projetoModel);
+    }
     loadingStore.hide();
     return r;
   }

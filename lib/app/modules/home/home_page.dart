@@ -1,5 +1,6 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
+import 'package:pollos_digital/app/models/versao.model.dart';
 import 'package:pollos_digital/app/modules/home/widgets/cashback_widget.dart';
 import 'package:pollos_digital/app/modules/home/widgets/main_scaffold_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,9 @@ import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/shimmer_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,6 +39,8 @@ class HomePageState extends State<HomePage> {
     _future = Future.wait([_store.initHome()]);
 
     super.initState();
+    checkForUpdate(context);
+
   }
 
   @override
@@ -552,4 +557,61 @@ class HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
+
+void showUpdateModal(BuildContext context, String lojaUrl) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Atualização Necessária'),
+        content: Text('Uma nova versão do aplicativo está disponível. Por favor, atualize para continuar usando.'),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Atualizar Agora'),
+            onPressed: () async {
+              if (await canLaunch(lojaUrl)) {
+                await launch(lojaUrl);
+              } else {
+                throw 'Não foi possível abrir a loja';
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+ 
+
+void checkForUpdate(BuildContext context) async {
+  try {
+    // Obter a versão atual do aplicativo
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String versaoAtual = packageInfo.version;
+
+ 
+    // Buscar a versão mais recente da API
+    Versao versaoMaisRecente = await fetchVersaoAtual();
+
+    // Determinar a plataforma
+    String plataforma = Theme.of(context).platform == TargetPlatform.iOS ? 'iOS' : 'Android';
+
+    // URLs das lojas
+    String lojaUrl = plataforma == 'iOS'
+        ? 'https://apps.apple.com/us/app/example/id123456789' // Substitua pelo URL real do App Store
+        : 'https://play.google.com/store/apps/details?id=com.example.app'; // Substitua pelo URL real do Play Store
+
+    // Comparar as versões
+    if ((plataforma == 'iOS' && versaoAtual != versaoMaisRecente.versaoIos) ||
+        (plataforma == 'Android' && versaoAtual != versaoMaisRecente.versaoAndroid)) {
+      showUpdateModal(context, lojaUrl);
+    }
+  } catch (e) {
+    print('Erro ao verificar a versão: $e');
+  }
+}
 }

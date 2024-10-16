@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pollos_digital/app/constants/constants.dart';
 
 class Versao {
   final String versaoAndroid;
@@ -17,11 +18,12 @@ class Versao {
 
 Future<Versao> fetchVersaoAtual() async {
   var headers = {
-    'Authorization': 'Bearer SFBAd4sdf4HDF123454561236234S934',
+    'Authorization': TOKEN,
   };
   var request = http.Request(
     'POST',
-    Uri.parse('https://site.pollosdigital.com.br/ControleVersao/getVersaoAtual'),
+    Uri.parse(
+        'https://site.pollosdigital.com.br/ControleVersao/getVersaoAtual'),
   );
 
   request.headers.addAll(headers);

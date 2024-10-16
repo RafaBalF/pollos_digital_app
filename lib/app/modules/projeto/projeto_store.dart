@@ -239,6 +239,23 @@ abstract class ProjetoStoreBase with Store {
     for (var e in arrayModelos['projetos']) {
       listaProjetos.add(ProjetoModel.fromJson(e));
     }
+    // listaProjetos.add(ProjetoModel(
+    //   nome: 'Rafael Baleeiro',
+    //   urlAmigavel: 'urlAmigavel',
+    //   descricao: 'descricao',
+    //   email: 'email',
+    //   linkContato: 'linkContato',
+    //   linkImage: 'linkImage',
+    //   missao: 'missao',
+    //   visao: 'visao',
+    //   valores: 'valores',
+    //   telefone: 'telefone',
+    //   modelo: 'modelo',
+    //   usuarioId: 6,
+    //   id: 'id',
+    //   habilidades: ObservableList<String>.of([]),
+    //   extras: ObservableList<ExtrasModel>.of([]),
+    // ));
   }
 
   @action

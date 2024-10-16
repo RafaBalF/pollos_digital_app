@@ -35,6 +35,8 @@ class InputWidget extends StatefulWidget {
   final TextStyle? labelStyle;
   final FocusNode? focusNode;
   final Color? borderColor;
+  final bool? readOnly;
+  final String? labelText;
 
   const InputWidget({
     super.key,
@@ -67,6 +69,8 @@ class InputWidget extends StatefulWidget {
     this.labelStyle,
     this.focusNode,
     this.borderColor,
+    this.readOnly,
+    this.labelText,
   });
 
   @override
@@ -134,6 +138,7 @@ class _InputWidgetState extends State<InputWidget> {
               textInputAction: widget.textInputAction ?? TextInputAction.next,
               decoration: _decoration(),
               validator: widget.validator,
+              readOnly: widget.readOnly ?? false,
             ),
           )
         ],
@@ -157,6 +162,7 @@ class _InputWidgetState extends State<InputWidget> {
       errorText: widget.error,
       errorMaxLines: widget.errorMaxLines,
       hintText: widget.placeholder,
+      labelText: widget.labelText,
       hintStyle: const TextStyle(color: grey),
       disabledBorder: _border(color: grey),
       enabledBorder: _border(),

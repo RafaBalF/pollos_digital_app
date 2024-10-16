@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
@@ -28,6 +29,12 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
   final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
   final FocusNode _focusNode = FocusNode();
+
+  final celularFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   final double cardWidth = 90.w;
   final double cardHeight = 30.h;
@@ -116,15 +123,6 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
                 text: _store.projetoModel?.urlAmigavel ?? ''),
             validator: notEmpty,
           ),
-          // SizedBox(
-          //   width: 90.w,
-          //   child: textWidget(
-          //     _store.urlAmigavelErroMessage,
-          //     color: primary,
-          //     fontSize: 12,
-          //     fontWeight: FontWeight.normal,
-          //   ),
-          // ),
           DividerWidget(height: 2.h),
           InputWidget(
             label: 'Email',
@@ -136,14 +134,15 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           InputWidget(
             label: 'WhatsApp',
             onChanged: _store.setTelefone,
+            inputFormatters: [celularFormatter],
             controller: TextEditingController(
                 text: _store.projetoModel?.telefone ?? ''),
           ),
           DividerWidget(height: 2.h),
           InputWidget(
             label: 'Descrição',
-            minLines: 4,
-            maxLines: 4,
+            minLines: 10,
+            maxLines: 10,
             onChanged: _store.setDescricao,
             controller: TextEditingController(
                 text: _store.projetoModel?.descricao ?? ''),

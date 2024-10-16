@@ -13,7 +13,6 @@ import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/shimmer_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -40,7 +39,6 @@ class HomePageState extends State<HomePage> {
 
     super.initState();
     checkForUpdate(context);
-
   }
 
   @override
@@ -558,60 +556,98 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-
-
-void showUpdateModal(BuildContext context, String lojaUrl) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Atualização Necessária'),
-        content: Text('Uma nova versão do aplicativo está disponível. Por favor, atualize para continuar usando.'),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Atualizar Agora'),
-            onPressed: () async {
-              if (await canLaunch(lojaUrl)) {
-                await launch(lojaUrl);
-              } else {
-                throw 'Não foi possível abrir a loja';
-              }
-            },
+  void showUpdateModal(BuildContext context, String lojaUrl) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          alignment: Alignment.center,
+          title: const Text(
+            'Nova Atualização!',
+            textAlign: TextAlign.center,
           ),
-        ],
-      );
-    },
-  );
-}
-
- 
-
-void checkForUpdate(BuildContext context) async {
-  try {
-    // Obter a versão atual do aplicativo
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String versaoAtual = packageInfo.version;
-
- 
-    // Buscar a versão mais recente da API
-    Versao versaoMaisRecente = await fetchVersaoAtual();
-
-    // Determinar a plataforma
-    String plataforma = Theme.of(context).platform == TargetPlatform.iOS ? 'iOS' : 'Android';
-
-    // URLs das lojas
-    String lojaUrl = plataforma == 'iOS'
-        ? 'https://apps.apple.com/us/app/example/id123456789' // Substitua pelo URL real do App Store
-        : 'https://play.google.com/store/apps/details?id=com.example.app'; // Substitua pelo URL real do Play Store
-
-    // Comparar as versões
-    if ((plataforma == 'iOS' && versaoAtual != versaoMaisRecente.versaoIos) ||
-        (plataforma == 'Android' && versaoAtual != versaoMaisRecente.versaoAndroid)) {
-      showUpdateModal(context, lojaUrl);
-    }
-  } catch (e) {
-    print('Erro ao verificar a versão: $e');
+          content: SizedBox(
+            height: 30.h,
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 10.h,
+                  backgroundColor: const Color(0xfff9f9f9),
+                  backgroundImage: const AssetImage(
+                      'assets/images/projeto/pollos-digital-agencia-cria-seu-site.png'),
+                ),
+                DividerWidget(height: 2.h),
+                const Text(
+                    'Uma nova versão do aplicativo está disponível. Por favor, atualize para continuar usando.',
+                    textAlign: TextAlign.start),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                'Atualizar Agora',
+                style: TextStyle(color: primary),
+              ),
+              onPressed: () async {
+                launchUrlString(lojaUrl);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
-}
+
+  void checkForUpdate(BuildContext context) async {
+    try {
+      // Obter a versão atual do aplicativo
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String versaoAtual = packageInfo.version;
+      versaoAtual = '1.4.10';
+
+      // Buscar a versão mais recente da API
+      Versao versaoMaisRecente = await fetchVersaoAtual();
+
+      // Determinar a plataforma
+      String plataforma =
+          Theme.of(context).platform == TargetPlatform.iOS ? 'iOS' : 'Android';
+
+      // URLs das lojas
+      String lojaUrl = plataforma == 'iOS'
+          ? 'https://apps.apple.com/us/app/pollos-digital/id6736531799' // Substitua pelo URL real do App Store
+          : 'https://play.google.com/store/apps/details?id=br.com.pollosdigital'; // Substitua pelo URL real do Play Store
+
+      // Comparar as versões
+      var controleVersaoAndroid =
+          _isVersionLower(versaoAtual, versaoMaisRecente.versaoAndroid);
+      var controleVersaoIos =
+          _isVersionLower(versaoAtual, versaoMaisRecente.versaoIos);
+      if (controleVersaoIos || controleVersaoAndroid) {
+        showUpdateModal(context, lojaUrl);
+      }
+    } catch (e) {
+      print('Erro ao verificar a versão: $e');
+    }
+  }
+
+  bool _isVersionLower(String dbVersion, String appVersion) {
+    List<String> dbVersionParts = dbVersion.split('.');
+    List<String> appVersionParts = appVersion.split('.');
+
+    // Converte as partes da versão em inteiros para comparação
+    for (int i = 0; i < 3; i++) {
+      int dbPart = i < dbVersionParts.length ? int.parse(dbVersionParts[i]) : 0;
+      int appPart =
+          i < appVersionParts.length ? int.parse(appVersionParts[i]) : 0;
+
+      if (dbPart < appPart) return true;
+      if (dbPart > appPart) return false;
+    }
+
+    // Se as versões forem iguais
+    return false;
+  }
 }

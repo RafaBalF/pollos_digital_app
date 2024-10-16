@@ -19,6 +19,7 @@ class ProjetoModel extends FromJsonModel {
   ObservableList? habilidades = ObservableList<String>.of([]);
   ObservableList? extras = ObservableList<ExtrasModel>.of([]);
   String? message;
+  String? imagemModelo;
 
   ProjetoModel(
       {this.id,
@@ -65,6 +66,7 @@ class ProjetoModel extends FromJsonModel {
     visao = json['visao'];
     valores = json['valores'];
     linkImage = json['linkdaimagem1'];
+    imagemModelo = json['imagem_modelo'];
     if (json['habilidades'] != []) {
       for (var e in json['habilidades']) {
         habilidades!.add(e);

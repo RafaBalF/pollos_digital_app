@@ -196,8 +196,8 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                   width: 42.w,
                                   child: ElevatedButton.icon(
                                     onPressed: () async {
-                                      await Share.share(
-                                          'https://site.pollosdigital.com.br/${_store.listaProjetos[index].urlAmigavel}');
+                                      await Share.shareUri(Uri.parse(
+                                          'https://site.pollosdigital.com.br/${_store.listaProjetos[index].urlAmigavel}'));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(

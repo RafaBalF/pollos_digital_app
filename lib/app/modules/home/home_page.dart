@@ -1,5 +1,6 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pollos_digital/app/models/versao.model.dart';
 import 'package:pollos_digital/app/modules/home/widgets/cashback_widget.dart';
 import 'package:pollos_digital/app/modules/home/widgets/main_scaffold_widget.dart';
@@ -39,6 +40,13 @@ class HomePageState extends State<HomePage> {
 
     super.initState();
     checkForUpdate(context);
+    //Remove this method to stop OneSignal Debugging
+    OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+
+    OneSignal.initialize("c171943c-7d63-4fd7-a68f-07938491ca80");
+
+// The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+    OneSignal.Notifications.requestPermission(true);
   }
 
   @override

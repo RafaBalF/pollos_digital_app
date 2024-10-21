@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Some message to describe why you need this permission</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -11,7 +11,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>br.com.pollosdigital</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,6 +26,24 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>your usage description here</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>your usage description here</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Este aplicativo solicita acesso ao microfone para gravar sua voz, coletando seu nome, contato e uma breve descrição para criar uma página web personalizada. As gravações são processadas com segurança.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Este aplicativo precisa acessar sua galeria de imagens para que você selecione uma foto pessoal, que será usada na sua página web. Respeitamos sua privacidade e garantimos segurança nas imagens.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,21 +61,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>your usage description here</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Este aplicativo solicita acesso ao microfone para gravar sua voz, coletando seu nome, contato e uma breve descrição para criar uma página web personalizada. As gravações são processadas com segurança.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Este aplicativo precisa acessar sua galeria de imagens para que você selecione uma foto pessoal, que será usada na sua página web. Respeitamos sua privacidade e garantimos segurança nas imagens.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>your usage description here</string>
 </dict>
 </plist>

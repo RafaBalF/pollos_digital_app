@@ -41,13 +41,9 @@ class HomePageState extends State<HomePage> {
     super.initState();
     checkForUpdate(context);
     //Remove this method to stop OneSignal Debugging
-    OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-
-    OneSignal.InAppMessages.addTrigger('prompt_ios', 'true');
-
+    // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
     OneSignal.initialize("c171943c-7d63-4fd7-a68f-07938491ca80");
-
-// The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+    OneSignal.InAppMessages.addTrigger('prompt_ios', 'true');
     OneSignal.Notifications.requestPermission(true);
   }
 

@@ -26,6 +26,7 @@ class AppModule extends Module {
     r.module(
       '/',
       module: LaunchModule(),
+      // module: ProjetoModule(),
       transition: defaultTransitonType,
     );
     r.module(

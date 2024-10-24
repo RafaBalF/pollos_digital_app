@@ -18,26 +18,31 @@ class ProjetoModel extends FromJsonModel {
   String? linkImage;
   ObservableList? habilidades = ObservableList<String>.of([]);
   ObservableList? extras = ObservableList<ExtrasModel>.of([]);
+  ObservableList? faq = ObservableList<FaqModel>.of([]);
+  ObservableList? card = ObservableList<CardModel>.of([]);
   String? message;
   String? imagemModelo;
 
-  ProjetoModel(
-      {this.id,
-      this.usuarioId,
-      this.urlAmigavel,
-      this.modelo,
-      this.nome,
-      this.nomePagina,
-      this.email,
-      this.telefone,
-      this.descricao,
-      this.linkContato,
-      this.missao,
-      this.visao,
-      this.valores,
-      this.linkImage,
-      this.habilidades,
-      this.extras});
+  ProjetoModel({
+    this.id,
+    this.usuarioId,
+    this.urlAmigavel,
+    this.modelo,
+    this.nome,
+    this.nomePagina,
+    this.email,
+    this.telefone,
+    this.descricao,
+    this.linkContato,
+    this.missao,
+    this.visao,
+    this.valores,
+    this.linkImage,
+    this.habilidades,
+    this.extras,
+    this.faq,
+    this.card,
+  });
 
   ProjetoModel.createNew(ProjetoModel model) {
     nome = model.nome;
@@ -129,4 +134,56 @@ class ExtrasModel extends FromJsonModel {
 
   @override
   fromJson(Map<String, dynamic> json) => ExtrasModel.fromJson(json);
+}
+
+class FaqModel extends FromJsonModel {
+  String? pergunta;
+  String? resposta;
+
+  FaqModel({
+    this.pergunta,
+    this.resposta,
+  });
+
+  FaqModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['pergunta'] = pergunta;
+    json['resposta'] = resposta;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['pergunta'] = pergunta;
+    json['resposta'] = resposta;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => FaqModel.fromJson(json);
+}
+
+class CardModel extends FromJsonModel {
+  String? titulo;
+  String? texto;
+
+  CardModel({
+    this.titulo,
+    this.texto,
+  });
+
+  CardModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['titulo'] = titulo;
+    json['texto'] = texto;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['titulo'] = titulo;
+    json['texto'] = texto;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => CardModel.fromJson(json);
 }

@@ -43,6 +43,18 @@ abstract class ProjetoStoreBase with Store {
   String? extraValor;
 
   @observable
+  String? faqPergunta;
+
+  @observable
+  String? faqResposta;
+
+  @observable
+  String? cardTitulo;
+
+  @observable
+  String? cardTexto;
+
+  @observable
   int? selectedModelo;
 
   @observable
@@ -115,6 +127,18 @@ abstract class ProjetoStoreBase with Store {
   setExtraValor(value) => extraValor = value;
 
   @action
+  setCardTitulo(value) => cardTitulo = value;
+
+  @action
+  setCardTexto(value) => cardTexto = value;
+
+  @action
+  setFaqPergunta(value) => faqPergunta = value;
+
+  @action
+  setFaqResposta(value) => faqResposta = value;
+
+  @action
   setSelectedModelo(value) => selectedModelo = value;
 
   @action
@@ -150,6 +174,7 @@ abstract class ProjetoStoreBase with Store {
         linkImage: null,
         habilidades: ObservableList<String>.of([]),
         extras: ObservableList<ExtrasModel>.of([]),
+        faq: ObservableList<FaqModel>.of([]),
       );
     }
     loadingStore.hide();
@@ -161,8 +186,13 @@ abstract class ProjetoStoreBase with Store {
   }
 
   @action
-  addHabilidade(value) {
-    projetoModel!.habilidades?.add(value);
+  addHabilidade(value, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.habilidades?.add(value);
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel!.habilidades?[indexForEdit] = value;
+    }
   }
 
   @action
@@ -171,9 +201,47 @@ abstract class ProjetoStoreBase with Store {
   }
 
   @action
-  addExtra(descricao, valor) {
-    var value = ExtrasModel(descricao: descricao, valor: int.parse(valor));
-    projetoModel!.extras?.add(value);
+  addExtra(descricao, valor, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.extras
+          ?.add(ExtrasModel(descricao: descricao, valor: int.parse(valor)));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel!.extras?[indexForEdit] =
+          ExtrasModel(descricao: descricao, valor: int.parse(valor));
+    }
+  }
+
+  @action
+  deletFaq(value) {
+    projetoModel!.faq?.remove(value);
+  }
+
+  @action
+  addFaq(pergunta, resposta, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.faq?.add(FaqModel(pergunta: pergunta, resposta: resposta));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel?.faq?[indexForEdit] =
+          FaqModel(pergunta: pergunta, resposta: resposta);
+    }
+  }
+
+  @action
+  deletCard(value) {
+    projetoModel!.card?.remove(value);
+  }
+
+  @action
+  addCard(titulo, texto, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.card?.add(CardModel(titulo: titulo, texto: texto));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel?.card?[indexForEdit] =
+          CardModel(titulo: titulo, texto: texto);
+    }
   }
 
   @action

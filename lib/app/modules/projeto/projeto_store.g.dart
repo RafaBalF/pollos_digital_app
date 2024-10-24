@@ -122,6 +122,70 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$faqPerguntaAtom =
+      Atom(name: 'ProjetoStoreBase.faqPergunta', context: context);
+
+  @override
+  String? get faqPergunta {
+    _$faqPerguntaAtom.reportRead();
+    return super.faqPergunta;
+  }
+
+  @override
+  set faqPergunta(String? value) {
+    _$faqPerguntaAtom.reportWrite(value, super.faqPergunta, () {
+      super.faqPergunta = value;
+    });
+  }
+
+  late final _$faqRespostaAtom =
+      Atom(name: 'ProjetoStoreBase.faqResposta', context: context);
+
+  @override
+  String? get faqResposta {
+    _$faqRespostaAtom.reportRead();
+    return super.faqResposta;
+  }
+
+  @override
+  set faqResposta(String? value) {
+    _$faqRespostaAtom.reportWrite(value, super.faqResposta, () {
+      super.faqResposta = value;
+    });
+  }
+
+  late final _$cardTituloAtom =
+      Atom(name: 'ProjetoStoreBase.cardTitulo', context: context);
+
+  @override
+  String? get cardTitulo {
+    _$cardTituloAtom.reportRead();
+    return super.cardTitulo;
+  }
+
+  @override
+  set cardTitulo(String? value) {
+    _$cardTituloAtom.reportWrite(value, super.cardTitulo, () {
+      super.cardTitulo = value;
+    });
+  }
+
+  late final _$cardTextoAtom =
+      Atom(name: 'ProjetoStoreBase.cardTexto', context: context);
+
+  @override
+  String? get cardTexto {
+    _$cardTextoAtom.reportRead();
+    return super.cardTexto;
+  }
+
+  @override
+  set cardTexto(String? value) {
+    _$cardTextoAtom.reportWrite(value, super.cardTexto, () {
+      super.cardTexto = value;
+    });
+  }
+
   late final _$selectedModeloAtom =
       Atom(name: 'ProjetoStoreBase.selectedModelo', context: context);
 
@@ -461,6 +525,50 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic setCardTitulo(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setCardTitulo');
+    try {
+      return super.setCardTitulo(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setCardTexto(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setCardTexto');
+    try {
+      return super.setCardTexto(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFaqPergunta(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFaqPergunta');
+    try {
+      return super.setFaqPergunta(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFaqResposta(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFaqResposta');
+    try {
+      return super.setFaqResposta(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setSelectedModelo(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.setSelectedModelo');
@@ -505,11 +613,11 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
-  dynamic addHabilidade(dynamic value) {
+  dynamic addHabilidade(dynamic value, dynamic indexForEdit) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.addHabilidade');
     try {
-      return super.addHabilidade(value);
+      return super.addHabilidade(value, indexForEdit);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -527,11 +635,55 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
-  dynamic addExtra(dynamic descricao, dynamic valor) {
+  dynamic addExtra(dynamic descricao, dynamic valor, dynamic indexForEdit) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.addExtra');
     try {
-      return super.addExtra(descricao, valor);
+      return super.addExtra(descricao, valor, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deletFaq(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deletFaq');
+    try {
+      return super.deletFaq(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addFaq(dynamic pergunta, dynamic resposta, dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addFaq');
+    try {
+      return super.addFaq(pergunta, resposta, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deletCard(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deletCard');
+    try {
+      return super.deletCard(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addCard(dynamic titulo, dynamic texto, dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addCard');
+    try {
+      return super.addCard(titulo, texto, indexForEdit);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -558,6 +710,10 @@ audio: ${audio},
 habilidade: ${habilidade},
 extraDescricao: ${extraDescricao},
 extraValor: ${extraValor},
+faqPergunta: ${faqPergunta},
+faqResposta: ${faqResposta},
+cardTitulo: ${cardTitulo},
+cardTexto: ${cardTexto},
 selectedModelo: ${selectedModelo},
 skillsCodeModelo1: ${skillsCodeModelo1},
 buttonDisplayed: ${buttonDisplayed},

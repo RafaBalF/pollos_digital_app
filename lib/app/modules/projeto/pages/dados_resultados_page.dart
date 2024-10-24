@@ -16,6 +16,7 @@ import 'package:pollos_digital/app/shared/widgets/inputs/input_extras.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_faq.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_yt_video.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -171,6 +172,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           InputFaqWidget(store: _store),
           DividerWidget(height: 2.h),
           InputCardWidget(store: _store),
+          DividerWidget(height: 2.h),
+          InputYTVideoWidget(store: _store),
           DividerWidget(height: 4.h),
           ButtonWidget.filled(
             onPressed: () async {

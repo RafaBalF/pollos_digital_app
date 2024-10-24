@@ -39,7 +39,7 @@ class HomePageState extends State<HomePage> {
     _future = Future.wait([_store.initHome()]);
 
     super.initState();
-    checkForUpdate(context);
+    // checkForUpdate(context);
     //Remove this method to stop OneSignal Debugging
     // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
     OneSignal.initialize("c171943c-7d63-4fd7-a68f-07938491ca80");

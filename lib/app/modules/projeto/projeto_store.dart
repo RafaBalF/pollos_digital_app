@@ -49,6 +49,12 @@ abstract class ProjetoStoreBase with Store {
   String? faqResposta;
 
   @observable
+  String? depoimentoNome;
+
+  @observable
+  String? depoimentoTexto;
+
+  @observable
   String? cardTitulo;
 
   @observable
@@ -68,6 +74,9 @@ abstract class ProjetoStoreBase with Store {
 
   @observable
   XFile? image;
+
+  @observable
+  XFile? depoimentoImage;
 
   @observable
   ObservableList listaModelos = ObservableList<ProjetoModeloModel>.of([]);
@@ -137,6 +146,12 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   setFaqResposta(value) => faqResposta = value;
+
+  @action
+  setDepoimentoNome(value) => depoimentoNome = value;
+
+  @action
+  setDepoimentoTexto(value) => depoimentoTexto = value;
 
   @action
   setSelectedModelo(value) => selectedModelo = value;
@@ -225,6 +240,23 @@ abstract class ProjetoStoreBase with Store {
       //indexForEdit diferente de nulo edita ao inves de adicionar novo
       projetoModel?.faq?[indexForEdit] =
           FaqModel(pergunta: pergunta, resposta: resposta);
+    }
+  }
+
+  @action
+  deletDepoimento(value) {
+    projetoModel!.depoimentos?.remove(value);
+  }
+
+  @action
+  addDepoimento(nome, depoimento, image, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.depoimentos?.add(
+          DepoimentoModel(nome: nome, depoimento: depoimento, image: image));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel?.depoimentos?[indexForEdit] =
+          DepoimentoModel(nome: nome, depoimento: depoimento, image: image);
     }
   }
 

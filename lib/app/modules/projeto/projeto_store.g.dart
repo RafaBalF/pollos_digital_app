@@ -154,6 +154,38 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$depoimentoNomeAtom =
+      Atom(name: 'ProjetoStoreBase.depoimentoNome', context: context);
+
+  @override
+  String? get depoimentoNome {
+    _$depoimentoNomeAtom.reportRead();
+    return super.depoimentoNome;
+  }
+
+  @override
+  set depoimentoNome(String? value) {
+    _$depoimentoNomeAtom.reportWrite(value, super.depoimentoNome, () {
+      super.depoimentoNome = value;
+    });
+  }
+
+  late final _$depoimentoTextoAtom =
+      Atom(name: 'ProjetoStoreBase.depoimentoTexto', context: context);
+
+  @override
+  String? get depoimentoTexto {
+    _$depoimentoTextoAtom.reportRead();
+    return super.depoimentoTexto;
+  }
+
+  @override
+  set depoimentoTexto(String? value) {
+    _$depoimentoTextoAtom.reportWrite(value, super.depoimentoTexto, () {
+      super.depoimentoTexto = value;
+    });
+  }
+
   late final _$cardTituloAtom =
       Atom(name: 'ProjetoStoreBase.cardTitulo', context: context);
 
@@ -263,6 +295,22 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   set image(XFile? value) {
     _$imageAtom.reportWrite(value, super.image, () {
       super.image = value;
+    });
+  }
+
+  late final _$depoimentoImageAtom =
+      Atom(name: 'ProjetoStoreBase.depoimentoImage', context: context);
+
+  @override
+  XFile? get depoimentoImage {
+    _$depoimentoImageAtom.reportRead();
+    return super.depoimentoImage;
+  }
+
+  @override
+  set depoimentoImage(XFile? value) {
+    _$depoimentoImageAtom.reportWrite(value, super.depoimentoImage, () {
+      super.depoimentoImage = value;
     });
   }
 
@@ -569,6 +617,28 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic setDepoimentoNome(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setDepoimentoNome');
+    try {
+      return super.setDepoimentoNome(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setDepoimentoTexto(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setDepoimentoTexto');
+    try {
+      return super.setDepoimentoTexto(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setSelectedModelo(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.setSelectedModelo');
@@ -668,6 +738,29 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic deletDepoimento(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deletDepoimento');
+    try {
+      return super.deletDepoimento(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addDepoimento(
+      dynamic nome, dynamic depoimento, dynamic image, dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addDepoimento');
+    try {
+      return super.addDepoimento(nome, depoimento, image, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic deletCard(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.deletCard');
@@ -712,6 +805,8 @@ extraDescricao: ${extraDescricao},
 extraValor: ${extraValor},
 faqPergunta: ${faqPergunta},
 faqResposta: ${faqResposta},
+depoimentoNome: ${depoimentoNome},
+depoimentoTexto: ${depoimentoTexto},
 cardTitulo: ${cardTitulo},
 cardTexto: ${cardTexto},
 selectedModelo: ${selectedModelo},
@@ -719,6 +814,7 @@ skillsCodeModelo1: ${skillsCodeModelo1},
 buttonDisplayed: ${buttonDisplayed},
 createdPageUrl: ${createdPageUrl},
 image: ${image},
+depoimentoImage: ${depoimentoImage},
 listaModelos: ${listaModelos},
 listaProjetos: ${listaProjetos}
     ''';

@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/models/abstract/from_json.abstract.dart';
 
@@ -20,6 +21,7 @@ class ProjetoModel extends FromJsonModel {
   ObservableList? extras = ObservableList<ExtrasModel>.of([]);
   ObservableList? faq = ObservableList<FaqModel>.of([]);
   ObservableList? card = ObservableList<CardModel>.of([]);
+  ObservableList? depoimentos = ObservableList<DepoimentoModel>.of([]);
   String? message;
   String? imagemModelo;
 
@@ -186,4 +188,33 @@ class CardModel extends FromJsonModel {
 
   @override
   fromJson(Map<String, dynamic> json) => CardModel.fromJson(json);
+}
+
+class DepoimentoModel extends FromJsonModel {
+  XFile? image;
+  String? linkImage;
+  String? nome;
+  String? depoimento;
+
+  DepoimentoModel({
+    this.image,
+    this.nome,
+    this.depoimento,
+  });
+
+  DepoimentoModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['nome'] = nome;
+    json['depoimento'] = depoimento;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['nome'] = nome;
+    json['depoimento'] = depoimento;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => DepoimentoModel.fromJson(json);
 }

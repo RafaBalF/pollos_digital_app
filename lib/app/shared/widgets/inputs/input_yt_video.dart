@@ -18,21 +18,6 @@ class _InputYTVideoWidgetState extends State<InputYTVideoWidget> {
   bool firstTime = true;
   bool visibilityVideo = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // const url = 'https://youtu.be/zm8_SDEYjtw?si=0vs3s3nbIqm3zrCg';
-  //   const url = 'i';
-  //   try {
-  //     controller = YoutubePlayerController(
-  //       initialVideoId: YoutubePlayer.convertUrlToId(url)!,
-  //       flags: const YoutubePlayerFlags(
-  //         autoPlay: false,
-  //       ),
-  //     );
-  //   } catch (e) {}
-  // }
-
   _changeVideo(value) {
     try {
       if (firstTime) {
@@ -45,9 +30,7 @@ class _InputYTVideoWidgetState extends State<InputYTVideoWidget> {
         controller?.load(YoutubePlayer.convertUrlToId(value)!);
       }
       setState(() {});
-    } catch (e) {
-      print('erro');
-    }
+    } catch (e) {}
   }
 
   @override

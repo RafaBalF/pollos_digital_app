@@ -1,8 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
-import 'package:pollos_digital/app/modules/projeto/projeto_page.dart';
+import 'package:pollos_digital/app/modules/projeto/pages/details_modelos_page.dart';
+import 'package:pollos_digital/app/modules/projeto/pages/record_audio_page.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
-import 'package:pollos_digital/app/modules/projeto/pages/projetos_modelos_page.dart';
+import 'package:pollos_digital/app/modules/projeto/projetos_modelos_page.dart';
 import 'package:pollos_digital/app/modules/projeto/pages/dados_resultados_page.dart';
 import 'package:pollos_digital/app/modules/projeto/pages/modelos_criados_page.dart';
 
@@ -17,7 +18,7 @@ class ProjetoModule extends Module {
   void routes(r) {
     r.child(
       '/',
-      child: (context) => const ProjetoPage(),
+      child: (context) => const ProjetosModelosPage(),
       transition: defaultTransitonType,
     );
     r.child(
@@ -27,12 +28,18 @@ class ProjetoModule extends Module {
     );
     r.child(
       '/projetos-modelos',
-      child: (context) => const ProjetosModelosPage(),
+      child: (context) => const ProjetoPage(),
       transition: defaultTransitonType,
     );
     r.child(
       '/projetos-criados',
       child: (context) => const ProjetosCriadosPage(),
+      transition: defaultTransitonType,
+    );
+
+    r.child(
+      '/details-modelos',
+      child: (context) => const DetaislModelosPage(),
       transition: defaultTransitonType,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/interfaces/selectable_card.interface.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
@@ -31,9 +32,12 @@ class _SelectableCardsWidgetState<T> extends State<SelectableCardsWidget<T>> {
     return Container(
       height: widget.height,
       width: 100.w,
-      color: grey,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(10)),
       child: RawScrollbar(
-        thumbColor: primary,
+        thumbColor: focus,
         trackColor: grey,
         trackBorderColor: grey,
         thumbVisibility: true,
@@ -61,8 +65,8 @@ class _SelectableCardsWidgetState<T> extends State<SelectableCardsWidget<T>> {
     late Color textColor;
 
     if (v.selected) {
-      borderColor = primary;
-      bgColor = primary;
+      borderColor = focus;
+      bgColor = focus;
       textColor = white;
     } else {
       borderColor = grey;
@@ -73,7 +77,7 @@ class _SelectableCardsWidgetState<T> extends State<SelectableCardsWidget<T>> {
     return GestureDetector(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(5),
           border: Border.all(color: borderColor),
           color: bgColor,
         ),

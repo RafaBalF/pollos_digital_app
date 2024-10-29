@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
@@ -10,6 +11,7 @@ import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_card.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_depoimento_texto.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_experiencia.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_extras.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_faq.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
@@ -31,13 +33,14 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
     with FormValidationsMixin {
   final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
-  final FocusNode _focusNode = FocusNode();
 
   final celularFormatter = MaskTextInputFormatter(
     mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
+
+  final ValueNotifier<XFile?> _arquivoNotifier = ValueNotifier<XFile?>(null);
 
   final double cardWidth = 90.w;
   final double cardHeight = 30.h;
@@ -55,7 +58,6 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
 
   @override
   void dispose() {
-    _focusNode.dispose(); // Não se esqueça de liberar o FocusNode
     super.dispose();
   }
 
@@ -96,10 +98,11 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // InputImagemWidget.rectangular(
-          //   image: _store.image,
-          //   linkImage: _store.projetoModel?.linkImage,
-          // ),
+          InputImagemWidget.rectangular(
+            arquivoNotifier: _arquivoNotifier,
+            image: _store.image,
+            linkImage: _store.projetoModel?.linkImage,
+          ),
           DividerWidget(height: 2.h),
           InputWidget(
             label: 'Nome',
@@ -109,7 +112,6 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           ),
           DividerWidget(height: 2.h),
           InputWidget(
-            // focusNode: _focusNode,
             label: 'Nome da Página',
             onChanged: _store.setNomePagina,
             controller: TextEditingController(
@@ -154,6 +156,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           InputCardWidget(store: _store),
           DividerWidget(height: 2.h),
           InputDepoimentoTextoWidget(store: _store),
+          DividerWidget(height: 2.h),
+          InputExperienciaWidget(store: _store),
           DividerWidget(height: 4.h),
           ButtonWidget.filled(
             onPressed: () async {

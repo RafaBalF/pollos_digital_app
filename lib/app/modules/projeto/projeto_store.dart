@@ -37,6 +37,9 @@ abstract class ProjetoStoreBase with Store {
   String? habilidade;
 
   @observable
+  String? atividade;
+
+  @observable
   String? extraDescricao;
 
   @observable
@@ -47,6 +50,18 @@ abstract class ProjetoStoreBase with Store {
 
   @observable
   String? faqResposta;
+
+  @observable
+  String? experienciaCargo;
+
+  @observable
+  String? experienciaEmpresa;
+
+  @observable
+  String? experienciaDataDeInicio;
+
+  @observable
+  String? experienciaDataDeFim;
 
   @observable
   String? depoimentoNome;
@@ -83,6 +98,9 @@ abstract class ProjetoStoreBase with Store {
 
   @observable
   ObservableList listaProjetos = ObservableList<ProjetoModel>.of([]);
+
+  @observable
+  ObservableList atividades = ObservableList<String>.of([]);
 
   //ACTIONs
   @action
@@ -130,6 +148,9 @@ abstract class ProjetoStoreBase with Store {
   setHabilidade(value) => habilidade = value;
 
   @action
+  setAtividade(value) => atividade = value;
+
+  @action
   setExtraDescricao(value) => extraDescricao = value;
 
   @action
@@ -146,6 +167,18 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   setFaqResposta(value) => faqResposta = value;
+
+  @action
+  setExperienciaCargo(value) => experienciaCargo = value;
+
+  @action
+  setExperienciaEmpresa(value) => experienciaEmpresa = value;
+
+  @action
+  setExperienciaDataDeInicio(value) => experienciaDataDeInicio = value;
+
+  @action
+  setExperienciaDataDeFim(value) => experienciaDataDeFim = value;
 
   @action
   setDepoimentoNome(value) => depoimentoNome = value;
@@ -211,6 +244,21 @@ abstract class ProjetoStoreBase with Store {
   }
 
   @action
+  deleteAtividade(value) {
+    atividades.remove(value);
+  }
+
+  @action
+  addAtividade(value, indexForEdit) {
+    if (indexForEdit == null) {
+      atividades.add(value);
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      atividades[indexForEdit] = value;
+    }
+  }
+
+  @action
   deleteExtra(value) {
     projetoModel!.extras?.remove(value);
   }
@@ -240,6 +288,32 @@ abstract class ProjetoStoreBase with Store {
       //indexForEdit diferente de nulo edita ao inves de adicionar novo
       projetoModel?.faq?[indexForEdit] =
           FaqModel(pergunta: pergunta, resposta: resposta);
+    }
+  }
+
+  @action
+  deletExperiencia(value) {
+    projetoModel!.experiencias?.remove(value);
+  }
+
+  @action
+  addExperiencia(
+      cargo, empresa, dataDeInicio, dataDeFim, atividades, indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.experiencias?.add(ExperienciaModel(
+          cargo: cargo,
+          empresa: empresa,
+          dataDeInicio: dataDeInicio,
+          dataDeFim: dataDeFim,
+          atividades: atividades));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel?.experiencias?[indexForEdit] = ExperienciaModel(
+          cargo: cargo,
+          empresa: empresa,
+          dataDeInicio: dataDeInicio,
+          dataDeFim: dataDeFim,
+          atividades: atividades);
     }
   }
 
@@ -374,7 +448,7 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   Future<void> initProjetosModelo() async {
-    await carregarModelos();
+    // await carregarModelos();
   }
 
   @action

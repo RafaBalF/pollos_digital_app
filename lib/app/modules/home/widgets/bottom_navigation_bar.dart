@@ -44,10 +44,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               'assets/icons/svg/list-details.svg',
               "Sites criados",
             ),
-            // _bottomNavigationBarItem(
-            //   'assets/icons/svg/ticket.svg',
-            //   'Pagamento',
-            // ),
+            _bottomNavigationBarItem(
+              'assets/icons/svg/ticket.svg',
+              'Pagamento',
+            ),
             // _bottomNavigationBarItem(
             //   'assets/icons/svg/chat.svg',
             //   'Chat',

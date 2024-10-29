@@ -18,6 +18,7 @@ class ProjetoModel extends FromJsonModel {
   String? valores;
   String? linkImage;
   ObservableList? habilidades = ObservableList<String>.of([]);
+  ObservableList? experiencias = ObservableList<ExperienciaModel>.of([]);
   ObservableList? extras = ObservableList<ExtrasModel>.of([]);
   ObservableList? faq = ObservableList<FaqModel>.of([]);
   ObservableList? card = ObservableList<CardModel>.of([]);
@@ -25,26 +26,26 @@ class ProjetoModel extends FromJsonModel {
   String? message;
   String? imagemModelo;
 
-  ProjetoModel({
-    this.id,
-    this.usuarioId,
-    this.urlAmigavel,
-    this.modelo,
-    this.nome,
-    this.nomePagina,
-    this.email,
-    this.telefone,
-    this.descricao,
-    this.linkContato,
-    this.missao,
-    this.visao,
-    this.valores,
-    this.linkImage,
-    this.habilidades,
-    this.extras,
-    this.faq,
-    this.card,
-  });
+  ProjetoModel(
+      {this.id,
+      this.usuarioId,
+      this.urlAmigavel,
+      this.modelo,
+      this.nome,
+      this.nomePagina,
+      this.email,
+      this.telefone,
+      this.descricao,
+      this.linkContato,
+      this.missao,
+      this.visao,
+      this.valores,
+      this.linkImage,
+      this.habilidades,
+      this.extras,
+      this.faq,
+      this.card,
+      this.depoimentos});
 
   ProjetoModel.createNew(ProjetoModel model) {
     nome = model.nome;
@@ -217,4 +218,40 @@ class DepoimentoModel extends FromJsonModel {
 
   @override
   fromJson(Map<String, dynamic> json) => DepoimentoModel.fromJson(json);
+}
+
+class ExperienciaModel extends FromJsonModel {
+  String? cargo;
+  String? empresa;
+  String? dataDeInicio;
+  String? dataDeFim;
+  ObservableList? atividades = ObservableList<String>.of([]);
+
+  ExperienciaModel({
+    this.cargo,
+    this.empresa,
+    this.dataDeInicio,
+    this.dataDeFim,
+    this.atividades,
+  });
+
+  ExperienciaModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['cargo'] = cargo;
+    json['empresa'] = empresa;
+    json['dataDeInicio'] = dataDeInicio;
+    json['dataDeFim'] = dataDeFim;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['cargo'] = cargo;
+    json['empresa'] = empresa;
+    json['dataDeInicio'] = dataDeInicio;
+    json['dataDeFim'] = dataDeFim;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => ExperienciaModel.fromJson(json);
 }

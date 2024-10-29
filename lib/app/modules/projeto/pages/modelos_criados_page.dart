@@ -245,6 +245,8 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                               extras: lista[index].extras,
                                               faq: lista[index].faq,
                                               card: lista[index].card,
+                                              depoimentos:
+                                                  lista[index].depoimentos,
                                             );
                                             Modular.to.pushNamed(
                                                 '/projeto/dados-resultados');

@@ -23,7 +23,7 @@ abstract class HomeStoreBase with Store {
     '/home/',
     '/projeto/',
     '/projeto/projetos-criados',
-    // '/pagamentos/',
+    '/pagamentos/',
     // '/chats/',
   ];
 
@@ -46,7 +46,7 @@ abstract class HomeStoreBase with Store {
 
   @action
   Future<void> initHome() async {
-    await projetoStore.carregarModelos();
+    // await projetoStore.carregarModelos();
     await getCashback();
   }
 

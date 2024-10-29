@@ -90,6 +90,22 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$atividadeAtom =
+      Atom(name: 'ProjetoStoreBase.atividade', context: context);
+
+  @override
+  String? get atividade {
+    _$atividadeAtom.reportRead();
+    return super.atividade;
+  }
+
+  @override
+  set atividade(String? value) {
+    _$atividadeAtom.reportWrite(value, super.atividade, () {
+      super.atividade = value;
+    });
+  }
+
   late final _$extraDescricaoAtom =
       Atom(name: 'ProjetoStoreBase.extraDescricao', context: context);
 
@@ -151,6 +167,72 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   set faqResposta(String? value) {
     _$faqRespostaAtom.reportWrite(value, super.faqResposta, () {
       super.faqResposta = value;
+    });
+  }
+
+  late final _$experienciaCargoAtom =
+      Atom(name: 'ProjetoStoreBase.experienciaCargo', context: context);
+
+  @override
+  String? get experienciaCargo {
+    _$experienciaCargoAtom.reportRead();
+    return super.experienciaCargo;
+  }
+
+  @override
+  set experienciaCargo(String? value) {
+    _$experienciaCargoAtom.reportWrite(value, super.experienciaCargo, () {
+      super.experienciaCargo = value;
+    });
+  }
+
+  late final _$experienciaEmpresaAtom =
+      Atom(name: 'ProjetoStoreBase.experienciaEmpresa', context: context);
+
+  @override
+  String? get experienciaEmpresa {
+    _$experienciaEmpresaAtom.reportRead();
+    return super.experienciaEmpresa;
+  }
+
+  @override
+  set experienciaEmpresa(String? value) {
+    _$experienciaEmpresaAtom.reportWrite(value, super.experienciaEmpresa, () {
+      super.experienciaEmpresa = value;
+    });
+  }
+
+  late final _$experienciaDataDeInicioAtom =
+      Atom(name: 'ProjetoStoreBase.experienciaDataDeInicio', context: context);
+
+  @override
+  String? get experienciaDataDeInicio {
+    _$experienciaDataDeInicioAtom.reportRead();
+    return super.experienciaDataDeInicio;
+  }
+
+  @override
+  set experienciaDataDeInicio(String? value) {
+    _$experienciaDataDeInicioAtom
+        .reportWrite(value, super.experienciaDataDeInicio, () {
+      super.experienciaDataDeInicio = value;
+    });
+  }
+
+  late final _$experienciaDataDeFimAtom =
+      Atom(name: 'ProjetoStoreBase.experienciaDataDeFim', context: context);
+
+  @override
+  String? get experienciaDataDeFim {
+    _$experienciaDataDeFimAtom.reportRead();
+    return super.experienciaDataDeFim;
+  }
+
+  @override
+  set experienciaDataDeFim(String? value) {
+    _$experienciaDataDeFimAtom.reportWrite(value, super.experienciaDataDeFim,
+        () {
+      super.experienciaDataDeFim = value;
     });
   }
 
@@ -343,6 +425,22 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   set listaProjetos(ObservableList<dynamic> value) {
     _$listaProjetosAtom.reportWrite(value, super.listaProjetos, () {
       super.listaProjetos = value;
+    });
+  }
+
+  late final _$atividadesAtom =
+      Atom(name: 'ProjetoStoreBase.atividades', context: context);
+
+  @override
+  ObservableList<dynamic> get atividades {
+    _$atividadesAtom.reportRead();
+    return super.atividades;
+  }
+
+  @override
+  set atividades(ObservableList<dynamic> value) {
+    _$atividadesAtom.reportWrite(value, super.atividades, () {
+      super.atividades = value;
     });
   }
 
@@ -551,6 +649,17 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic setAtividade(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setAtividade');
+    try {
+      return super.setAtividade(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setExtraDescricao(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.setExtraDescricao');
@@ -611,6 +720,50 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         name: 'ProjetoStoreBase.setFaqResposta');
     try {
       return super.setFaqResposta(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExperienciaCargo(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExperienciaCargo');
+    try {
+      return super.setExperienciaCargo(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExperienciaEmpresa(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExperienciaEmpresa');
+    try {
+      return super.setExperienciaEmpresa(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExperienciaDataDeInicio(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExperienciaDataDeInicio');
+    try {
+      return super.setExperienciaDataDeInicio(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setExperienciaDataDeFim(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExperienciaDataDeFim');
+    try {
+      return super.setExperienciaDataDeFim(value);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -694,6 +847,28 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic deleteAtividade(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deleteAtividade');
+    try {
+      return super.deleteAtividade(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addAtividade(dynamic value, dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addAtividade');
+    try {
+      return super.addAtividade(value, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic deleteExtra(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.deleteExtra');
@@ -732,6 +907,30 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         name: 'ProjetoStoreBase.addFaq');
     try {
       return super.addFaq(pergunta, resposta, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deletExperiencia(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deletExperiencia');
+    try {
+      return super.deletExperiencia(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addExperiencia(dynamic cargo, dynamic empresa, dynamic dataDeInicio,
+      dynamic dataDeFim, dynamic atividades, dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addExperiencia');
+    try {
+      return super.addExperiencia(
+          cargo, empresa, dataDeInicio, dataDeFim, atividades, indexForEdit);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -801,10 +1000,15 @@ projetoModel: ${projetoModel},
 buttonEnabilitiy: ${buttonEnabilitiy},
 audio: ${audio},
 habilidade: ${habilidade},
+atividade: ${atividade},
 extraDescricao: ${extraDescricao},
 extraValor: ${extraValor},
 faqPergunta: ${faqPergunta},
 faqResposta: ${faqResposta},
+experienciaCargo: ${experienciaCargo},
+experienciaEmpresa: ${experienciaEmpresa},
+experienciaDataDeInicio: ${experienciaDataDeInicio},
+experienciaDataDeFim: ${experienciaDataDeFim},
 depoimentoNome: ${depoimentoNome},
 depoimentoTexto: ${depoimentoTexto},
 cardTitulo: ${cardTitulo},
@@ -816,7 +1020,8 @@ createdPageUrl: ${createdPageUrl},
 image: ${image},
 depoimentoImage: ${depoimentoImage},
 listaModelos: ${listaModelos},
-listaProjetos: ${listaProjetos}
+listaProjetos: ${listaProjetos},
+atividades: ${atividades}
     ''';
   }
 }

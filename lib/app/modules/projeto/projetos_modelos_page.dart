@@ -26,6 +26,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
   late final Future<void> _future;
   final NumberFormat currencyFormatter = NumberFormat("#,##0.00", "pt_BR");
 
+  List<bool> selectedFilters = List.generate(4, (index) => false);
+
   @override
   void initState() {
     _future = Future.wait([_store.initProjetosModelo()]);
@@ -47,16 +49,16 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
         return SimpleScaffoldWidget(
             title: 'Modelos',
             bodyPadding: EdgeInsets.all(2.w),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    showCustomBottomSheet(context, 'FILTRO', _filterWidget());
-                  },
-                  icon: const Icon(
-                    Icons.tune,
-                    color: primary,
-                  ))
-            ],
+            // actions: [
+            //   IconButton(
+            //       onPressed: () {
+            //         showCustomBottomSheet(context, 'FILTRO', _filterWidget());
+            //       },
+            //       icon: const Icon(
+            //         Icons.tune,
+            //         color: primary,
+            //       ))
+            // ],
             body: Observer(
               builder: (_) {
                 if (snapshot.connectionState == ConnectionState.done &&
@@ -91,7 +93,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // Número de colunas
-            childAspectRatio: 0.67, // Proporção largura/altura das células
+            childAspectRatio:
+                0.75, //0.67, // Proporção largura/altura das células
             crossAxisSpacing: 3.0, // Espaçamento horizontal
             mainAxisSpacing: 8.0, // Espaçamento vertical
           ),
@@ -129,7 +132,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
     String formattedPrice = "R\$ ${currencyFormatter.format(price)}";
     final double mostWishedCardWidth = 50.w;
     const double mostWishedCardRadius = 10;
-    final double mostWishedPhotoHeight = 20.h;
+    final double mostWishedPhotoHeight = 25.h;
     final double mostWishedDetailsHeight = 12.h;
 
     Widget reviewBadge = (review != null)
@@ -169,7 +172,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
     return GestureDetector(
       onTap: () {
         _store.setModeloSelecionado(index);
-        Modular.to.pushNamed('/projeto/details-modelo');
+        // Modular.to.pushNamed('/projeto/details-modelo');
+        Modular.to.pushNamed('/projeto/record-audio');
       },
       child: Container(
         width: mostWishedCardWidth,
@@ -205,50 +209,50 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
                     ),
                   ),
                 ),
-                Container(
-                  height: mostWishedDetailsHeight,
-                  width: mostWishedCardWidth,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 2.w,
-                    vertical: 1.h,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 100.w,
-                        child: textWidget(
-                          title,
-                          textAlign: TextAlign.start,
-                          style: mostWished(color: darkerGrey),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 25.w,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                oldPriceWidget,
-                                textWidget(
-                                  formattedPrice,
-                                  style: headTitle(
-                                    color: success,
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                // Container(
+                //   height: mostWishedDetailsHeight,
+                //   width: mostWishedCardWidth,
+                //   padding: EdgeInsets.symmetric(
+                //     horizontal: 2.w,
+                //     vertical: 1.h,
+                //   ),
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       SizedBox(
+                //         width: 100.w,
+                //         child: textWidget(
+                //           title,
+                //           textAlign: TextAlign.start,
+                //           style: mostWished(color: darkerGrey),
+                //         ),
+                //       ),
+                //       Row(
+                //         crossAxisAlignment: CrossAxisAlignment.end,
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           SizedBox(
+                //             width: 25.w,
+                //             child: Column(
+                //               mainAxisAlignment: MainAxisAlignment.end,
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 oldPriceWidget,
+                //                 textWidget(
+                //                   formattedPrice,
+                //                   style: headTitle(
+                //                     color: success,
+                //                   ),
+                //                   maxLines: 1,
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ],
+                //       )
+                //     ],
+                //   ),
+                // ),
               ],
             ),
             reviewBadge,
@@ -289,38 +293,36 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _orderFilterItem('MAIS VENDIDO', Icons.favorite_border,
-                Colors.transparent, Colors.black, Colors.grey),
-            _orderFilterItem('GRÁTIS', Icons.money_off, Colors.transparent,
-                Colors.black, Colors.grey),
-            _orderFilterItem('AVALIAÇÃO', Icons.star_border, Colors.transparent,
-                Colors.black, Colors.grey),
-            _orderFilterItem('PREÇO', Icons.attach_money, Colors.transparent,
-                Colors.black, Colors.grey),
+            _orderFilterItem(0, 'MAIS VENDIDO', Icons.favorite_border),
+            _orderFilterItem(1, 'GRÁTIS', Icons.money_off),
+            _orderFilterItem(2, 'AVALIAÇÃO', Icons.star_border),
+            _orderFilterItem(3, 'PREÇO', Icons.attach_money),
           ],
         ),
       ],
     );
   }
 
-  Widget _orderFilterItem(label, icon, corContainer, corTexto, corIcon) {
-    // Color corContainer = Colors.transparent;
-    // Color corTexto = Colors.black;
-    // Color corIcon = Colors.grey;
+  Widget _orderFilterItem(int index, label, icon) {
     return GestureDetector(
       onTap: () {
-        corContainer = focus;
-        corTexto = Colors.white;
-        corIcon = Colors.white;
-        setState(() {});
+        setState(() {
+          // Deselect all filters first
+          for (int i = 0; i < selectedFilters.length; i++) {
+            selectedFilters[i] = false;
+          }
+          // Select the current filter
+          selectedFilters[index] = true;
+        });
       },
       child: Container(
         width: 22.w,
         height: 13.h,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border:
+              Border.all(color: selectedFilters[index] ? focus : Colors.grey),
           borderRadius: BorderRadius.circular(10),
-          color: corContainer,
+          color: selectedFilters[index] ? focus : Colors.transparent,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -329,11 +331,13 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
             children: [
               Icon(
                 icon,
-                color: corIcon,
+                color: selectedFilters[index] ? Colors.white : Colors.grey,
                 size: 40,
               ),
               // DividerWidget(height: 2.h),
-              textWidget(label, fontSize: 11, color: corTexto)
+              textWidget(label,
+                  fontSize: 11,
+                  color: selectedFilters[index] ? Colors.white : Colors.black)
             ],
           ),
         ),

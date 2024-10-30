@@ -43,12 +43,11 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
         child: Column(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(10.0),
                     topLeft: Radius.circular(10.0)),
-                // color: Colors.grey[400],
-                color: focus,
+                color: Colors.grey[400],
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -58,13 +57,12 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
                     Text(
                       'Experiência',
                       style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5,
-                          color: Colors.white),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                        height: 1.5,
+                      ),
                     ),
                     ButtonWidget.outlined(
-                      textColor: Colors.white,
                       onPressed: () {
                         showCustomBottomSheet(context, 'ADICIONAR EXPERIÊNCIA',
                             _addExperiencia(null));

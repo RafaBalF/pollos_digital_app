@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/constants/transition_type.dart';
 import 'package:pollos_digital/app/modules/projeto/pages/details_modelos_page.dart';
 import 'package:pollos_digital/app/modules/projeto/pages/record_audio_page.dart';
+import 'package:pollos_digital/app/modules/projeto/pages/select_modelo_page.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/modules/projeto/projetos_modelos_page.dart';
 import 'package:pollos_digital/app/modules/projeto/pages/dados_resultados_page.dart';
@@ -27,8 +28,13 @@ class ProjetoModule extends Module {
       transition: defaultTransitonType,
     );
     r.child(
-      '/projetos-modelos',
-      child: (context) => const ProjetoPage(),
+      '/select-modelo',
+      child: (context) => const SelectModeloPage(),
+      transition: defaultTransitonType,
+    );
+    r.child(
+      '/record-audio',
+      child: (context) => const RecordPage(),
       transition: defaultTransitonType,
     );
     r.child(
@@ -38,7 +44,7 @@ class ProjetoModule extends Module {
     );
 
     r.child(
-      '/details-modelos',
+      '/details-modelo',
       child: (context) => const DetaislModelosPage(),
       transition: defaultTransitonType,
     );

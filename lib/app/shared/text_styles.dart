@@ -171,7 +171,7 @@ TextStyle verySmall({Color? color, TextDecoration? textDecoration}) {
 
 TextStyle mostWished({Color? color, TextDecoration? textDecoration}) {
   return defaultStyle(
-    fontSize: 16.sp,
+    fontSize: 20.sp,
     fontWeight: FontWeight.bold,
     color: color,
     textDecoration: textDecoration,

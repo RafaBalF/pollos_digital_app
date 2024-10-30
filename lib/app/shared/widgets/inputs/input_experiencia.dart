@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
@@ -9,7 +10,6 @@ import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
 import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_atividades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -107,7 +107,8 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
                                 padding: const EdgeInsets.all(5),
                                 child: Text(
                                     widget.store.projetoModel
-                                        ?.experiencias?[index].cargo,
+                                            ?.experiencias?[index].cargo ??
+                                        '',
                                     style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold)),
@@ -139,15 +140,20 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
           widget.store.projetoModel?.experiencias?[index].cargo;
       widget.store.experienciaEmpresa =
           widget.store.projetoModel?.experiencias?[index].empresa;
-      widget.store.experienciaDataDeInicio =
-          widget.store.projetoModel?.experiencias?[index].dataDeInicio;
-      widget.store.experienciaDataDeFim =
-          widget.store.projetoModel?.experiencias?[index].dataDeFim;
+      widget.store.experienciaDataDeInicio = DateFormat('dd/MM/yyyy')
+          .format(widget.store.projetoModel?.experiencias?[index].dataDeInicio)
+          .toString();
+      widget.store.experienciaDataDeFim = DateFormat('dd/MM/yyyy')
+          .format(widget.store.projetoModel?.experiencias?[index].dataDeFim)
+          .toString();
+      widget.store.experienciaDescricao =
+          widget.store.projetoModel?.experiencias?[index].descricao;
     } else {
       widget.store.experienciaEmpresa = null;
       widget.store.experienciaCargo = null;
       widget.store.experienciaDataDeInicio = null;
       widget.store.experienciaDataDeFim = null;
+      widget.store.experienciaDescricao = null;
     }
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20),
@@ -189,10 +195,15 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
             ],
           ),
           const DividerWidget(height: 15),
-          InputAtividadesWidget(
-              atividadesNotifier: _atividadesNotifier,
-              store: widget.store,
-              indexOfExperiencia: index),
+          InputWidget(
+            label: 'Descrição',
+            onChanged: widget.store.setExperienciaDescricao,
+            value: widget.store.experienciaDescricao,
+          ),
+          // InputAtividadesWidget(
+          //     atividadesNotifier: _atividadesNotifier,
+          //     store: widget.store,
+          //     indexOfExperiencia: index),
           const DividerWidget(height: 30),
           ValueListenableBuilder<ObservableList?>(
               valueListenable: _atividadesNotifier,
@@ -205,7 +216,7 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget> {
                       widget.store.experienciaEmpresa,
                       widget.store.experienciaDataDeInicio,
                       widget.store.experienciaDataDeFim,
-                      atividades,
+                      widget.store.experienciaDescricao, //atividades,
                       index,
                     );
                     Modular.to.pop();

@@ -15,14 +15,14 @@ import 'package:record/record.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:path/path.dart' as p;
 
-class ProjetoPage extends StatefulWidget {
-  const ProjetoPage({super.key});
+class RecordPage extends StatefulWidget {
+  const RecordPage({super.key});
 
   @override
-  State<ProjetoPage> createState() => _ProjetoPageState();
+  State<RecordPage> createState() => _RecordPageState();
 }
 
-class _ProjetoPageState extends State<ProjetoPage> {
+class _RecordPageState extends State<RecordPage> {
   final ProjetoStore _store = Modular.get<ProjetoStore>();
   late final Future<void> _future;
 

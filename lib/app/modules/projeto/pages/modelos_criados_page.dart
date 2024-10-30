@@ -69,11 +69,6 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
           ? Center(child: _loadingBody())
           : _store.listaProjetos.isNotEmpty
               ? ListView.builder(
-                  // gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  //     maxCrossAxisExtent: 200,
-                  //     childAspectRatio: 1,
-                  //     crossAxisSpacing: 20,
-                  //     mainAxisSpacing: 20),
                   itemCount: _store.listaProjetos.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return Container(
@@ -81,7 +76,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                       margin: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
                         children: [
@@ -91,7 +86,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.network(
-                                _store.listaProjetos[index].imagemModelo,
+                                _store.listaProjetos[index].imagemModelo ?? '',
                               ),
                             ),
                           ),
@@ -225,29 +220,33 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                           onPressed: () {
                                             var lista = _store.listaProjetos;
                                             _store.projetoModel = ProjetoModel(
-                                              nome: lista[index].nome,
-                                              urlAmigavel:
-                                                  lista[index].urlAmigavel,
-                                              descricao: lista[index].descricao,
-                                              email: lista[index].email,
-                                              linkContato:
-                                                  lista[index].linkContato,
-                                              linkImage: lista[index].linkImage,
-                                              missao: lista[index].missao,
-                                              visao: lista[index].visao,
-                                              valores: lista[index].valores,
-                                              telefone: lista[index].telefone,
-                                              modelo: lista[index].modelo,
-                                              usuarioId: lista[index].usuarioId,
-                                              id: lista[index].id,
-                                              habilidades:
-                                                  lista[index].habilidades,
-                                              extras: lista[index].extras,
-                                              faq: lista[index].faq,
-                                              card: lista[index].card,
-                                              depoimentos:
-                                                  lista[index].depoimentos,
-                                            );
+                                                nome: lista[index].nome,
+                                                urlAmigavel:
+                                                    lista[index].urlAmigavel,
+                                                descricao:
+                                                    lista[index].descricao,
+                                                email: lista[index].email,
+                                                linkContato:
+                                                    lista[index].linkContato,
+                                                linkImage:
+                                                    lista[index].linkImage,
+                                                missao: lista[index].missao,
+                                                visao: lista[index].visao,
+                                                valores: lista[index].valores,
+                                                telefone: lista[index].telefone,
+                                                modelo: lista[index].modelo,
+                                                usuarioId:
+                                                    lista[index].usuarioId,
+                                                id: lista[index].id,
+                                                habilidades:
+                                                    lista[index].habilidades,
+                                                extras: lista[index].extras,
+                                                // faq: lista[index].faq,
+                                                // card: lista[index].card,
+                                                // depoimentos:
+                                                //     lista[index].depoimentos,
+                                                experiencias:
+                                                    lista[index].experiencias);
                                             Modular.to.pushNamed(
                                                 '/projeto/dados-resultados');
                                           },

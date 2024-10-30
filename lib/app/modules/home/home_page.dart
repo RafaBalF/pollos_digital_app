@@ -199,13 +199,13 @@ class HomePageState extends State<HomePage> {
           //   labelColor: primary,
           //   margin: EdgeInsets.only(right: 2.w),
           // ),
-          RedirectCardWidget(
-            imgPath: 'assets/icons/svg/calendar_accent.svg',
-            label: 'Agenda',
-            route: '/sessao/historico',
-            labelColor: primary,
-            margin: EdgeInsets.only(right: 2.w),
-          ),
+          // RedirectCardWidget(
+          //   imgPath: 'assets/icons/svg/calendar_accent.svg',
+          //   label: 'Agenda',
+          //   route: '/sessao/historico',
+          //   labelColor: primary,
+          //   margin: EdgeInsets.only(right: 2.w),
+          // ),
           // RedirectCardWidget(
           //   imgPath: 'assets/icons/svg/calendar_accent.svg',
           //   label: 'Agenda',

@@ -45,7 +45,8 @@ class ProjetoModel extends FromJsonModel {
       this.extras,
       this.faq,
       this.card,
-      this.depoimentos});
+      this.depoimentos,
+      this.experiencias});
 
   ProjetoModel.createNew(ProjetoModel model) {
     nome = model.nome;
@@ -87,6 +88,21 @@ class ProjetoModel extends FromJsonModel {
             valor: double.tryParse(e['valor'].toString())?.toInt()));
       }
     }
+    if (json['experiencias'] != []) {
+      for (var e in json['experiencias']) {
+        experiencias!.add(ExperienciaModel(
+          cargo: e['cargo'],
+          empresa: e['empresa'],
+          dataDeInicio: e['data_inicio'] != null
+              ? DateTime.parse(e['data_inicio'])
+              : DateTime.now(),
+          dataDeFim: e['data_fim'] != null
+              ? DateTime.parse(e['data_fim'])
+              : DateTime.now(),
+          descricao: e['descricao'],
+        ));
+      }
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -106,6 +122,7 @@ class ProjetoModel extends FromJsonModel {
     json['linkdaimagem1'] = linkImage;
     json['habilidades'] = habilidades;
     json['extras'] = extras;
+    json['experiencias'] = experiencias;
     return json;
   }
 
@@ -124,8 +141,8 @@ class ExtrasModel extends FromJsonModel {
 
   ExtrasModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['descricao'] = descricao;
-    json['valor'] = valor;
+    descricao = json['descricao'];
+    valor = json['valor'];
   }
 
   Map<String, dynamic> toJson() {
@@ -150,8 +167,8 @@ class FaqModel extends FromJsonModel {
 
   FaqModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['pergunta'] = pergunta;
-    json['resposta'] = resposta;
+    pergunta = json['pergunta'];
+    resposta = json['resposta'];
   }
 
   Map<String, dynamic> toJson() {
@@ -176,8 +193,9 @@ class CardModel extends FromJsonModel {
 
   CardModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['titulo'] = titulo;
-    json['texto'] = texto;
+
+    titulo = json['titulo'];
+    texto = json['texto'];
   }
 
   Map<String, dynamic> toJson() {
@@ -205,8 +223,8 @@ class DepoimentoModel extends FromJsonModel {
 
   DepoimentoModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['nome'] = nome;
-    json['depoimento'] = depoimento;
+    nome = json['nome'];
+    depoimento = json['depoimento'];
   }
 
   Map<String, dynamic> toJson() {
@@ -223,32 +241,34 @@ class DepoimentoModel extends FromJsonModel {
 class ExperienciaModel extends FromJsonModel {
   String? cargo;
   String? empresa;
-  String? dataDeInicio;
-  String? dataDeFim;
-  ObservableList? atividades = ObservableList<String>.of([]);
+  DateTime? dataDeInicio;
+  DateTime? dataDeFim;
+  String? descricao;
 
   ExperienciaModel({
     this.cargo,
     this.empresa,
     this.dataDeInicio,
     this.dataDeFim,
-    this.atividades,
+    this.descricao,
   });
 
   ExperienciaModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic> json = <String, dynamic>{};
-    json['cargo'] = cargo;
-    json['empresa'] = empresa;
-    json['dataDeInicio'] = dataDeInicio;
-    json['dataDeFim'] = dataDeFim;
+    cargo = json['cargo'];
+    empresa = json['empresa'];
+    dataDeInicio = json['dataDeInicio'];
+    dataDeFim = json['dataDeFim'];
+    descricao = json['descricao'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
     json['cargo'] = cargo;
     json['empresa'] = empresa;
-    json['dataDeInicio'] = dataDeInicio;
-    json['dataDeFim'] = dataDeFim;
+    json['data_inicio'] = dataDeInicio?.toIso8601String();
+    json['data_fim'] = dataDeFim?.toIso8601String();
+    json['descricao'] = descricao;
     return json;
   }
 

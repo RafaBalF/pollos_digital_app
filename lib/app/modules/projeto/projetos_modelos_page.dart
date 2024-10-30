@@ -45,7 +45,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return SimpleScaffoldWidget(
-            title: 'Resultados',
+            title: 'Modelos',
             bodyPadding: EdgeInsets.all(2.w),
             actions: [
               IconButton(
@@ -95,14 +95,15 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
             crossAxisSpacing: 3.0, // Espaçamento horizontal
             mainAxisSpacing: 8.0, // Espaçamento vertical
           ),
-          itemCount: 10,
+          itemCount: _store.listaModelos.length,
           itemBuilder: (context, index) {
             // Aqui você pode personalizar o widget que será exibido no grid
             return _mostWishedCard(
-              'Curriculo modelo 1',
-              'assets/images/projeto/1.png',
-              1349.85,
-              oldPrice: 2229.90,
+              'Modelo ${index + 1}', //_store.listaModelos[index].nome,
+              _store.listaModelos[index].imgUrl,
+              00.00,
+              index,
+              oldPrice: 00.00,
               review: 4.5,
             );
           },
@@ -119,7 +120,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
   Widget _mostWishedCard(
     String title,
     String photo,
-    double price, {
+    double price,
+    int index, {
     double? oldPrice,
     String? duration,
     double? review,
@@ -166,7 +168,8 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
 
     return GestureDetector(
       onTap: () {
-        Modular.to.pushNamed('/projeto/details-modelos');
+        _store.setModeloSelecionado(index);
+        Modular.to.pushNamed('/projeto/details-modelo');
       },
       child: Container(
         width: mostWishedCardWidth,
@@ -196,7 +199,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
                       topLeft: Radius.circular(mostWishedCardRadius),
                       topRight: Radius.circular(mostWishedCardRadius),
                     ),
-                    child: Image.asset(
+                    child: Image.network(
                       photo,
                       fit: BoxFit.cover,
                     ),
@@ -212,10 +215,13 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      textWidget(
-                        title,
-                        textAlign: TextAlign.start,
-                        style: mostWished(color: darkerGrey),
+                      SizedBox(
+                        width: 100.w,
+                        child: textWidget(
+                          title,
+                          textAlign: TextAlign.start,
+                          style: mostWished(color: darkerGrey),
+                        ),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,

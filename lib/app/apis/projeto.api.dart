@@ -86,32 +86,50 @@ class ProjetoApi extends BaseApi {
             "role": "user",
             "content":
                 """Considerando o seguinte texto $audioTranscripted me retorne um json seguindo o seguinte modelo {
-   "nomepessoa":"Nome da pessoa",
-   "urlamigavel":" ",
-   "descricao":"Mariana é uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
+   "nomepessoa":"Nome Completo Pessoal",
+   "urlamigavel":"nome-pessoal",
+   "descricao":"Eu sou uma engenheira de software com mais de 10 anos de experiência no desenvolvimento de soluções tecnológicas para empresas de diversos setores, como tecnologia da informação, saúde e finanças. Ela é especializada em desenvolvimento backend com Java e Python, além de ser uma entusiasta de arquitetura de microsserviços e computação em nuvem. Mariana também tem experiência em gerenciamento de equipes ágeis e já atuou como Tech Lead em grandes projetos de transformação digital.",
    "telefone":"(00) 00000-0000",
-   "email":"mariana@gmail.com",
+   "email":"exemplo@gmail.com",
    "missao":"Minha missão é desenvolver soluções tecnológicas que impactem positivamente a sociedade, promovendo inovação, eficiência e acessibilidade em todos os projetos que lidero ou participo",
    "visao":"Ser uma referência no desenvolvimento de software de alta qualidade, sempre buscando o aprimoramento contínuo e a adoção de novas tecnologias que possam transformar o mercado e a vida das pessoas",
    "valores":"Excelência: Compromisso com a entrega de soluções de alta qualidade. Inclusão: Acredita que a tecnologia deve ser acessível e inclusiva para todos. Inovação: Busca constante por novas ideias e abordagens tecnológicas. Ética: Transparência, honestidade e responsabilidade em todas as relações profissionais.",
    "habilidades":[
-      "Css",
-      "html",
-      "javascript",
-      "C#"
+      "exemplo de habilidade",
+      "exemplo de habilidade",
+      "exemplo de habilidade"
    ],
    "extras":[
       {
-         "descricao":"projeto",
+         "descricao":"projetos",
          "valor":12
       },
       {
-         "descricao":"projeto",
+         "descricao":"projetos",
          "valor":12
       }
-   ]
-
-}, não leve em conta as informações no json de exemploe, informações pessoais como nome, telefone e email esses dados caso nao sejam detectados colocar o valor deles como null, o nome do arquivo deve ser o nome da pessoa em kebab case, pode elaborar por conta própria os dados que não forem informado, mas nao leve em consideração as informações no json de exemplo fornecido.""",
+   ],
+   "experiencias": [
+     {
+      "empresa": "Nome da empresa",
+      "cargo": "Cargo exercido",
+      "descricao": "Descricao das atividades desempenhadas",
+      "data_inicio": "2022-01-01",
+      "data_fim": "2023-01-01",
+      "localizacao": null,
+      "em_andamento": false
+    },
+    {
+      "empresa": "Nome da empresa",
+      "cargo": "Cargo exercido",
+      "descricao": "Descricao das atividades desempenhadas",
+      "data_inicio": "2006-01-01",
+      "data_fim": "2008-01-01",
+      "localizacao": null,
+      "em_andamento": false
+    }
+  ]
+}, o que nao for informado elabore mas baseie-se no texto, exceto por informações pessoais.""",
           }
         ]
       });
@@ -208,6 +226,7 @@ class ProjetoApi extends BaseApi {
       // result = "Algo deu errado, tente novamente mais tarde.";
       b.message = handleDioException(e);
     } catch (e) {
+      print(e);
       // return BaseModel();
     }
     return result;
@@ -217,7 +236,7 @@ class ProjetoApi extends BaseApi {
     var b = ProjetoModel();
     var result;
     try {
-      var response = (await Dio(_option).post('/Modelos')).data;
+      var response = (await Dio(_option).post('/Modelos/curriculo')).data;
 
       result = response;
     } on DioException catch (e) {

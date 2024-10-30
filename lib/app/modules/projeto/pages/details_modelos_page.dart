@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
+import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -32,7 +33,7 @@ class _DetaislModelosPageState extends State<DetaislModelosPage> {
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return SimpleScaffoldWidget(
-            title: 'Modelos',
+            title: 'Modelo',
             bodyPadding: EdgeInsets.all(2.w),
             body: Observer(
               builder: (_) {
@@ -73,16 +74,24 @@ class _DetaislModelosPageState extends State<DetaislModelosPage> {
           fontSize: 17.sp,
         ),
         DividerWidget(height: 8.h),
-        textWidget(
-          'Planos',
-          fontSize: 30.sp,
-          color: focus,
-          fontWeight: FontWeight.bold,
+        // textWidget(
+        //   'Planos',
+        //   fontSize: 30.sp,
+        //   color: focus,
+        //   fontWeight: FontWeight.bold,
+        // ),
+        // textWidget('Escolha seu plano',
+        //     fontSize: 18.sp, fontWeight: FontWeight.bold),
+        // DividerWidget(height: 2.h),
+        // _verticalBanners(),
+        ButtonWidget.filled(
+          onPressed: () async {
+            Modular.to.pushNamed('/projeto/record-audio');
+          },
+          title: 'AVANÇAR',
+          textColor: white,
+          backgroundColor: focus,
         ),
-        textWidget('Escolha seu plano',
-            fontSize: 18.sp, fontWeight: FontWeight.bold),
-        DividerWidget(height: 2.h),
-        _verticalBanners(),
         DividerWidget(height: 2.h),
       ],
     );

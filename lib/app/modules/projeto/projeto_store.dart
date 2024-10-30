@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pollos_digital/app/apis/projeto.api.dart';
 import 'package:pollos_digital/app/models/projeto.model.dart';
@@ -62,6 +63,9 @@ abstract class ProjetoStoreBase with Store {
 
   @observable
   String? experienciaDataDeFim;
+
+  @observable
+  String? experienciaDescricao;
 
   @observable
   String? depoimentoNome;
@@ -181,6 +185,9 @@ abstract class ProjetoStoreBase with Store {
   setExperienciaDataDeFim(value) => experienciaDataDeFim = value;
 
   @action
+  setExperienciaDescricao(value) => experienciaDescricao = value;
+
+  @action
   setDepoimentoNome(value) => depoimentoNome = value;
 
   @action
@@ -202,29 +209,33 @@ abstract class ProjetoStoreBase with Store {
   handleAudio(File? audio) async {
     var r = ProjetoModel();
     loadingStore.show();
-    var token = await _projetoApi.getTokenOpenIaAPI();
-    final textTranscripted = await _projetoApi.trancriptAudio(audio!, token);
-    r = await _projetoApi.getAiResponse(
-        textTranscripted ?? "gere sozinho", token);
-    if (r.message == null) {
-      projetoModel = r;
-    } else {
-      projetoModel = ProjetoModel(
-        nome: '',
-        nomePagina: '',
-        email: '',
-        telefone: '',
-        descricao: '',
-        linkContato: '',
-        missao: '',
-        visao: '',
-        valores: '',
-        linkImage: null,
-        habilidades: ObservableList<String>.of([]),
-        extras: ObservableList<ExtrasModel>.of([]),
-        faq: ObservableList<FaqModel>.of([]),
-      );
-    }
+    try {
+      var token = await _projetoApi.getTokenOpenIaAPI();
+      final textTranscripted = await _projetoApi.trancriptAudio(audio!, token);
+      r = await _projetoApi.getAiResponse(
+          textTranscripted ?? "gere sozinho", token);
+      if (r.message == null) {
+        r.modelo = projetoModel?.modelo;
+        projetoModel = r;
+      } else {
+        projetoModel = ProjetoModel(
+          nome: '',
+          nomePagina: '',
+          email: '',
+          telefone: '',
+          descricao: '',
+          linkContato: '',
+          missao: '',
+          visao: '',
+          valores: '',
+          linkImage: null,
+          habilidades: ObservableList<String>.of([]),
+          extras: ObservableList<ExtrasModel>.of([]),
+          faq: ObservableList<FaqModel>.of([]),
+          experiencias: ObservableList<ExperienciaModel>.of([]),
+        );
+      }
+    } catch (e) {}
     loadingStore.hide();
   }
 
@@ -298,22 +309,22 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   addExperiencia(
-      cargo, empresa, dataDeInicio, dataDeFim, atividades, indexForEdit) {
+      cargo, empresa, dataDeInicio, dataDeFim, descricao, indexForEdit) {
     if (indexForEdit == null) {
       projetoModel!.experiencias?.add(ExperienciaModel(
           cargo: cargo,
           empresa: empresa,
-          dataDeInicio: dataDeInicio,
-          dataDeFim: dataDeFim,
-          atividades: atividades));
+          dataDeInicio: DateFormat('dd/MM/yyyyy').parse(dataDeInicio),
+          dataDeFim: DateFormat('dd/MM/yyyyy').parse(dataDeFim),
+          descricao: descricao));
     } else {
       //indexForEdit diferente de nulo edita ao inves de adicionar novo
       projetoModel?.experiencias?[indexForEdit] = ExperienciaModel(
           cargo: cargo,
           empresa: empresa,
-          dataDeInicio: dataDeInicio,
-          dataDeFim: dataDeFim,
-          atividades: atividades);
+          dataDeInicio: DateFormat('dd/MM/yyyyy').parse(dataDeInicio),
+          dataDeFim: DateFormat('dd/MM/yyyyy').parse(dataDeFim),
+          descricao: descricao);
     }
   }
 
@@ -375,7 +386,7 @@ abstract class ProjetoStoreBase with Store {
         );
       }
     }
-    projetoModel?.modelo = (index + 1).toString();
+    projetoModel?.modelo = listaModelos[index].id;
   }
 
   @action
@@ -448,7 +459,7 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   Future<void> initProjetosModelo() async {
-    // await carregarModelos();
+    await carregarModelos();
   }
 
   @action

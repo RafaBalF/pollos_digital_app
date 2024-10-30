@@ -46,8 +46,8 @@ abstract class HomeStoreBase with Store {
 
   @action
   Future<void> initHome() async {
-    // await projetoStore.carregarModelos();
-    await getCashback();
+    await projetoStore.carregarModelos();
+    // await getCashback();
   }
 
   @action

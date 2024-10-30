@@ -81,11 +81,11 @@ class ProfilePageState extends State<ProfilePage> {
         'Políticas de privacidade',
         () => Modular.to.pushNamed('/profile/politicas-de-privacidade'),
       ),
-      _tileCard(
-        'assets/icons/svg/orders_table_accent.svg',
-        'Histórico de sessões',
-        () => Modular.to.pushNamed('/sessao/historico'),
-      ),
+      // _tileCard(
+      //   'assets/icons/svg/orders_table_accent.svg',
+      //   'Histórico de sessões',
+      //   () => Modular.to.pushNamed('/sessao/historico'),
+      // ),
       _tileCard(
         'assets/icons/svg/change-password_accent.svg',
         'Redefinir senha',

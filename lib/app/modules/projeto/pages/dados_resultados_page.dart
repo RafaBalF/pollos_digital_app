@@ -9,16 +9,12 @@ import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_card.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_depoimento_texto.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_experiencia.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_extras.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_faq.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_image.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_missao_visao_valores.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_yt_video.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -142,39 +138,58 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
             controller: TextEditingController(
                 text: _store.projetoModel?.descricao ?? ''),
           ),
-          DividerWidget(height: 2.h),
-          InputYTVideoWidget(store: _store),
+          // DividerWidget(height: 2.h),
+          // InputYTVideoWidget(store: _store),
           DividerWidget(height: 2.h),
           InputMissaoVisaoValoresWidget(store: _store),
           DividerWidget(height: 2.h),
           InputHabilidadesWidget(store: _store),
           DividerWidget(height: 2.h),
           InputExtraWidget(store: _store),
-          DividerWidget(height: 2.h),
-          InputFaqWidget(store: _store),
-          DividerWidget(height: 2.h),
-          InputCardWidget(store: _store),
-          DividerWidget(height: 2.h),
-          InputDepoimentoTextoWidget(store: _store),
+          // DividerWidget(height: 2.h),
+          // InputFaqWidget(store: _store),
+          // DividerWidget(height: 2.h),
+          // InputCardWidget(store: _store),
+          // DividerWidget(height: 2.h),
+          // InputDepoimentoTextoWidget(store: _store),
           DividerWidget(height: 2.h),
           InputExperienciaWidget(store: _store),
           DividerWidget(height: 4.h),
           ButtonWidget.filled(
             onPressed: () async {
-              if (_store.projetoModel?.usuarioId == null ||
-                  _store.projetoModel?.urlAmigavel != urlAmigavelInauterada) {
+              if (_store.projetoModel?.usuarioId == null) {
                 var r = await _store.validarUrlAmigavel();
                 if (r == null) {
-                  Modular.to.pushNamed('/projeto/projetos-modelos');
+                  var r = await _store.salvarProjeto();
+                  if (r != null) {
+                    _showToast(context, 'Página salva com sucesso', true);
+                    Modular.to.popUntil((route) => route.isFirst);
+                    Modular.to.pushNamed('/projeto/projetos-criados');
+                  } else {
+                    _showToast(context,
+                        'Falha ao criar página, tente novamente', false);
+                  }
                 } else {
                   // ignore: use_build_context_synchronously
-                  _showToast(context, r);
+                  _showToast(context, r, false);
                 }
               } else {
-                Modular.to.pushNamed('/projeto/projetos-modelos');
+                if (_store.projetoModel?.urlAmigavel != urlAmigavelInauterada) {
+                  var r = await _store.validarUrlAmigavel();
+                  if (r == null) {
+                    Modular.to.pushNamed('/projeto/select-modelo');
+                  } else {
+                    // ignore: use_build_context_synchronously
+                    _showToast(context, r, false);
+                  }
+                } else {
+                  Modular.to.pushNamed('/projeto/select-modelo');
+                }
               }
             },
-            title: 'AVANÇAR',
+            title: (_store.projetoModel?.usuarioId == null)
+                ? 'SALVAR '
+                : 'AVANÇAR',
             textColor: white,
             backgroundColor: focus,
           ),
@@ -184,12 +199,12 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
     );
   }
 
-  void _showToast(BuildContext context, message) {
+  void _showToast(BuildContext context, message, sucess) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 5),
-        backgroundColor: primary,
+        backgroundColor: sucess ? Colors.green : primary,
         content: textWidget(message, color: Colors.white),
         action: SnackBarAction(
           label: 'Ok',

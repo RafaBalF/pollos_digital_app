@@ -128,6 +128,24 @@ class ProjetoApi extends BaseApi {
       "localizacao": null,
       "em_andamento": false
     }
+  ],
+  "formacoes": [
+    {
+      "instituicao": "Faculdade ou escola",
+      "curso": "Curso cursado",
+      "descricao": "Descricao do que aprendeu.",
+      "data_inicio": "1995-02-01",
+      "data_fim": "1998-12-01",
+      "status": "Concluído"
+    },
+    {
+      "instituicao": "Faculdade ou escola",
+      "curso": "Curso cursado",
+      "descricao": "Descricao do que aprendeu.",
+      "data_inicio": "2000-02-01",
+      "data_fim": "2005-12-01",
+      "status": "Interrompido"
+    }
   ]
 }, o que nao for informado elabore mas baseie-se no texto, exceto por informações pessoais.""",
           }

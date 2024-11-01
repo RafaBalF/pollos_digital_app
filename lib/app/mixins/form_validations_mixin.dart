@@ -57,6 +57,15 @@ mixin FormValidationsMixin {
     return null;
   }
 
+  String? validDate(String? value, [String? message]) {
+    bool matches = RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$')
+        .hasMatch(value ?? "");
+
+    if (!matches) return message ?? "Este campo deve ser uma data válida";
+
+    return null;
+  }
+
   String? matchValue(String? value, String? match, [String? message]) {
     if (value != match) return message ?? "Campo inválido";
 

@@ -236,6 +236,120 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     });
   }
 
+  late final _$experienciaDescricaoAtom =
+      Atom(name: 'ProjetoStoreBase.experienciaDescricao', context: context);
+
+  @override
+  String? get experienciaDescricao {
+    _$experienciaDescricaoAtom.reportRead();
+    return super.experienciaDescricao;
+  }
+
+  @override
+  set experienciaDescricao(String? value) {
+    _$experienciaDescricaoAtom.reportWrite(value, super.experienciaDescricao,
+        () {
+      super.experienciaDescricao = value;
+    });
+  }
+
+  late final _$formacaoCursoAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoCurso', context: context);
+
+  @override
+  String? get formacaoCurso {
+    _$formacaoCursoAtom.reportRead();
+    return super.formacaoCurso;
+  }
+
+  @override
+  set formacaoCurso(String? value) {
+    _$formacaoCursoAtom.reportWrite(value, super.formacaoCurso, () {
+      super.formacaoCurso = value;
+    });
+  }
+
+  late final _$formacaoInstituicaoAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoInstituicao', context: context);
+
+  @override
+  String? get formacaoInstituicao {
+    _$formacaoInstituicaoAtom.reportRead();
+    return super.formacaoInstituicao;
+  }
+
+  @override
+  set formacaoInstituicao(String? value) {
+    _$formacaoInstituicaoAtom.reportWrite(value, super.formacaoInstituicao, () {
+      super.formacaoInstituicao = value;
+    });
+  }
+
+  late final _$formacaoDataDeInicioAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoDataDeInicio', context: context);
+
+  @override
+  String? get formacaoDataDeInicio {
+    _$formacaoDataDeInicioAtom.reportRead();
+    return super.formacaoDataDeInicio;
+  }
+
+  @override
+  set formacaoDataDeInicio(String? value) {
+    _$formacaoDataDeInicioAtom.reportWrite(value, super.formacaoDataDeInicio,
+        () {
+      super.formacaoDataDeInicio = value;
+    });
+  }
+
+  late final _$formacaoDataDeFimAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoDataDeFim', context: context);
+
+  @override
+  String? get formacaoDataDeFim {
+    _$formacaoDataDeFimAtom.reportRead();
+    return super.formacaoDataDeFim;
+  }
+
+  @override
+  set formacaoDataDeFim(String? value) {
+    _$formacaoDataDeFimAtom.reportWrite(value, super.formacaoDataDeFim, () {
+      super.formacaoDataDeFim = value;
+    });
+  }
+
+  late final _$formacaoDescricaoAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoDescricao', context: context);
+
+  @override
+  String? get formacaoDescricao {
+    _$formacaoDescricaoAtom.reportRead();
+    return super.formacaoDescricao;
+  }
+
+  @override
+  set formacaoDescricao(String? value) {
+    _$formacaoDescricaoAtom.reportWrite(value, super.formacaoDescricao, () {
+      super.formacaoDescricao = value;
+    });
+  }
+
+  late final _$formacaoStatusAtom =
+      Atom(name: 'ProjetoStoreBase.formacaoStatus', context: context);
+
+  @override
+  String? get formacaoStatus {
+    _$formacaoStatusAtom.reportRead();
+    return super.formacaoStatus;
+  }
+
+  @override
+  set formacaoStatus(String? value) {
+    _$formacaoStatusAtom.reportWrite(value, super.formacaoStatus, () {
+      super.formacaoStatus = value;
+    });
+  }
+
   late final _$depoimentoNomeAtom =
       Atom(name: 'ProjetoStoreBase.depoimentoNome', context: context);
 
@@ -393,6 +507,38 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   set depoimentoImage(XFile? value) {
     _$depoimentoImageAtom.reportWrite(value, super.depoimentoImage, () {
       super.depoimentoImage = value;
+    });
+  }
+
+  late final _$isDateInicioValidAtom =
+      Atom(name: 'ProjetoStoreBase.isDateInicioValid', context: context);
+
+  @override
+  bool get isDateInicioValid {
+    _$isDateInicioValidAtom.reportRead();
+    return super.isDateInicioValid;
+  }
+
+  @override
+  set isDateInicioValid(bool value) {
+    _$isDateInicioValidAtom.reportWrite(value, super.isDateInicioValid, () {
+      super.isDateInicioValid = value;
+    });
+  }
+
+  late final _$isDateFimValidAtom =
+      Atom(name: 'ProjetoStoreBase.isDateFimValid', context: context);
+
+  @override
+  bool get isDateFimValid {
+    _$isDateFimValidAtom.reportRead();
+    return super.isDateFimValid;
+  }
+
+  @override
+  set isDateFimValid(bool value) {
+    _$isDateFimValidAtom.reportWrite(value, super.isDateFimValid, () {
+      super.isDateFimValid = value;
     });
   }
 
@@ -770,6 +916,83 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   }
 
   @override
+  dynamic setExperienciaDescricao(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setExperienciaDescricao');
+    try {
+      return super.setExperienciaDescricao(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoCurso(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoCurso');
+    try {
+      return super.setFormacaoCurso(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoInstituicao(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoInstituicao');
+    try {
+      return super.setFormacaoInstituicao(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoDataDeInicio(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoDataDeInicio');
+    try {
+      return super.setFormacaoDataDeInicio(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoDataDeFim(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoDataDeFim');
+    try {
+      return super.setFormacaoDataDeFim(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoDescricao(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoDescricao');
+    try {
+      return super.setFormacaoDescricao(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setFormacaoStatus(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setFormacaoStatus');
+    try {
+      return super.setFormacaoStatus(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setDepoimentoNome(dynamic value) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.setDepoimentoNome');
@@ -797,6 +1020,17 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         name: 'ProjetoStoreBase.setSelectedModelo');
     try {
       return super.setSelectedModelo(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setDateInicioFimValid(String? dataInicio, String? dataFim) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setDateInicioFimValid');
+    try {
+      return super.setDateInicioFimValid(dataInicio, dataFim);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -925,12 +1159,42 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
 
   @override
   dynamic addExperiencia(dynamic cargo, dynamic empresa, dynamic dataDeInicio,
-      dynamic dataDeFim, dynamic atividades, dynamic indexForEdit) {
+      dynamic dataDeFim, dynamic descricao, dynamic indexForEdit) {
     final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
         name: 'ProjetoStoreBase.addExperiencia');
     try {
       return super.addExperiencia(
-          cargo, empresa, dataDeInicio, dataDeFim, atividades, indexForEdit);
+          cargo, empresa, dataDeInicio, dataDeFim, descricao, indexForEdit);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic deletFormacao(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.deletFormacao');
+    try {
+      return super.deletFormacao(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addFormacao(
+      dynamic curso,
+      dynamic instituicao,
+      dynamic dataDeInicio,
+      dynamic dataDeFim,
+      dynamic descricao,
+      dynamic status,
+      dynamic indexForEdit) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.addFormacao');
+    try {
+      return super.addFormacao(curso, instituicao, dataDeInicio, dataDeFim,
+          descricao, status, indexForEdit);
     } finally {
       _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -1009,6 +1273,13 @@ experienciaCargo: ${experienciaCargo},
 experienciaEmpresa: ${experienciaEmpresa},
 experienciaDataDeInicio: ${experienciaDataDeInicio},
 experienciaDataDeFim: ${experienciaDataDeFim},
+experienciaDescricao: ${experienciaDescricao},
+formacaoCurso: ${formacaoCurso},
+formacaoInstituicao: ${formacaoInstituicao},
+formacaoDataDeInicio: ${formacaoDataDeInicio},
+formacaoDataDeFim: ${formacaoDataDeFim},
+formacaoDescricao: ${formacaoDescricao},
+formacaoStatus: ${formacaoStatus},
 depoimentoNome: ${depoimentoNome},
 depoimentoTexto: ${depoimentoTexto},
 cardTitulo: ${cardTitulo},
@@ -1019,6 +1290,8 @@ buttonDisplayed: ${buttonDisplayed},
 createdPageUrl: ${createdPageUrl},
 image: ${image},
 depoimentoImage: ${depoimentoImage},
+isDateInicioValid: ${isDateInicioValid},
+isDateFimValid: ${isDateFimValid},
 listaModelos: ${listaModelos},
 listaProjetos: ${listaProjetos},
 atividades: ${atividades}

@@ -8,22 +8,24 @@ import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/enums/button_sizes.enum.dart';
 import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
+import 'package:pollos_digital/app/shared/text_styles.dart';
+import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 
-class InputExperienciaWidget extends StatefulWidget {
+class InputFormacaoWidget extends StatefulWidget {
   final ProjetoStore store;
 
-  const InputExperienciaWidget({super.key, required this.store});
+  const InputFormacaoWidget({super.key, required this.store});
 
   @override
-  State<InputExperienciaWidget> createState() => _InputExperienciaWidgetState();
+  State<InputFormacaoWidget> createState() => _InputFormacaoWidgetState();
 }
 
-class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
+class _InputFormacaoWidgetState extends State<InputFormacaoWidget>
     with FormValidationsMixin {
   final ValueNotifier<ObservableList?> _atividadesNotifier =
       ValueNotifier<ObservableList?>(null);
@@ -33,6 +35,13 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
+
+  final List<String> statuses = [
+    'Concluído',
+    'Cursando',
+    'Interrompido',
+    'Em andamento',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +66,7 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Experiência',
+                      'Formação',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
@@ -66,8 +75,8 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                     ),
                     ButtonWidget.outlined(
                       onPressed: () {
-                        showCustomBottomSheet(context, 'ADICIONAR EXPERIÊNCIA',
-                            _addExperiencia(null));
+                        showCustomBottomSheet(
+                            context, 'ADICIONAR FORMAÇÃO', _addFormacao(null));
                       },
                       title: 'Adicionar',
                       buttonSize: ButtonSize.small,
@@ -90,32 +99,30 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: widget.store.projetoModel?.experiencias?.length,
+                    itemCount: widget.store.projetoModel?.formacoes?.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
                           GestureDetector(
                             onTap: () {
-                              showCustomBottomSheet(
-                                  context,
-                                  'ADICIONAR EXPERIÊNCIA',
-                                  _addExperiencia(index));
+                              showCustomBottomSheet(context,
+                                  'ADICIONAR FORMAÇÃO', _addFormacao(index));
                             },
                             child: ListTile(
                               title: Container(
                                 color: Colors.transparent,
                                 padding: const EdgeInsets.all(5),
                                 child: Text(
-                                  widget.store.projetoModel
-                                          ?.experiencias?[index].cargo ??
+                                  widget.store.projetoModel?.formacoes?[index]
+                                          .curso ??
                                       '',
                                 ),
                               ),
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  widget.store.deletExperiencia(widget.store
-                                      .projetoModel?.experiencias?[index]);
+                                  widget.store.deletFormacao(widget
+                                      .store.projetoModel?.formacoes?[index]);
                                 },
                               ),
                             ),
@@ -132,27 +139,32 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
     });
   }
 
-  _addExperiencia(index) {
+  _addFormacao(index) {
     if (index != null) {
-      widget.store.experienciaCargo =
-          widget.store.projetoModel?.experiencias?[index].cargo;
-      widget.store.experienciaEmpresa =
-          widget.store.projetoModel?.experiencias?[index].empresa;
-      widget.store.experienciaDataDeInicio = DateFormat('dd/MM/yyyy')
-          .format(widget.store.projetoModel?.experiencias?[index].dataDeInicio)
+      widget.store.formacaoCurso =
+          widget.store.projetoModel?.formacoes?[index].curso;
+      widget.store.formacaoInstituicao =
+          widget.store.projetoModel?.formacoes?[index].instituicao;
+      widget.store.formacaoDataDeInicio = DateFormat('dd/MM/yyyy')
+          .format(widget.store.projetoModel?.formacoes?[index].dataDeInicio)
           .toString();
-      widget.store.experienciaDataDeFim = DateFormat('dd/MM/yyyy')
-          .format(widget.store.projetoModel?.experiencias?[index].dataDeFim)
+      widget.store.formacaoDataDeFim = DateFormat('dd/MM/yyyy')
+          .format(widget.store.projetoModel?.formacoes?[index].dataDeFim)
           .toString();
-      widget.store.experienciaDescricao =
-          widget.store.projetoModel?.experiencias?[index].descricao;
+      widget.store.formacaoDescricao =
+          widget.store.projetoModel?.formacoes?[index].descricao;
+      widget.store.formacaoStatus =
+          widget.store.projetoModel?.formacoes?[index].status;
     } else {
-      widget.store.experienciaEmpresa = null;
-      widget.store.experienciaCargo = null;
-      widget.store.experienciaDataDeInicio = null;
-      widget.store.experienciaDataDeFim = null;
-      widget.store.experienciaDescricao = null;
+      widget.store.formacaoInstituicao = null;
+      widget.store.formacaoCurso = null;
+      widget.store.formacaoDataDeInicio = null;
+      widget.store.formacaoDataDeFim = null;
+      widget.store.formacaoDescricao = null;
+      widget.store.formacaoStatus = null;
     }
+    widget.store.isDateFimValid = true;
+    widget.store.isDateInicioValid = true;
     final formKey = GlobalKey<FormState>();
     return Observer(builder: (_) {
       return Padding(
@@ -162,15 +174,15 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
           child: Column(
             children: [
               InputWidget(
-                label: 'Cargo',
-                onChanged: widget.store.setExperienciaCargo,
-                value: widget.store.experienciaCargo,
+                label: 'Curso',
+                onChanged: widget.store.setFormacaoCurso,
+                value: widget.store.formacaoCurso,
               ),
               const DividerWidget(height: 15),
               InputWidget(
-                label: 'Empresa',
-                onChanged: widget.store.setExperienciaEmpresa,
-                value: widget.store.experienciaEmpresa,
+                label: 'Instituição',
+                onChanged: widget.store.setFormacaoInstituicao,
+                value: widget.store.formacaoInstituicao,
               ),
               const DividerWidget(height: 15),
               Row(
@@ -182,8 +194,8 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                         width: 44.w,
                         child: InputWidget(
                           label: 'Data de Início',
-                          onChanged: widget.store.setExperienciaDataDeInicio,
-                          value: widget.store.experienciaDataDeInicio,
+                          onChanged: widget.store.setFormacaoDataDeInicio,
+                          value: widget.store.formacaoDataDeInicio,
                           inputFormatters: [dateFormatter],
                           validator: (v) => combine([
                             () => notEmpty(v),
@@ -201,8 +213,8 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                         width: 44.w,
                         child: InputWidget(
                           label: 'Data de Fim',
-                          onChanged: widget.store.setExperienciaDataDeFim,
-                          value: widget.store.experienciaDataDeFim,
+                          onChanged: widget.store.setFormacaoDataDeFim,
+                          value: widget.store.formacaoDataDeFim,
                           inputFormatters: [dateFormatter],
                           validator: (v) => combine([
                             () => notEmpty(v),
@@ -211,7 +223,7 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                         ),
                       ),
                       DividerWidget(
-                          height: widget.store.isDateInicioValid ? 0 : 35)
+                          height: widget.store.isDateInicioValid ? 0 : 35),
                     ],
                   ),
                 ],
@@ -219,13 +231,46 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
               const DividerWidget(height: 15),
               InputWidget(
                 label: 'Descrição',
-                onChanged: widget.store.setExperienciaDescricao,
-                value: widget.store.experienciaDescricao,
+                onChanged: widget.store.setFormacaoDescricao,
+                value: widget.store.formacaoDescricao,
               ),
-              // InputAtividadesWidget(
-              //     atividadesNotifier: _atividadesNotifier,
-              //     store: widget.store,
-              //     indexOfExperiencia: index),
+              const DividerWidget(height: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  textWidget(
+                    'Situação', // Rótulo do dropdown
+                    style: label(color: black),
+                  ),
+                  SizedBox(height: 1.h),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1), // Borda
+                      borderRadius:
+                          BorderRadius.circular(5), // Bordas arredondadas
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0), // Espaçamento interno
+                    child: DropdownButton<String>(
+                      value: widget.store.formacaoStatus,
+                      hint: const Text('Selecione um status'),
+                      isExpanded:
+                          true, // Para que o dropdown ocupe toda a largura
+                      items: statuses.map((String status) {
+                        return DropdownMenuItem<String>(
+                          value: status,
+                          child: Text(status),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        widget.store.setFormacaoStatus(newValue);
+                      },
+                      underline:
+                          SizedBox(), // Remove a linha padrão do dropdown
+                    ),
+                  ),
+                ],
+              ),
               const DividerWidget(height: 30),
               ValueListenableBuilder<ObservableList?>(
                   valueListenable: _atividadesNotifier,
@@ -234,16 +279,17 @@ class _InputExperienciaWidgetState extends State<InputExperienciaWidget>
                       width: 60.w,
                       onPressed: () {
                         widget.store.setDateInicioFimValid(
-                            widget.store.experienciaDataDeInicio,
-                            widget.store.experienciaDataDeFim);
+                            widget.store.formacaoDataDeInicio,
+                            widget.store.formacaoDataDeFim);
                         if (!formKey.currentState!.validate()) return;
 
-                        widget.store.addExperiencia(
-                          widget.store.experienciaCargo,
-                          widget.store.experienciaEmpresa,
-                          widget.store.experienciaDataDeInicio,
-                          widget.store.experienciaDataDeFim,
-                          widget.store.experienciaDescricao, //atividades,
+                        widget.store.addFormacao(
+                          widget.store.formacaoCurso,
+                          widget.store.formacaoInstituicao,
+                          widget.store.formacaoDataDeInicio,
+                          widget.store.formacaoDataDeFim,
+                          widget.store.formacaoDescricao,
+                          widget.store.formacaoStatus,
                           index,
                         );
                         Modular.to.pop();

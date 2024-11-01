@@ -220,33 +220,32 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                           onPressed: () {
                                             var lista = _store.listaProjetos;
                                             _store.projetoModel = ProjetoModel(
-                                                nome: lista[index].nome,
-                                                urlAmigavel:
-                                                    lista[index].urlAmigavel,
-                                                descricao:
-                                                    lista[index].descricao,
-                                                email: lista[index].email,
-                                                linkContato:
-                                                    lista[index].linkContato,
-                                                linkImage:
-                                                    lista[index].linkImage,
-                                                missao: lista[index].missao,
-                                                visao: lista[index].visao,
-                                                valores: lista[index].valores,
-                                                telefone: lista[index].telefone,
-                                                modelo: lista[index].modelo,
-                                                usuarioId:
-                                                    lista[index].usuarioId,
-                                                id: lista[index].id,
-                                                habilidades:
-                                                    lista[index].habilidades,
-                                                extras: lista[index].extras,
-                                                // faq: lista[index].faq,
-                                                // card: lista[index].card,
-                                                // depoimentos:
-                                                //     lista[index].depoimentos,
-                                                experiencias:
-                                                    lista[index].experiencias);
+                                              nome: lista[index].nome,
+                                              urlAmigavel:
+                                                  lista[index].urlAmigavel,
+                                              descricao: lista[index].descricao,
+                                              email: lista[index].email,
+                                              linkContato:
+                                                  lista[index].linkContato,
+                                              linkImage: lista[index].linkImage,
+                                              missao: lista[index].missao,
+                                              visao: lista[index].visao,
+                                              valores: lista[index].valores,
+                                              telefone: lista[index].telefone,
+                                              modelo: lista[index].modelo,
+                                              usuarioId: lista[index].usuarioId,
+                                              id: lista[index].id,
+                                              habilidades:
+                                                  lista[index].habilidades,
+                                              extras: lista[index].extras,
+                                              // faq: lista[index].faq,
+                                              // card: lista[index].card,
+                                              // depoimentos:
+                                              //     lista[index].depoimentos,
+                                              experiencias:
+                                                  lista[index].experiencias,
+                                              formacoes: lista[index].formacoes,
+                                            );
                                             Modular.to.pushNamed(
                                                 '/projeto/dados-resultados');
                                           },

@@ -68,6 +68,24 @@ abstract class ProjetoStoreBase with Store {
   String? experienciaDescricao;
 
   @observable
+  String? formacaoCurso;
+
+  @observable
+  String? formacaoInstituicao;
+
+  @observable
+  String? formacaoDataDeInicio;
+
+  @observable
+  String? formacaoDataDeFim;
+
+  @observable
+  String? formacaoDescricao;
+
+  @observable
+  String? formacaoStatus;
+
+  @observable
   String? depoimentoNome;
 
   @observable
@@ -96,6 +114,12 @@ abstract class ProjetoStoreBase with Store {
 
   @observable
   XFile? depoimentoImage;
+
+  @observable
+  bool isDateInicioValid = true;
+
+  @observable
+  bool isDateFimValid = true;
 
   @observable
   ObservableList listaModelos = ObservableList<ProjetoModeloModel>.of([]);
@@ -188,6 +212,24 @@ abstract class ProjetoStoreBase with Store {
   setExperienciaDescricao(value) => experienciaDescricao = value;
 
   @action
+  setFormacaoCurso(value) => formacaoCurso = value;
+
+  @action
+  setFormacaoInstituicao(value) => formacaoInstituicao = value;
+
+  @action
+  setFormacaoDataDeInicio(value) => formacaoDataDeInicio = value;
+
+  @action
+  setFormacaoDataDeFim(value) => formacaoDataDeFim = value;
+
+  @action
+  setFormacaoDescricao(value) => formacaoDescricao = value;
+
+  @action
+  setFormacaoStatus(value) => formacaoStatus = value;
+
+  @action
   setDepoimentoNome(value) => depoimentoNome = value;
 
   @action
@@ -195,6 +237,38 @@ abstract class ProjetoStoreBase with Store {
 
   @action
   setSelectedModelo(value) => selectedModelo = value;
+
+  @action
+  setDateInicioFimValid(String? dataInicio, String? dataFim) {
+    bool matchesDataInicio =
+        RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$')
+            .hasMatch(dataInicio ?? "");
+    bool matchesDataFim =
+        RegExp(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$')
+            .hasMatch(dataFim ?? "");
+
+    bool dataInicioIsEmpty = dataInicio!.isEmpty;
+    bool dataFimIsEmpty = dataFim!.isEmpty;
+
+    bool validDataInicio = !matchesDataInicio || dataInicioIsEmpty;
+    bool validDataFim = !matchesDataFim || dataFimIsEmpty;
+    if (validDataFim == validDataInicio) {
+      isDateInicioValid = true;
+      isDateFimValid = true;
+    } else {
+      if (validDataFim) {
+        isDateFimValid = false;
+      } else {
+        isDateFimValid = true;
+      }
+
+      if (validDataInicio) {
+        isDateInicioValid = false;
+      } else {
+        isDateInicioValid = true;
+      }
+    }
+  }
 
   @action
   addFile(value) => image = value;
@@ -233,6 +307,7 @@ abstract class ProjetoStoreBase with Store {
           extras: ObservableList<ExtrasModel>.of([]),
           faq: ObservableList<FaqModel>.of([]),
           experiencias: ObservableList<ExperienciaModel>.of([]),
+          formacoes: ObservableList<FormacaoModel>.of([]),
         );
       }
     } catch (e) {}
@@ -325,6 +400,36 @@ abstract class ProjetoStoreBase with Store {
           dataDeInicio: DateFormat('dd/MM/yyyyy').parse(dataDeInicio),
           dataDeFim: DateFormat('dd/MM/yyyyy').parse(dataDeFim),
           descricao: descricao);
+    }
+  }
+
+  @action
+  deletFormacao(value) {
+    projetoModel!.formacoes?.remove(value);
+  }
+
+  @action
+  addFormacao(curso, instituicao, dataDeInicio, dataDeFim, descricao, status,
+      indexForEdit) {
+    if (indexForEdit == null) {
+      projetoModel!.formacoes?.add(FormacaoModel(
+        curso: curso,
+        instituicao: instituicao,
+        dataDeInicio: DateFormat('dd/MM/yyyyy').parse(dataDeInicio),
+        dataDeFim: DateFormat('dd/MM/yyyyy').parse(dataDeFim),
+        descricao: descricao,
+        status: status,
+      ));
+    } else {
+      //indexForEdit diferente de nulo edita ao inves de adicionar novo
+      projetoModel?.formacoes?[indexForEdit] = FormacaoModel(
+        curso: curso,
+        instituicao: instituicao,
+        dataDeInicio: DateFormat('dd/MM/yyyyy').parse(dataDeInicio),
+        dataDeFim: DateFormat('dd/MM/yyyyy').parse(dataDeFim),
+        descricao: descricao,
+        status: status,
+      );
     }
   }
 

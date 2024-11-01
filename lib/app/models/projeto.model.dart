@@ -23,30 +23,33 @@ class ProjetoModel extends FromJsonModel {
   ObservableList? faq = ObservableList<FaqModel>.of([]);
   ObservableList? card = ObservableList<CardModel>.of([]);
   ObservableList? depoimentos = ObservableList<DepoimentoModel>.of([]);
+  ObservableList? formacoes = ObservableList<FormacaoModel>.of([]);
   String? message;
   String? imagemModelo;
 
-  ProjetoModel(
-      {this.id,
-      this.usuarioId,
-      this.urlAmigavel,
-      this.modelo,
-      this.nome,
-      this.nomePagina,
-      this.email,
-      this.telefone,
-      this.descricao,
-      this.linkContato,
-      this.missao,
-      this.visao,
-      this.valores,
-      this.linkImage,
-      this.habilidades,
-      this.extras,
-      this.faq,
-      this.card,
-      this.depoimentos,
-      this.experiencias});
+  ProjetoModel({
+    this.id,
+    this.usuarioId,
+    this.urlAmigavel,
+    this.modelo,
+    this.nome,
+    this.nomePagina,
+    this.email,
+    this.telefone,
+    this.descricao,
+    this.linkContato,
+    this.missao,
+    this.visao,
+    this.valores,
+    this.linkImage,
+    this.habilidades,
+    this.extras,
+    this.faq,
+    this.card,
+    this.depoimentos,
+    this.experiencias,
+    this.formacoes,
+  });
 
   ProjetoModel.createNew(ProjetoModel model) {
     nome = model.nome;
@@ -103,6 +106,22 @@ class ProjetoModel extends FromJsonModel {
         ));
       }
     }
+    if (json['formacoes'] != null) {
+      for (var e in json['formacoes']) {
+        formacoes!.add(FormacaoModel(
+          curso: e['curso'],
+          instituicao: e['instituicao'],
+          dataDeInicio: e['data_inicio'] != null
+              ? DateTime.parse(e['data_inicio'])
+              : DateTime.now(),
+          dataDeFim: e['data_fim'] != null
+              ? DateTime.parse(e['data_fim'])
+              : DateTime.now(),
+          descricao: e['descricao'],
+          status: e['status'],
+        ));
+      }
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -123,6 +142,7 @@ class ProjetoModel extends FromJsonModel {
     json['habilidades'] = habilidades;
     json['extras'] = extras;
     json['experiencias'] = experiencias;
+    json['formacoes'] = formacoes;
     return json;
   }
 
@@ -274,4 +294,46 @@ class ExperienciaModel extends FromJsonModel {
 
   @override
   fromJson(Map<String, dynamic> json) => ExperienciaModel.fromJson(json);
+}
+
+class FormacaoModel extends FromJsonModel {
+  String? curso;
+  String? instituicao;
+  DateTime? dataDeInicio;
+  DateTime? dataDeFim;
+  String? descricao;
+  String? status;
+
+  FormacaoModel({
+    this.curso,
+    this.instituicao,
+    this.dataDeInicio,
+    this.dataDeFim,
+    this.descricao,
+    this.status,
+  });
+
+  FormacaoModel.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    curso = json['curso'];
+    instituicao = json['instituicao'];
+    dataDeInicio = json['data_inicio'];
+    dataDeFim = json['data_fim'];
+    descricao = json['descricao'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['curso'] = curso;
+    json['instituicao'] = instituicao;
+    json['data_inicio'] = dataDeInicio?.toIso8601String();
+    json['data_fim'] = dataDeFim?.toIso8601String();
+    json['descricao'] = descricao;
+    json['status'] = status;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => FormacaoModel.fromJson(json);
 }

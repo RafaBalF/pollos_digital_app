@@ -11,6 +11,7 @@ import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_experiencia.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_extras.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_formacao.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_image.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_missao_visao_valores.dart';
@@ -153,54 +154,63 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           // DividerWidget(height: 2.h),
           // InputDepoimentoTextoWidget(store: _store),
           DividerWidget(height: 2.h),
+          InputFormacaoWidget(store: _store),
+          DividerWidget(height: 2.h),
           InputExperienciaWidget(store: _store),
           DividerWidget(height: 4.h),
-          ButtonWidget.filled(
-            onPressed: () async {
-              if (_store.projetoModel?.usuarioId == null) {
-                var r = await _store.validarUrlAmigavel();
-                if (r == null) {
-                  var r = await _store.salvarProjeto();
-                  if (r != null) {
-                    _showToast(context, 'Página salva com sucesso', true);
-                    Modular.to.popUntil((route) => route.isFirst);
-                    Modular.to.pushNamed('/projeto/projetos-criados');
-                  } else {
-                    _showToast(context,
-                        'Falha ao criar página, tente novamente', false);
-                  }
-                } else {
-                  // ignore: use_build_context_synchronously
-                  _showToast(context, r, false);
-                }
-              } else {
-                if (_store.projetoModel?.urlAmigavel != urlAmigavelInauterada) {
-                  var r = await _store.validarUrlAmigavel();
-                  if (r == null) {
-                    Modular.to.pushNamed('/projeto/select-modelo');
-                  } else {
-                    // ignore: use_build_context_synchronously
-                    _showToast(context, r, false);
-                  }
-                } else {
-                  Modular.to.pushNamed('/projeto/select-modelo');
-                }
-              }
-            },
-            title: (_store.projetoModel?.usuarioId == null)
-                ? 'SALVAR '
-                : 'AVANÇAR',
-            textColor: white,
-            backgroundColor: focus,
-          ),
+          ValueListenableBuilder<XFile?>(
+              valueListenable: _arquivoNotifier,
+              builder: (context, arquivo, child) {
+                return ButtonWidget.filled(
+                  onPressed: () async {
+                    final scaffold = ScaffoldMessenger.of(context);
+                    _store.image = arquivo;
+                    if (_store.projetoModel?.usuarioId == null) {
+                      var r = await _store.validarUrlAmigavel();
+                      if (r == null) {
+                        var r = await _store.salvarProjeto();
+                        if (r != null) {
+                          _showToast(
+                              scaffold, 'Página salva com sucesso', true);
+                          Modular.to.popUntil((route) => route.isFirst);
+                          Modular.to.pushNamed('/projeto/projetos-criados');
+                        } else {
+                          _showToast(scaffold,
+                              'Falha ao criar página, tente novamente', false);
+                        }
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        _showToast(scaffold, r, false);
+                      }
+                    } else {
+                      if (_store.projetoModel?.urlAmigavel !=
+                          urlAmigavelInauterada) {
+                        var r = await _store.validarUrlAmigavel();
+                        if (r == null) {
+                          Modular.to.pushNamed('/projeto/select-modelo');
+                        } else {
+                          // ignore: use_build_context_synchronously
+                          _showToast(context, r, false);
+                        }
+                      } else {
+                        Modular.to.pushNamed('/projeto/select-modelo');
+                      }
+                    }
+                  },
+                  title: (_store.projetoModel?.usuarioId == null)
+                      ? 'SALVAR '
+                      : 'AVANÇAR',
+                  textColor: white,
+                  backgroundColor: focus,
+                );
+              }),
           DividerWidget(height: 4.h),
         ],
       ),
     );
   }
 
-  void _showToast(BuildContext context, message, sucess) {
-    final scaffold = ScaffoldMessenger.of(context);
+  void _showToast(scaffold, message, sucess) {
     scaffold.showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 5),

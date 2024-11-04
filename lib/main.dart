@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_microsoft_clarity/flutter_microsoft_clarity.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
@@ -12,8 +11,6 @@ import 'package:pollos_digital/app_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  FlutterMicrosoftClarity().init(projectId: 'ojrnkc7pl6', userId: 'UserName');
 
   Intl.defaultLocale = 'pt_BR';
   initializeDateFormatting('pt_BR');

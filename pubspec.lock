@@ -632,14 +632,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.2.0"
-  flutter_microsoft_clarity:
-    dependency: "direct main"
-    description:
-      name: flutter_microsoft_clarity
-      sha256: "970ac14d20a6ab6e0a54dfe293d2babd4793f15c0b2c79fd999d98faaaeff024"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   flutter_mobx:
     dependency: "direct main"
     description:

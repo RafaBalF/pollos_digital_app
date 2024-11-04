@@ -10,7 +10,6 @@ import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/divider_widget.dart';
 import 'package:pollos_digital/app/mixins/form_validations_mixin.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_experiencia.dart';
-import 'package:pollos_digital/app/shared/widgets/inputs/input_extras.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_formacao.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_image.dart';
@@ -145,8 +144,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           InputMissaoVisaoValoresWidget(store: _store),
           DividerWidget(height: 2.h),
           InputHabilidadesWidget(store: _store),
-          DividerWidget(height: 2.h),
-          InputExtraWidget(store: _store),
+          // DividerWidget(height: 2.h),
+          // InputExtraWidget(store: _store),
           // DividerWidget(height: 2.h),
           // InputFaqWidget(store: _store),
           // DividerWidget(height: 2.h),

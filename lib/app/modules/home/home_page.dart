@@ -39,9 +39,7 @@ class HomePageState extends State<HomePage> {
     _future = Future.wait([_store.initHome()]);
 
     super.initState();
-    // checkForUpdate(context);
-    //Remove this method to stop OneSignal Debugging
-    // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+    checkForUpdate(context);
     OneSignal.initialize("c171943c-7d63-4fd7-a68f-07938491ca80");
     OneSignal.InAppMessages.addTrigger('prompt_ios', 'true');
     OneSignal.Notifications.requestPermission(true);
@@ -612,7 +610,6 @@ class HomePageState extends State<HomePage> {
       // Obter a versão atual do aplicativo
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       String versaoAtual = packageInfo.version;
-      versaoAtual = '1.4.10';
 
       // Buscar a versão mais recente da API
       Versao versaoMaisRecente = await fetchVersaoAtual();

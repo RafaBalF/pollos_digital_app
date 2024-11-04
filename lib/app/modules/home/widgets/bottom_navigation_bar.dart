@@ -38,11 +38,11 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             ),
             _bottomNavigationBarItem(
               'assets/icons/svg/document.svg',
-              'Criar curriculo',
+              'Criar currículo',
             ),
             _bottomNavigationBarItem(
               'assets/icons/svg/list-details.svg',
-              "Sites criados",
+              "Currículos criados",
             ),
             // _bottomNavigationBarItem(
             //   'assets/icons/svg/ticket.svg',

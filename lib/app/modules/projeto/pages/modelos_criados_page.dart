@@ -35,7 +35,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
       future: _future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         return SimpleScaffoldWidget(
-            title: 'Meus projetos',
+            title: 'Meus currículos',
             bodyPadding: EdgeInsets.all(2.w),
             body: Observer(
               builder: (_) {
@@ -127,7 +127,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        textWidget('Link da página',
+                                        textWidget('Link do currículo',
                                             fontSize: 12),
                                         Container(
                                           width: 30.w,

@@ -158,14 +158,14 @@ class HomePageState extends State<HomePage> {
         children: [
           RedirectCardWidget(
             imgPath: 'assets/icons/svg/document_accent.svg',
-            label: 'Criar Curriculo',
+            label: 'Criar currículo',
             route: '/projeto/',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
           ),
           RedirectCardWidget(
             imgPath: 'assets/icons/svg/list-details_accent.svg',
-            label: 'Curriculos Criados',
+            label: 'Currículos Criados',
             route: '/projeto/projetos-criados',
             labelColor: primary,
             margin: EdgeInsets.only(right: 2.w),
@@ -241,7 +241,7 @@ class HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // _mostAccessedCard('MEU DIÁRIO', '/diario/'),
-              _mostAccessedCard('CRIAR CURRICULO', '/projeto/'),
+              _mostAccessedCard('CRIAR CURRÍCULO', '/projeto/'),
               // _mostAccessedCard('FINANCEIRO', '/pagamentos/'),
             ],
           ),

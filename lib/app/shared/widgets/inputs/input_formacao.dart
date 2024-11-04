@@ -155,6 +155,9 @@ class _InputFormacaoWidgetState extends State<InputFormacaoWidget>
           widget.store.projetoModel?.formacoes?[index].descricao;
       widget.store.formacaoStatus =
           widget.store.projetoModel?.formacoes?[index].status;
+      if (widget.store.formacaoStatus == 'Concluido') {
+        widget.store.formacaoStatus = 'Concluído';
+      }
     } else {
       widget.store.formacaoInstituicao = null;
       widget.store.formacaoCurso = null;

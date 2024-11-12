@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/interfaces/selectable_card.interface.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';

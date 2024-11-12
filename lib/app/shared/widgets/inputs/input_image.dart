@@ -39,8 +39,6 @@ class InputImagemWidget extends StatefulWidget {
   factory InputImagemWidget.rectangular({
     XFile? image,
     String? linkImage,
-    final Function()? deleteFile,
-    final Function(XFile i)? addFile,
     InputImageType? inputType,
     ValueNotifier<XFile?>? arquivoNotifier,
   }) =>
@@ -265,9 +263,7 @@ class _InputImagemWidgetState extends State<InputImagemWidget> {
   _getGalleryPhoto(context) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    // widget.addFile!(image!);
-    widget.image = image;
-    widget.arquivoNotifier?.value = widget.image!;
+    widget.arquivoNotifier?.value = image;
     setState(() {});
   }
 }

@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/interfaces/selectable_card.interface.dart';
-import 'package:pollos_digital/app/shared/modal_bottom_sheet.dart';
 import 'package:pollos_digital/app/shared/text_styles.dart';
 import 'package:pollos_digital/app/shared/text_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/button_widget.dart';
@@ -129,11 +128,11 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
     String? duration,
     double? review,
   }) {
-    String formattedPrice = "R\$ ${currencyFormatter.format(price)}";
+    // String formattedPrice = "R\$ ${currencyFormatter.format(price)}";
     final double mostWishedCardWidth = 50.w;
     const double mostWishedCardRadius = 10;
     final double mostWishedPhotoHeight = 25.h;
-    final double mostWishedDetailsHeight = 12.h;
+    // final double mostWishedDetailsHeight = 12.h;
 
     Widget reviewBadge = (review != null)
         ? Positioned(
@@ -161,13 +160,13 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
           )
         : const SizedBox();
 
-    Widget oldPriceWidget = (oldPrice != null)
-        ? textWidget(
-            "R\$ ${currencyFormatter.format(oldPrice)}",
-            style: verySmall(textDecoration: TextDecoration.lineThrough),
-            textAlign: TextAlign.start,
-          )
-        : const SizedBox();
+    // Widget oldPriceWidget = (oldPrice != null)
+    //     ? textWidget(
+    //         "R\$ ${currencyFormatter.format(oldPrice)}",
+    //         style: verySmall(textDecoration: TextDecoration.lineThrough),
+    //         textAlign: TextAlign.start,
+    //       )
+    //     : const SizedBox();
 
     return GestureDetector(
       onTap: () {

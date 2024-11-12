@@ -38,6 +38,8 @@
 	<string>Este aplicativo solicita acesso ao microfone para gravar sua voz, coletando seu nome, contato e uma breve descrição para criar uma página web personalizada. As gravações são processadas com segurança.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Este aplicativo precisa acessar sua galeria de imagens para que você selecione uma foto pessoal, que será usada na sua página web. Respeitamos sua privacidade e garantimos segurança nas imagens.</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>12.0</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

@@ -21,7 +21,17 @@ abstract class ProjetoStoreBase with Store {
   final LoadingStore loadingStore = LoadingStore();
   final LoginHive _loginHive = LoginHive();
 
+  List<EstadoModel> estados = [];
+
+  List<CidadeModel> cidadesPorEstado = [];
+
   //OBSERVABLEs
+  @observable
+  String? cidadeSelecionada;
+
+  @observable
+  String? estadoSelecionado;
+
   @observable
   String? urlAmigavelErroMessage;
 
@@ -131,6 +141,12 @@ abstract class ProjetoStoreBase with Store {
   ObservableList atividades = ObservableList<String>.of([]);
 
   //ACTIONs
+  @action
+  setCidade(value) => cidadeSelecionada = value;
+
+  @action
+  setEstado(value) => estadoSelecionado = value;
+
   @action
   setUrlAmigavelErroMessage(value) => urlAmigavelErroMessage = value;
   @action
@@ -549,6 +565,24 @@ abstract class ProjetoStoreBase with Store {
   }
 
   @action
+  carregarEstados() async {
+    var r = await _projetoApi.getEstados();
+    estados.clear();
+    for (var e in r) {
+      estados.add(EstadoModel.fromJson(e));
+    }
+  }
+
+  @action
+  carregarCidades(idEstado) async {
+    var r = await _projetoApi.getCidades(idEstado);
+    cidadesPorEstado.clear();
+    for (var e in r) {
+      cidadesPorEstado.add(CidadeModel.fromJson(e));
+    }
+  }
+
+  @action
   excluirProjeto(projetoId) async {
     await _projetoApi.excluirProjeto(projetoId);
     loadingStore.show();
@@ -565,6 +599,11 @@ abstract class ProjetoStoreBase with Store {
   @action
   Future<void> initProjetosModelo() async {
     await carregarModelos();
+  }
+
+  @action
+  Future<void> initDadosResultadados() async {
+    await carregarEstados();
   }
 
   @action

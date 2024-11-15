@@ -319,4 +319,36 @@ class ProjetoApi extends BaseApi {
     }
     return result;
   }
+
+  Future getEstados() async {
+    var b = ProjetoModel();
+    var result;
+    try {
+      var response = (await Dio(_option).post('/Localidade/listEstados')).data;
+      result = response;
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  Future getCidades(estado) async {
+    var b = ProjetoModel();
+    var result;
+    try {
+      var response =
+          (await Dio(_option).post('/Localidade/listCidadesPorEstado/$estado'))
+              .data;
+      result = response;
+    } on DioException catch (e) {
+      result = "Algo deu errado, tente novamente mais tarde.";
+      b.message = handleDioException(e);
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
 }

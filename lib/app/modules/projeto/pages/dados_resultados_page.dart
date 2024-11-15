@@ -13,6 +13,7 @@ import 'package:pollos_digital/app/shared/widgets/inputs/input_experiencia.dart'
 import 'package:pollos_digital/app/shared/widgets/inputs/input_formacao.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_habilidades.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_image.dart';
+import 'package:pollos_digital/app/shared/widgets/inputs/input_localidade.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_missao_visao_valores.dart';
 import 'package:pollos_digital/app/shared/widgets/inputs/input_widget.dart';
 import 'package:pollos_digital/app/shared/widgets/simple_scaffold_widget.dart';
@@ -45,7 +46,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
 
   @override
   void initState() {
-    _future = Future.wait([]);
+    _future = Future.wait([_store.initDadosResultadados()]);
 
     urlAmigavelInauterada = _store.projetoModel?.urlAmigavel;
 
@@ -140,6 +141,8 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           ),
           // DividerWidget(height: 2.h),
           // InputYTVideoWidget(store: _store),
+          DividerWidget(height: 2.h),
+          InputLocalidadeWidget(store: _store),
           DividerWidget(height: 2.h),
           InputMissaoVisaoValoresWidget(store: _store),
           DividerWidget(height: 2.h),

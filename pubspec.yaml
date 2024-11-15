@@ -88,6 +88,7 @@ dependencies:
   onesignal_flutter: ^5.2.6
   # flutter_microsoft_clarity: ^1.0.0
   youtube_player_flutter: ^9.1.1
+  flutter_typeahead: ^4.0.0
 
 dev_dependencies:
   flutter_test:

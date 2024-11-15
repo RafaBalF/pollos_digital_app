@@ -160,7 +160,7 @@ class ExtrasModel extends FromJsonModel {
   });
 
   ExtrasModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
     descricao = json['descricao'];
     valor = json['valor'];
   }
@@ -186,7 +186,7 @@ class FaqModel extends FromJsonModel {
   });
 
   FaqModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
     pergunta = json['pergunta'];
     resposta = json['resposta'];
   }
@@ -212,7 +212,7 @@ class CardModel extends FromJsonModel {
   });
 
   CardModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
 
     titulo = json['titulo'];
     texto = json['texto'];
@@ -242,7 +242,7 @@ class DepoimentoModel extends FromJsonModel {
   });
 
   DepoimentoModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
     nome = json['nome'];
     depoimento = json['depoimento'];
   }
@@ -274,7 +274,7 @@ class ExperienciaModel extends FromJsonModel {
   });
 
   ExperienciaModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
     cargo = json['cargo'];
     empresa = json['empresa'];
     dataDeInicio = json['dataDeInicio'];
@@ -314,7 +314,7 @@ class FormacaoModel extends FromJsonModel {
   });
 
   FormacaoModel.fromJson(Map<String, dynamic> json) {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    // final Map<String, dynamic> json = <String, dynamic>{};
     curso = json['curso'];
     instituicao = json['instituicao'];
     dataDeInicio = json['data_inicio'];
@@ -336,4 +336,70 @@ class FormacaoModel extends FromJsonModel {
 
   @override
   fromJson(Map<String, dynamic> json) => FormacaoModel.fromJson(json);
+}
+
+class EstadoModel extends FromJsonModel {
+  int? id;
+  String? estado;
+  String? sigla;
+
+  EstadoModel({
+    this.id,
+    this.estado,
+    this.sigla,
+  });
+
+  EstadoModel.fromJson(Map<String, dynamic> json) {
+    id = int.parse(json['id_estado']);
+    estado = json['estado'];
+    sigla = json['estado_sigla'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['id'] = id;
+    json['estado'] = estado;
+    json['sigla'] = sigla;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => EstadoModel.fromJson(json);
+}
+
+class CidadeModel extends FromJsonModel {
+  int? id;
+  String? cidade;
+  String? estado;
+  String? sigla;
+  int? idEstado;
+
+  CidadeModel({
+    this.id,
+    this.cidade,
+    this.estado,
+    this.sigla,
+    this.idEstado,
+  });
+
+  CidadeModel.fromJson(Map<String, dynamic> json) {
+    id = int.parse(json['id']);
+    cidade = json['cidade'];
+    estado = json['estado'];
+    sigla = json['estado_sigla'];
+    idEstado = int.parse(json['id_estado']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['id'] = id;
+    json['cidade'] = cidade;
+    json['estado'] = estado;
+    json['sigla'] = sigla;
+    json['id_estado'] = idEstado;
+    return json;
+  }
+
+  @override
+  fromJson(Map<String, dynamic> json) => CidadeModel.fromJson(json);
 }

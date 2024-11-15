@@ -3,8 +3,11 @@
 const APP_NAME = "";
 const APP_ID = "";
 
-// Dev
-const API_URL = "https://site.pollosdigital.com.br";
+// Prod
+// const API_URL = "https://site.pollosdigital.com.br";
+// Local
+const API_URL = "http://10.0.2.2:8080";
+
 const PUSHER_API_KEY = "";
 const PUSHER_CLUSTER = "";
 

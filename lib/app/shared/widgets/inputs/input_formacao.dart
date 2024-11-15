@@ -269,7 +269,7 @@ class _InputFormacaoWidgetState extends State<InputFormacaoWidget>
                         widget.store.setFormacaoStatus(newValue);
                       },
                       underline:
-                          SizedBox(), // Remove a linha padrão do dropdown
+                          const SizedBox(), // Remove a linha padrão do dropdown
                     ),
                   ),
                 ],

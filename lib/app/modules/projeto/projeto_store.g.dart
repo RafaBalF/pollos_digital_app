@@ -623,6 +623,14 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
         .run(() => super.carregarProjetosCriados());
   }
 
+  late final _$carregarEstadosAsyncAction =
+      AsyncAction('ProjetoStoreBase.carregarEstados', context: context);
+
+  @override
+  Future carregarEstados() {
+    return _$carregarEstadosAsyncAction.run(() => super.carregarEstados());
+  }
+
   late final _$excluirProjetoAsyncAction =
       AsyncAction('ProjetoStoreBase.excluirProjeto', context: context);
 
@@ -648,6 +656,15 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   Future<void> initProjetosModelo() {
     return _$initProjetosModeloAsyncAction
         .run(() => super.initProjetosModelo());
+  }
+
+  late final _$initDadosResultadadosAsyncAction =
+      AsyncAction('ProjetoStoreBase.initDadosResultadados', context: context);
+
+  @override
+  Future<void> initDadosResultadados() {
+    return _$initDadosResultadadosAsyncAction
+        .run(() => super.initDadosResultadados());
   }
 
   late final _$validarUrlAmigavelAsyncAction =

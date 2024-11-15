@@ -190,7 +190,10 @@ class _InputImagemWidgetState extends State<InputImagemWidget> {
             File(widget.image!.path),
             fit: BoxFit.cover,
           )
-        : Image.network(imagemLink);
+        : Image.network(
+            imagemLink,
+            fit: BoxFit.cover,
+          );
   }
 
   Widget _addFileWidgetCircle() {
@@ -263,7 +266,8 @@ class _InputImagemWidgetState extends State<InputImagemWidget> {
   _getGalleryPhoto(context) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    widget.arquivoNotifier?.value = image;
+    widget.image = image;
+    widget.arquivoNotifier?.value = widget.image!;
     setState(() {});
   }
 }

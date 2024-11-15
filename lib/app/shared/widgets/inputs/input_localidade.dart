@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
-import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
@@ -20,14 +18,8 @@ class InputLocalidadeWidget extends StatefulWidget {
 }
 
 class _InputLocalidadeWidgetState extends State<InputLocalidadeWidget> {
-  final ValueNotifier<ObservableList?> _atividadesNotifier =
-      ValueNotifier<ObservableList?>(null);
-
-  final Map<String, List<String>> _cidadesPorEstado = {
-    'São Paulo': ['São Paulo', 'Campinas', 'Sorocaba'],
-    'Rio de Janeiro': ['Rio de Janeiro', 'Niterói', 'Petrópolis'],
-    'Minas Gerais': ['Belo Horizonte', 'Uberlândia', 'Contagem'],
-  };
+  // final ValueNotifier<ObservableList?> _atividadesNotifier =
+  //     ValueNotifier<ObservableList?>(null);
 
   // Controlador de texto para o campo de cidade
   final TextEditingController _cidadeController = TextEditingController();
@@ -110,13 +102,6 @@ class _InputLocalidadeWidgetState extends State<InputLocalidadeWidget> {
                 widget.store.setCidade(null);
                 _cidadeController.clear(); // Limpa o campo de cidade
                 _clicouNaCidadeSemEstado = false;
-                // setState(() {
-                //   _cidadeSelecionada = cidade;
-                //   _cidadeController.text =
-                //       cidade; // Atualiza o campo com a cidade selecionada
-                //   _clicouNaCidadeSemEstado =
-                //       false; // Reseta o estado ao selecionar a cidade
-                // });
               },
               noItemsFoundBuilder: (context) {
                 return const Padding(
@@ -225,13 +210,6 @@ class _InputLocalidadeWidgetState extends State<InputLocalidadeWidget> {
                 widget.store.setCidade(cidade);
                 _cidadeController.text = cidade;
                 _clicouNaCidadeSemEstado = false;
-                // setState(() {
-                //   _cidadeSelecionada = cidade;
-                //   _cidadeController.text =
-                //       cidade; // Atualiza o campo com a cidade selecionada
-                //   _clicouNaCidadeSemEstado =
-                //       false; // Reseta o estado ao selecionar a cidade
-                // });
               },
               noItemsFoundBuilder: (context) {
                 return const Padding(

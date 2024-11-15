@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:diacritic/diacritic.dart';
 import 'package:dio/dio.dart';
 import 'package:pollos_digital/app/apis/base.api.dart';
 import 'package:pollos_digital/app/constants/constants.dart';
@@ -339,6 +340,7 @@ class ProjetoApi extends BaseApi {
     var b = ProjetoModel();
     var result;
     try {
+      estado = removeDiacritics(estado);
       var response =
           (await Dio(_option).post('/Localidade/listCidadesPorEstado/$estado'))
               .data;

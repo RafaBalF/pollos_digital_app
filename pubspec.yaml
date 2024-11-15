@@ -89,6 +89,7 @@ dependencies:
   # flutter_microsoft_clarity: ^1.0.0
   youtube_player_flutter: ^9.1.1
   flutter_typeahead: ^4.0.0
+  diacritic: ^0.1.6
 
 dev_dependencies:
   flutter_test:

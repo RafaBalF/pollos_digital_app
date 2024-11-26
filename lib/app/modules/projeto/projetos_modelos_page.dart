@@ -172,7 +172,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
 
     return GestureDetector(
       onTap: () {
-        _store.setModeloSelecionado(index);
+        // _store.setModeloSelecionado(index);
         // Modular.to.pushNamed('/projeto/details-modelo');
         // Modular.to.pushNamed('/projeto/record-audio');
         _store.projetoModel = ProjetoModel(

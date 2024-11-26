@@ -115,7 +115,7 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                       _store.listaProjetos[index].descricao,
                                       textAlign: TextAlign.justify,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 500,
+                                      fontSize: 12,
                                       maxLines: 2),
                                 ),
                                 Row(

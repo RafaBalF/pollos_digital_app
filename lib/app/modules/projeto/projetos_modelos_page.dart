@@ -176,6 +176,7 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
         // Modular.to.pushNamed('/projeto/details-modelo');
         // Modular.to.pushNamed('/projeto/record-audio');
         _store.projetoModel = ProjetoModel(
+          modelo: _store.listaModelos[index].id,
           nome: '',
           nomePagina: '',
           email: '',

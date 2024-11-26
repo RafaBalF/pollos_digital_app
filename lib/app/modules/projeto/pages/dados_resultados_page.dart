@@ -109,7 +109,7 @@ class _DadosResultadosPageState extends State<DadosResultadosPage>
           ),
           DividerWidget(height: 2.h),
           InputWidget(
-            label: 'Nome da Página',
+            label: 'Nome do currículo',
             onChanged: _store.setNomePagina,
             controller: TextEditingController(
                 text: _store.projetoModel?.urlAmigavel ?? ''),

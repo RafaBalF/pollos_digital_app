@@ -9,6 +9,38 @@ part of 'projeto_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProjetoStore on ProjetoStoreBase, Store {
+  late final _$cidadeSelecionadaAtom =
+      Atom(name: 'ProjetoStoreBase.cidadeSelecionada', context: context);
+
+  @override
+  String? get cidadeSelecionada {
+    _$cidadeSelecionadaAtom.reportRead();
+    return super.cidadeSelecionada;
+  }
+
+  @override
+  set cidadeSelecionada(String? value) {
+    _$cidadeSelecionadaAtom.reportWrite(value, super.cidadeSelecionada, () {
+      super.cidadeSelecionada = value;
+    });
+  }
+
+  late final _$estadoSelecionadoAtom =
+      Atom(name: 'ProjetoStoreBase.estadoSelecionado', context: context);
+
+  @override
+  String? get estadoSelecionado {
+    _$estadoSelecionadoAtom.reportRead();
+    return super.estadoSelecionado;
+  }
+
+  @override
+  set estadoSelecionado(String? value) {
+    _$estadoSelecionadoAtom.reportWrite(value, super.estadoSelecionado, () {
+      super.estadoSelecionado = value;
+    });
+  }
+
   late final _$urlAmigavelErroMessageAtom =
       Atom(name: 'ProjetoStoreBase.urlAmigavelErroMessage', context: context);
 
@@ -631,6 +663,15 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
     return _$carregarEstadosAsyncAction.run(() => super.carregarEstados());
   }
 
+  late final _$carregarCidadesAsyncAction =
+      AsyncAction('ProjetoStoreBase.carregarCidades', context: context);
+
+  @override
+  Future carregarCidades(dynamic idEstado) {
+    return _$carregarCidadesAsyncAction
+        .run(() => super.carregarCidades(idEstado));
+  }
+
   late final _$excluirProjetoAsyncAction =
       AsyncAction('ProjetoStoreBase.excluirProjeto', context: context);
 
@@ -678,6 +719,28 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
 
   late final _$ProjetoStoreBaseActionController =
       ActionController(name: 'ProjetoStoreBase', context: context);
+
+  @override
+  dynamic setCidade(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setCidade');
+    try {
+      return super.setCidade(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setEstado(dynamic value) {
+    final _$actionInfo = _$ProjetoStoreBaseActionController.startAction(
+        name: 'ProjetoStoreBase.setEstado');
+    try {
+      return super.setEstado(value);
+    } finally {
+      _$ProjetoStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic setUrlAmigavelErroMessage(dynamic value) {
@@ -1276,6 +1339,8 @@ mixin _$ProjetoStore on ProjetoStoreBase, Store {
   @override
   String toString() {
     return '''
+cidadeSelecionada: ${cidadeSelecionada},
+estadoSelecionado: ${estadoSelecionado},
 urlAmigavelErroMessage: ${urlAmigavelErroMessage},
 projetoModel: ${projetoModel},
 buttonEnabilitiy: ${buttonEnabilitiy},

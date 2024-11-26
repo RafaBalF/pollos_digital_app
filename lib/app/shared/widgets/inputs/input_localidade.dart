@@ -46,6 +46,17 @@ class _InputLocalidadeWidgetState extends State<InputLocalidadeWidget> {
   }
 
   @override
+  void initState() {
+    try {
+      _cidadeController.text = widget.store.projetoModel!.cidade!;
+      _estadoController.text = widget.store.projetoModel!.estado!;
+      widget.store.setEstado(_estadoController.text);
+      widget.store.setCidade(_cidadeController.text);
+    } catch (e) {}
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       return Container(

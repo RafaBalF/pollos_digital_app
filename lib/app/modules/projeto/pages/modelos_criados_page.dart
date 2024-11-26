@@ -245,6 +245,8 @@ class _ProjetosCriadosPageState extends State<ProjetosCriadosPage> {
                                               experiencias:
                                                   lista[index].experiencias,
                                               formacoes: lista[index].formacoes,
+                                              estado: lista[index].estado,
+                                              cidade: lista[index].cidade,
                                             );
                                             Modular.to.pushNamed(
                                                 '/projeto/dados-resultados');

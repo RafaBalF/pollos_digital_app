@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pollos_digital/app/models/projeto.model.dart';
 import 'package:pollos_digital/app/modules/projeto/projeto_store.dart';
 import 'package:pollos_digital/app/shared/colors.dart';
 import 'package:pollos_digital/app/shared/interfaces/selectable_card.interface.dart';
@@ -172,7 +174,27 @@ class _ProjetosModelosPageState extends State<ProjetosModelosPage> {
       onTap: () {
         _store.setModeloSelecionado(index);
         // Modular.to.pushNamed('/projeto/details-modelo');
-        Modular.to.pushNamed('/projeto/record-audio');
+        // Modular.to.pushNamed('/projeto/record-audio');
+        _store.projetoModel = ProjetoModel(
+          nome: '',
+          nomePagina: '',
+          email: '',
+          telefone: '',
+          descricao: '',
+          linkContato: '',
+          missao: '',
+          visao: '',
+          valores: '',
+          cidade: '',
+          estado: '',
+          linkImage: null,
+          habilidades: ObservableList<String>.of([]),
+          extras: ObservableList<ExtrasModel>.of([]),
+          faq: ObservableList<FaqModel>.of([]),
+          experiencias: ObservableList<ExperienciaModel>.of([]),
+          formacoes: ObservableList<FormacaoModel>.of([]),
+        );
+        Modular.to.pushNamed('/projeto/dados-resultados');
       },
       child: Container(
         width: mostWishedCardWidth,

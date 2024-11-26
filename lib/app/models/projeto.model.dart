@@ -16,6 +16,8 @@ class ProjetoModel extends FromJsonModel {
   String? missao;
   String? visao;
   String? valores;
+  String? estado;
+  String? cidade;
   String? linkImage;
   ObservableList? habilidades = ObservableList<String>.of([]);
   ObservableList? experiencias = ObservableList<ExperienciaModel>.of([]);
@@ -41,6 +43,8 @@ class ProjetoModel extends FromJsonModel {
     this.missao,
     this.visao,
     this.valores,
+    this.estado,
+    this.cidade,
     this.linkImage,
     this.habilidades,
     this.extras,
@@ -77,6 +81,8 @@ class ProjetoModel extends FromJsonModel {
     missao = json['missao'];
     visao = json['visao'];
     valores = json['valores'];
+    estado = json['estado'];
+    cidade = json['cidade'];
     linkImage = json['linkdaimagem1'];
     imagemModelo = json['imagem_modelo'];
     if (json['habilidades'] != []) {
@@ -138,6 +144,8 @@ class ProjetoModel extends FromJsonModel {
     json['missao'] = missao;
     json['visao'] = visao;
     json['valores'] = valores;
+    json['estado'] = estado;
+    json['cidade'] = cidade;
     json['linkdaimagem1'] = linkImage;
     json['habilidades'] = habilidades;
     json['extras'] = extras;

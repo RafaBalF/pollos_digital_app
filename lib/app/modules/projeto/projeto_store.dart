@@ -516,6 +516,8 @@ abstract class ProjetoStoreBase with Store {
     projetoModel?.linkImage ??= await _projetoApi.uploadImage(image);
     var user = _loginHive.getLogin();
     projetoModel!.usuarioId = int.parse(user.id.toString());
+    projetoModel?.estado = estadoSelecionado;
+    projetoModel?.cidade = cidadeSelecionada;
     var r;
     if (projetoModel?.id == null) {
       r = await _projetoApi.criarProjeto(projetoModel);
